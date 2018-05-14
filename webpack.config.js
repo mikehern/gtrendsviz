@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const outputDirectory = '/dist';
 
 module.exports = {
+  resolve: { extensions: ['.js', '.jsx', '.json'] },
   entry: './src/client/index.js',
   output: {
     path: __dirname + outputDirectory,
@@ -11,14 +12,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.js?/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader'
         }
       },
       {
-        test: /\.css$/,
+        test: /\.css?/,
         use: ['style-loader', 'css-loader']
       }
     ]

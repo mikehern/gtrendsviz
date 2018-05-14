@@ -1,7 +1,7 @@
 {
   "name": "react-webpack-express-personal",
   "version": "1.0.0",
-  "description": "Personal boilerplate. Uses Concurrently to proxy client api requests to server, for development.",
+  "description": "Personal boilerplate. Uses webpack-dev-server to proxy client api requests to server from /api.",
   "main": "src/server/server.js",
   "dependencies": {
     "express": "^4.16.3",
@@ -30,10 +30,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/server/index.js",
+    "start": "node src/server/server.js",
     "build": "webpack --mode production",
     "client": "webpack-dev-server --mode development --devtool eval-source-map --hot",
-    "server": "nodemon src/server/index.js",
+    "server": "nodemon src/server/server.js",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],

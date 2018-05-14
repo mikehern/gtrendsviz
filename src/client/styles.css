@@ -1,1 +1,6 @@
 /* TODO: create personal style boilerplate */
+body {
+  background-color: lightgray;
+  color: #006bb6;
+  font-family: sans-serif;
+}

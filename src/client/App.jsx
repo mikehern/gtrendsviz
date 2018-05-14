@@ -10,7 +10,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/getUsername')
+    fetch('/api/getusername')
       .then(res => res.json())
       .then(user => this.setState({ username: user.username }));
   }
