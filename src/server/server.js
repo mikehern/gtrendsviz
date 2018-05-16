@@ -1,14 +1,19 @@
 const express = require('express');
 const os = require('os');
-const googleTrends = require('google-trends-api');
+
+const search = require('./utils');
 
 const app = express();
 
-
 app.use(express.static('dist'));
 
+app.get('/api/search/', async (req, res) => {
+  const payload = { keyword: `${req.query.q}` };
+  const result = await search.byTime(payload);
+  res.send({ results: result });
+})
+
 app.get('/api/getUserName', (req, res) => {
-  console.log(`Client made a proxy request to /api`);
   res.send({ username: os.userInfo().username });
 });
 

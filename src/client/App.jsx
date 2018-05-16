@@ -7,7 +7,7 @@ class App extends Component {
     this.state = {
       username: null,
       searchInput: '',
-      searchResults: 'Search results...',
+      searchResults: '',
     };
 
     this._handleInputChange = this._handleInputChange.bind(this);
@@ -27,18 +27,19 @@ class App extends Component {
   _sendQuery() {
     fetch(`/api/search?q=${this.state.searchInput}`)
       .then(res => res.json())
-      .then(results => this.setState({ searchResults: results }));
+      .then(data => this.setState({ searchResults: data.results }));
   }
 
   render() {
     return (
       <div className="container">
         <div className="header">
-          {this.state.username ? (
+          {
+            this.state.username ? 
             <h1>Aloha {this.state.username}!</h1>
-          ) : (
+            : 
             <h1>Loading.. please wait!</h1>
-          )}
+          }
         </div>
         <div className="sidebar">
           <input
@@ -49,7 +50,12 @@ class App extends Component {
           <button id="send" onClick={ this._sendQuery }>Search</button>
         </div>
         <div className="content">
-          {this.state.searchResults}
+          {
+            !this.state.searchResults ?
+            'Enter a search term to view trends'
+            :
+            this.state.searchResults
+          }
         </div>
         <div className="footer">
           ✌🏼 mikehern
