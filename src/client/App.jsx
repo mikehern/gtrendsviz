@@ -5,8 +5,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: null
+      username: null,
+      searchInput: '',
     };
+
+    this._handleInputChange = this._handleInputChange.bind(this);
   }
 
   componentDidMount() {
@@ -15,11 +18,15 @@ class App extends Component {
       .then(user => this.setState({ username: user.username }));
   }
 
+  _handleInputChange(e) {
+    console.log(e.target.value);
+    this.setState({ searchInput: e.target.value });
+  }
+
   render() {
     return (
       <div className="container">
         <div className="header">
-          <h5>Header</h5>
           {this.state.username ? (
             <h1>Aloha {this.state.username}!</h1>
           ) : (
@@ -27,13 +34,12 @@ class App extends Component {
           )}
         </div>
         <div className="sidebar">
-          <h5>Sidebar</h5>
+          <input id="search" type="text" value={this.state.searchInput} onChange={this._handleInputChange} />
+          <button id="send">Search</button>
         </div>
         <div className="content">
-          <h5>Content</h5>
         </div>
         <div className="footer">
-          <h5>Footer</h5>
           ✌🏼 mikehern
         </div>
       </div>

@@ -1,5 +1,6 @@
 const express = require('express');
 const os = require('os');
+const googleTrends = require('google-trends-api');
 
 const app = express();
 

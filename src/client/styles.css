@@ -27,14 +27,41 @@ h5 {
 
 .sidebar {
   grid-area: s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .content {
   grid-area: c;
+  background-color: whitesmoke;
 }
 
 .footer {
   grid-area: f;
   display: flex;
   justify-content: center;
+}
+
+#search {
+  height: 4vh;
+  width: 24vw;
+  font-size: 2.5vh;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 2px 9px 0 rgba(0,107,182,0.50);
+}
+
+#search:focus {
+  outline: none;
+}
+
+#send {
+  height: 3.5vh;
+  width: 16vw;
+  background-color: #006bb6;
+  color: white;
+  font-size: 2vh;
+  border-radius: 3.5vh;
+  margin: 1rem;
 }
