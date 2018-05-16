@@ -17,12 +17,25 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        {this.state.username ? (
-          <h1>Aloha {this.state.username}!</h1>
-        ) : (
-          <h1>Loading.. please wait!</h1>
-        )}
+      <div className="container">
+        <div className="header">
+          <h5>Header</h5>
+          {this.state.username ? (
+            <h1>Aloha {this.state.username}!</h1>
+          ) : (
+            <h1>Loading.. please wait!</h1>
+          )}
+        </div>
+        <div className="sidebar">
+          <h5>Sidebar</h5>
+        </div>
+        <div className="content">
+          <h5>Content</h5>
+        </div>
+        <div className="footer">
+          <h5>Footer</h5>
+          ✌🏼 mikehern
+        </div>
       </div>
     );
   }

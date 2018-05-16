@@ -1,6 +1,40 @@
-/* TODO: create personal style boilerplate */
 body {
   background-color: lightgray;
   color: #006bb6;
   font-family: sans-serif;
+}
+
+h5 {
+  color: rgb(186, 186, 186);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: minmax(40px, auto);
+  grid-template-areas: 
+    "h h h h h h h h h h h h"
+    "s s s c c c c c c c c c"
+    "f f f f f f f f f f f f";
+  width: 100vw;
+}
+
+.header {
+  grid-area: h;
+  display: flex;
+  justify-content: center;
+}
+
+.sidebar {
+  grid-area: s;
+}
+
+.content {
+  grid-area: c;
+}
+
+.footer {
+  grid-area: f;
+  display: flex;
+  justify-content: center;
 }
