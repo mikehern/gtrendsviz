@@ -7,9 +7,11 @@ class App extends Component {
     this.state = {
       username: null,
       searchInput: '',
+      searchResults: 'Search results...',
     };
 
     this._handleInputChange = this._handleInputChange.bind(this);
+    this._sendQuery = this._sendQuery.bind(this);
   }
 
   componentDidMount() {
@@ -19,8 +21,13 @@ class App extends Component {
   }
 
   _handleInputChange(e) {
-    console.log(e.target.value);
     this.setState({ searchInput: e.target.value });
+  }
+
+  _sendQuery() {
+    fetch(`/api/search?q=${this.state.searchInput}`)
+      .then(res => res.json())
+      .then(results => this.setState({ searchResults: results }));
   }
 
   render() {
@@ -34,10 +41,15 @@ class App extends Component {
           )}
         </div>
         <div className="sidebar">
-          <input id="search" type="text" value={this.state.searchInput} onChange={this._handleInputChange} />
-          <button id="send">Search</button>
+          <input
+            id="search"
+            type="text"
+            value={ this.state.searchInput }
+            onChange={ this._handleInputChange } />
+          <button id="send" onClick={ this._sendQuery }>Search</button>
         </div>
         <div className="content">
+          {this.state.searchResults}
         </div>
         <div className="footer">
           ✌🏼 mikehern
