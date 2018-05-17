@@ -1,2 +1,5 @@
 node_modules/
 dist/
+
+#vsc personal settings
+settings.json

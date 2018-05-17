@@ -15,5 +15,4 @@ const byTime = async (payload) => {
   }
 }
 
-
 module.exports = { byTime };
