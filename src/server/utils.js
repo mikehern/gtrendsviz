@@ -6,11 +6,27 @@ const newsapi = new NewsAPI(config.NEWSKEY);
 
 const trendSinceJan2004 = (trendData) => {
   const parsed = JSON.parse(trendData);
-  const valuesOnly = parsed.default.timelineData.map(el => el.value[0]);
+  const valuesOnly = parsed.default.timelineData.map(el => {
+    return {
+      date: el.formattedAxisTime,
+      value: el.value[0]
+    };
+  });
   return valuesOnly;
 }
 
 const byTime = async (payload) => {
+  const startDate = () => {
+    let date = new Date();
+    let month = date.getMonth();
+    date.setMonth(month - 1);
+    return date;
+  }
+
+  payload.startTime = startDate();
+  //Although API defaults endTime to today, results aren't always available
+  //running through today.
+
   try {
     const result = await googleTrends.interestOverTime(payload);
     return trendSinceJan2004(result);
