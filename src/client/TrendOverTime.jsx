@@ -5,6 +5,7 @@ class TrendOverTime extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      searchDate: '',
       trendData: [],
       tempTrendData: [{ "date": "Apr 17", "value": 70 }, { "date": "Apr 18", "value": 49 }, { "date": "Apr 19", "value": 30 }, { "date": "Apr 20", "value": 34 }, { "date": "Apr 21", "value": 50 }, { "date": "Apr 22", "value": 37 }, { "date": "Apr 23", "value": 30 }, { "date": "Apr 24", "value": 35 }, { "date": "Apr 25", "value": 32 }, { "date": "Apr 26", "value": 32 }, { "date": "Apr 27", "value": 25 }, { "date": "Apr 28", "value": 100 }, { "date": "Apr 29", "value": 50 }, { "date": "Apr 30", "value": 31 }, { "date": "May 1", "value": 38 }, { "date": "May 2", "value": 32 }, { "date": "May 3", "value": 41 }, { "date": "May 4", "value": 43 }, { "date": "May 5", "value": 51 }, { "date": "May 6", "value": 44 }, { "date": "May 7", "value": 36 }, { "date": "May 8", "value": 38 }, { "date": "May 9", "value": 42 }, { "date": "May 10", "value": 33 }, { "date": "May 11", "value": 15 }, { "date": "May 12", "value": 39 }, { "date": "May 13", "value": 42 }, { "date": "May 14", "value": 54 }, { "date": "May 15", "value": 78 }],
     }
@@ -21,10 +22,14 @@ class TrendOverTime extends Component {
   }
 
   componentDidMount() {
-    this.createLine();
+    this._createLine();
   }
 
-  createLine() {
+  _updateDate(date) {
+    this.setState({ searchDate: date });
+  }
+
+  _createLine() {
     const node = this.chartRef.current;
     let width = 600;
     let height = 150;
@@ -59,10 +64,67 @@ class TrendOverTime extends Component {
         .attr('stroke-width', 0)
         .attr('d', line)
       .transition()
-        .duration(1800)
+        .duration(2600)
         .ease(d3.easeBounce)
         .attr('stroke-width', 5);
-        
+
+    let focus = g.append('g')
+      .attr('stroke-width', 1)
+      .style('display', 'none')
+
+    focus.append('circle')
+      .attr('r', 3)
+      .attr('fill', 'red')
+      .transition()
+      .duration(1000)
+      .attr('r', 6)
+
+    focus.append('text')
+      .attr('x', 15)
+      .attr('dy', '.31em')
+
+    let bisectDate = d3.bisector(d => d.date).left;
+
+    function mousemove() {
+      const x0 = xScale.invert(d3.mouse(this)[0]),
+        i = bisectDate(data, x0, 1),
+        d0 = data[i - 1],
+        d1 = data[i] || 0,
+        d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+      focus.attr("transform", `translate(${xScale(d.date)},${yScale(d.value)})`);
+      focus.select("text").text(() => '')
+    };
+
+    let updateDate = this._updateDate.bind(this);
+
+    function dynamicText() {
+      const x0 = xScale.invert(d3.mouse(this)[0]),
+        i = bisectDate(data, x0, 1),
+        d0 = data[i - 1],
+        d1 = data[i] || 0,
+        d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+
+      updateDate(d.date);
+
+      d3.select('circle')
+        .transition()
+        .duration(300)
+        .attr('r', 10)
+        .attr('fill', '#006bb6')
+    }
+
+    svg.append("rect")
+      .attr("fill", "none")
+      .attr('pointer-events', 'all')
+      .attr("width", width)
+      .attr("height", height)
+      .on("mouseover", () => {
+        focus.style('display', null)
+      })
+      .on("mouseout", () => focus.style('display', 'none'))
+      .on("mousemove", mousemove)
+      .on('click', dynamicText)
+
     return svg.node();
   }
 

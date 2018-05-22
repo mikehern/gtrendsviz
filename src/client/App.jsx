@@ -6,7 +6,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: null,
       searchInput: '',
       searchResults: '',
     };
@@ -36,12 +35,6 @@ class App extends Component {
     return (
       <div className="container">
         <div className="header">
-          {
-            this.state.username ? 
-            <h1>Aloha {this.state.username}!</h1>
-            : 
-            <h1>Loading.. please wait!</h1>
-          }
         </div>
         <div className="sidebar">
           <input
@@ -52,13 +45,10 @@ class App extends Component {
           <button id="send" onClick={this._sendQuery}>Search</button>
         </div>
         <div className="content">
-          {/* {
-            !this.state.searchResults ?
-            'Enter a search term to view trends'
-            :
-            searchResults
-          } */}
-          <TrendOverTime trendData={searchResults} margin={{ top: 20, right: 30, bottom: 30, left: 50 }} />
+          <TrendOverTime
+            trendData={searchResults}
+            margin={{ top: 20, right: 30, bottom: 30, left: 50 }}
+          />
         </div>
         <div className="footer">
           ✌🏼 mikehern
