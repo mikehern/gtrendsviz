@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './styles.css';
+import TrendOverTime from './TrendOverTime';
 
 class App extends Component {
   constructor(props) {
@@ -31,6 +32,7 @@ class App extends Component {
   }
 
   render() {
+    const { searchInput, searchResults } = this.state;
     return (
       <div className="container">
         <div className="header">
@@ -45,17 +47,18 @@ class App extends Component {
           <input
             id="search"
             type="text"
-            value={ this.state.searchInput }
-            onChange={ this._handleInputChange } />
-          <button id="send" onClick={ this._sendQuery }>Search</button>
+            value={searchInput}
+            onChange={this._handleInputChange} />
+          <button id="send" onClick={this._sendQuery}>Search</button>
         </div>
         <div className="content">
-          {
+          {/* {
             !this.state.searchResults ?
             'Enter a search term to view trends'
             :
-            this.state.searchResults
-          }
+            searchResults
+          } */}
+          <TrendOverTime trendData={searchResults} margin={{ top: 20, right: 30, bottom: 30, left: 50 }} />
         </div>
         <div className="footer">
           ✌🏼 mikehern
