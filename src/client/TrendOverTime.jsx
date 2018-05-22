@@ -69,11 +69,8 @@ class TrendOverTime extends Component {
       .style('display', 'none')
 
     focus.append('circle')
-      .attr('r', 3)
+      .attr('r', 5)
       .attr('fill', 'red')
-      .transition()
-      .duration(1000)
-      .attr('r', 6)
 
     focus.append('text')
       .attr('x', 15)
@@ -88,7 +85,9 @@ class TrendOverTime extends Component {
         d1 = data[i] || 0,
         d = x0 - d0.date > d1.date - x0 ? d1 : d0;
       focus.attr("transform", `translate(${xScale(d.date)},${yScale(d.value)})`);
-      focus.select("text").text(() => '')
+      focus.select("text")
+        .text(() => d.date.toDateString().slice(0, -4))
+        .style('fill', 'red')
     };
 
     let updateDate = this.props.searchDate;
@@ -104,9 +103,14 @@ class TrendOverTime extends Component {
 
       d3.select('circle')
         .transition()
-        .duration(300)
-        .attr('r', 10)
-        .attr('fill', '#006bb6')
+          .duration(300)
+          .attr('r', 12)
+          .attr('fill', '#006bb6')
+        .transition()
+          .duration(300)
+          .attr('r', 5)
+          .attr('fill', 'red')
+
     }
 
     svg.append("rect")
