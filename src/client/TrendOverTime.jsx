@@ -25,10 +25,6 @@ class TrendOverTime extends Component {
     this._createLine();
   }
 
-  _updateDate(date) {
-    this.setState({ searchDate: date });
-  }
-
   _createLine() {
     const node = this.chartRef.current;
     let width = 600;
@@ -95,7 +91,7 @@ class TrendOverTime extends Component {
       focus.select("text").text(() => '')
     };
 
-    let updateDate = this._updateDate.bind(this);
+    let updateDate = this.props.searchDate;
 
     function dynamicText() {
       const x0 = xScale.invert(d3.mouse(this)[0]),

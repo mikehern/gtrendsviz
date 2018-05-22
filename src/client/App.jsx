@@ -6,12 +6,14 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      searchDate: '',
       searchInput: '',
       searchResults: '',
     };
 
     this._handleInputChange = this._handleInputChange.bind(this);
     this._sendQuery = this._sendQuery.bind(this);
+    this._dateHandler = this._dateHandler.bind(this);
   }
 
   componentDidMount() {
@@ -28,6 +30,10 @@ class App extends Component {
     fetch(`/api/search?q=${this.state.searchInput}`)
       .then(res => res.json())
       .then(data => this.setState({ searchResults: data.results }));
+  }
+
+  _dateHandler(date) {
+    this.setState({ searchDate: date });
   }
 
   render() {
@@ -48,6 +54,7 @@ class App extends Component {
           <TrendOverTime
             trendData={searchResults}
             margin={{ top: 20, right: 30, bottom: 30, left: 50 }}
+            searchDate={this._dateHandler}
           />
         </div>
         <div className="footer">
