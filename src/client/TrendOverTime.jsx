@@ -10,12 +10,11 @@ class TrendOverTime extends Component {
     super(props);
     this.state = {
       data: '',
-      lineData: ''
+      prevData: '',
     }
-    this.chartRef = React.createRef();
-    this._createLineChart = this._createLineChart.bind(this);
+    this._updateLineChart = this._updateLineChart.bind(this);
   }
-  //TODO: break down chart into parts and states, and map them to react lifecycle.  Begin with line data.
+
   static getDerivedStateFromProps (nextProps, prevState) {
     if (prevState.data !== nextProps.data) {
       const data = nextProps.data.map(el => {
@@ -23,24 +22,8 @@ class TrendOverTime extends Component {
         return el;
       })
 
-      let xScale = d3.scaleTime()
-        .domain(d3.extent(data, d => d.date))
-        .range([margin.left, width - margin.right]);
-
-      let yScale = d3.scaleLinear()
-        .domain(d3.extent(data, d => d.value))
-        .range([height - margin.bottom, margin.top]);
-
-      let line = d3.line()
-        .x(d => xScale(d.date))
-        .y(d => yScale(d.value))
-        .curve(d3.curveCatmullRom.alpha(0.5));
-
-      let generatedLine = line(data);
-
       return {
         data: data,
-        lineData: generatedLine,
       }
     }
 
@@ -48,21 +31,136 @@ class TrendOverTime extends Component {
   }
 
   componentDidMount() {
-    this._createLineChart();
+    this._updateLineChart();
   }
 
-  _createLineChart() {
-    // let node = this.chartRef;
+  componentDidUpdate() {
+    this._updateLineChart();
+  }
+
+  _updateLineChart() {
+    const node = this.node;
+    const svg = d3.select(node);
+    const data = this.state.data;
+
+    const xScale = d3.scaleTime()
+      .domain(d3.extent(data, d => d.date))
+      .range([margin.left, width - margin.right]);
+
+    const yScale = d3.scaleLinear()
+      .domain(d3.extent(data, d => d.value))
+      .range([height - margin.bottom, margin.top]);
+
+    const line = d3.line(data)
+      .x(d => xScale(d.date))
+      .y(d => yScale(d.value))
+      .curve(d3.curveCatmullRom.alpha(0.5));
+
+    const trendLineExists = !d3.select('#trendLine').empty();
+
+    if (!trendLineExists && this.state.data.length !== 0) {
+      const g = svg.append('g').attr('id', 'trendLine');
+
+      g.append('path')
+        .datum(data)
+          .attr('fill', 'none')
+          .attr('stroke', '#006bb6')
+          .attr('stroke-width', 0)
+          .attr('d', line)
+        .transition()
+          .duration(2600)
+          .ease(d3.easeBounce)
+          .attr('stroke-width', 5);
+
+      const focus = g.append('g')
+        .attr('stroke-width', 1)
+        .style('display', 'none')
+
+      focus.append('circle')
+        .attr('r', 5)
+        .attr('fill', 'red')
+
+      focus.append('text')
+        .attr('x', 15)
+        .attr('dy', '.31em')
+
+      const bisectDate = d3.bisector(d => d.date).left;
+
+      function mousemove() {
+        const x0 = xScale.invert(d3.mouse(this)[0]),
+          i = bisectDate(data, x0, 1),
+          d0 = data[i - 1],
+          d1 = data[i] || 0,
+          d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+        focus.attr("transform", `translate(${xScale(d.date)},${yScale(d.value)})`);
+        focus.select("text")
+          .text(() => d.date.toDateString().slice(0, -4))
+          .style('fill', 'red')
+      };
+
+      const updateDate = this.props.searchDate;
+
+      function dynamicText() {
+        const x0 = xScale.invert(d3.mouse(this)[0]),
+          i = bisectDate(data, x0, 1),
+          d0 = data[i - 1],
+          d1 = data[i] || 0,
+          d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+
+        updateDate(d.date);
+
+        d3.select('circle')
+          .transition()
+            .duration(300)
+            .attr('r', 12)
+            .attr('fill', '#006bb6')
+          .transition()
+            .duration(300)
+            .attr('r', 5)
+            .attr('fill', 'red')
+      }
+
+      svg.append("rect")
+        .attr("fill", "none")
+        .attr('pointer-events', 'all')
+        .attr("width", width)
+        .attr("height", height)
+        .on("mouseover", () => focus.style('display', null))
+        .on("mouseout", () => focus.style('display', 'none'))
+        .on("mousemove", mousemove)
+        .on('click', dynamicText)
+
+      this.setState({ prevData: data });
+
+      return svg.node();
+
+    }
+
+    let dataChanged = JSON.stringify(this.state.data) === JSON.stringify(this.state.prevData);
+    
+    if (!dataChanged) {
+      console.log('I GOT CALLED');
+      d3
+        .select('#trendLine')
+        .select('path')
+        .datum(this.state.data)
+        .attr('fill', 'none')
+        .attr('stroke', '#006bb6')
+        .attr('stroke-width', 0)
+        .attr('d', line)
+        .transition()
+        .duration(2600)
+        .ease(d3.easeBounce)
+        .attr('stroke-width', 5);
+    }
+
   }
 
   render() {
-    const { lineData } = this.state;
-    console.log('STATES LINEDATA IS: ', lineData);
     return (
-      <svg id="lineChart" width={width} height={height} ref={this.chartRef}>
-        <path d={lineData} fill="none" stroke="#006bb6" strokeWidth="1"/>
+      <svg id="lineChart" width={width} height={height} ref={node => (this.node = node)}>
       </svg>
-    )
+    );
   }
 }
 

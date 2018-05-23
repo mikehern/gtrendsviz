@@ -30,11 +30,11 @@ class App extends Component {
   }
 
   _sendQuery() {
-    // fetch(`/api/search?q=${this.state.searchInput}`)
-    //   .then(res => res.json())
-    //   .then(data => this.setState({ searchResults: data.results }));
+    fetch(`/api/search?q=${this.state.searchInput}`)
+      .then(res => res.json())
+      .then(data => this.setState({ searchResults: data.results }));
 
-    this.setState({ searchResults: tempData });
+    // this.setState({ searchResults: tempData });
   }
 
   _dateHandler(date) {
