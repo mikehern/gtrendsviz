@@ -136,22 +136,22 @@ class TrendOverTime extends Component {
 
     }
 
-    let dataChanged = JSON.stringify(this.state.data) === JSON.stringify(this.state.prevData);
-    
-    if (!dataChanged) {
-      console.log('I GOT CALLED');
-      d3
-        .select('#trendLine')
-        .select('path')
-        .datum(this.state.data)
-        .attr('fill', 'none')
-        .attr('stroke', '#006bb6')
-        .attr('stroke-width', 0)
-        .attr('d', line)
+    let dataChanged = JSON.stringify(this.state.data) !== JSON.stringify(this.state.prevData);
+
+    if (dataChanged) {
+      const data = this.state.data
+      d3.select('#trendLine').select('path')
+        .datum(data)
+          .attr('fill', 'none')
+          .attr('stroke', '#006bb6')
+          .attr('stroke-width', 0)
+          .attr('d', line)
         .transition()
-        .duration(2600)
-        .ease(d3.easeBounce)
-        .attr('stroke-width', 5);
+          .duration(2600)
+          .ease(d3.easeBounce)
+          .attr('stroke-width', 5);
+
+      this.setState({ prevData: data });
     }
 
   }
