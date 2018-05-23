@@ -9,8 +9,7 @@ app.use(express.static('dist'));
 app.get('/api/search/', async (req, res) => {
   const payload = { keyword: `${req.query.q}` };
   const result = await search.byTime(payload);
-  const tempResult = result; //for testing only
-  res.send({ results: tempResult }); //TODO: make D3-readable
+  res.send({ results: result });
 });
 
 app.get('/api/news/', async (req, res) => {

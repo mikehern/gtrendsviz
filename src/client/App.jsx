@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+
 import './styles.css';
 import TrendOverTime from './TrendOverTime';
+import tempData from './tempData';
+
 
 class App extends Component {
   constructor(props) {
@@ -27,9 +30,11 @@ class App extends Component {
   }
 
   _sendQuery() {
-    fetch(`/api/search?q=${this.state.searchInput}`)
-      .then(res => res.json())
-      .then(data => this.setState({ searchResults: data.results }));
+    // fetch(`/api/search?q=${this.state.searchInput}`)
+    //   .then(res => res.json())
+    //   .then(data => this.setState({ searchResults: data.results }));
+
+    this.setState({ searchResults: tempData });
   }
 
   _dateHandler(date) {
@@ -51,11 +56,7 @@ class App extends Component {
           <button id="send" onClick={this._sendQuery}>Search</button>
         </div>
         <div className="content">
-          <TrendOverTime
-            trendData={searchResults}
-            margin={{ top: 20, right: 30, bottom: 30, left: 50 }}
-            searchDate={this._dateHandler}
-          />
+          <TrendOverTime data={searchResults} searchDate={this._dateHandler} />
         </div>
         <div className="footer">
           ✌🏼 mikehern

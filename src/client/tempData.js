@@ -1,0 +1,33 @@
+const tempData = [
+  { date: 'Apr 17', value: 70 },
+  { date: 'Apr 18', value: 49 },
+  { date: 'Apr 19', value: 30 },
+  { date: 'Apr 20', value: 34 },
+  { date: 'Apr 21', value: 50 },
+  { date: 'Apr 22', value: 37 },
+  { date: 'Apr 23', value: 30 },
+  { date: 'Apr 24', value: 35 },
+  { date: 'Apr 25', value: 32 },
+  { date: 'Apr 26', value: 32 },
+  { date: 'Apr 27', value: 25 },
+  { date: 'Apr 28', value: 100 },
+  { date: 'Apr 29', value: 50 },
+  { date: 'Apr 30', value: 31 },
+  { date: 'May 1', value: 38 },
+  { date: 'May 2', value: 32 },
+  { date: 'May 3', value: 41 },
+  { date: 'May 4', value: 43 },
+  { date: 'May 5', value: 51 },
+  { date: 'May 6', value: 44 },
+  { date: 'May 7', value: 36 },
+  { date: 'May 8', value: 38 },
+  { date: 'May 9', value: 42 },
+  { date: 'May 10', value: 33 },
+  { date: 'May 11', value: 15 },
+  { date: 'May 12', value: 39 },
+  { date: 'May 13', value: 42 },
+  { date: 'May 14', value: 54 },
+  { date: 'May 15', value: 78 }
+];
+
+export default tempData;

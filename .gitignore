@@ -4,3 +4,5 @@ config.js
 
 #vsc personal settings
 settings.json
+.babelrc
+.eslintrc.json
