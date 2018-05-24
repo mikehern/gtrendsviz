@@ -40,10 +40,67 @@ class TrendOverTime extends Component {
     this._updateLineChart();
   }
 
+  _createInitialLine(anchorNode, data, lineData) {
+    const svgGroup = anchorNode
+      .append('g')
+      .attr('id', 'trendLine');
+
+    svgGroup
+      .append('path')
+      .datum(data)
+        .attr('fill', 'none')
+        .attr('stroke', '#006bb6')
+        .attr('stroke-width', 0)
+        .attr('d', lineData)
+      .transition()
+        .duration(2600)
+        .ease(d3.easeBounce)
+        .attr('stroke-width', 5);
+
+    return svgGroup;
+  }
+
+  _createTrendOverlay(chart) {
+    const overlay = chart
+      .append('g')
+      .attr('id', 'trendOverlay')
+      .attr('stroke-width', 1)
+      .style('display', 'none');
+
+    overlay
+      .append('circle')
+      .attr('r', 5)
+      .attr('fill', 'red');
+
+    overlay
+      .append('text')
+      .attr('x', 15)
+      .attr('dy', '.31em');
+
+    return overlay;
+  }
+
+  _createOverlayInteraction(canvas, overlay, mouseInteraction, clickInteraction) {
+    const invisibleWindow = canvas
+      .append('rect')
+      .attr("fill", "none")
+      .attr('pointer-events', 'all')
+      .attr("width", width)
+      .attr("height", height);
+
+    invisibleWindow
+      .on("mouseover", () => overlay.style('display', null))
+      .on("mouseout", () => overlay.style('display', 'none'))
+      .on("mousemove", mouseInteraction)
+      .on('click', clickInteraction);
+
+    return invisibleWindow;
+  }
+
   _updateLineChart() {
+    const { data, prevData, prevLine } = this.state
     const node = this.node;
-    const svg = d3.select(node);
-    const data = this.state.data;
+    const canvas = d3.select(node);
 
     const xScale = d3.scaleTime()
       .domain(d3.extent(data, d => d.date))
@@ -60,104 +117,67 @@ class TrendOverTime extends Component {
 
     const trendLineExists = !d3.select('#trendLine').empty();
 
-    if (!trendLineExists && this.state.data.length !== 0) {
-      const g = svg.append('g').attr('id', 'trendLine');
-
-      g.append('path')
-        .datum(data)
-          .attr('fill', 'none')
-          .attr('stroke', '#006bb6')
-          .attr('stroke-width', 0)
-          .attr('d', line)
-        .transition()
-          .duration(2600)
-          .ease(d3.easeBounce)
-          .attr('stroke-width', 5);
-
-      const focus = g.append('g').attr('id', 'trendOverlay')
-        .attr('stroke-width', 1)
-        .style('display', 'none')
-
-      focus.append('circle')
-        .attr('r', 5)
-        .attr('fill', 'red')
-
-      focus.append('text')
-        .attr('x', 15)
-        .attr('dy', '.31em')
-
+    if (!trendLineExists && data.length !== 0) {
+      const chart = this._createInitialLine(canvas, data, line);
+      const overlay = this._createTrendOverlay(chart);
       const bisectDate = d3.bisector(d => d.date).left;
 
-      function mousemove() {
-        const x0 = xScale.invert(d3.mouse(this)[0]),
-          i = bisectDate(data, x0, 1),
-          d0 = data[i - 1],
-          d1 = data[i] || 0,
-          d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-        focus.attr("transform", `translate(${xScale(d.date)},${yScale(d.value)})`);
-        focus.select("text")
-          .text(() => d.date.toDateString().slice(0, -4))
+      function mouseInteraction() {
+        const xPosition = xScale.invert(d3.mouse(this)[0]),
+          date = bisectDate(data, xPosition, 1),
+          current = data[date - 1],
+          next = data[date] || 0,
+          mouseMapping = xPosition - current.date > next.date - xPosition ? next : current;
+
+        overlay.attr("transform", `translate(${xScale(mouseMapping.date)},${yScale(mouseMapping.value)})`);
+        overlay.select("text")
+          .text(() => mouseMapping.date.toDateString().slice(0, -4))
           .style('fill', 'red')
       };
 
-      const updateDate = this.props.searchDate;
+      function clickInteraction() {
+        const updateDate = this.props.searchDate;
+        const xPosition = xScale.invert(d3.mouse(this)[0]),
+          date = bisectDate(data, xPosition, 1),
+          current = data[date - 1],
+          next = data[date] || 0,
+          mouseMapping = xPosition - current.date > next.date - xPosition ? next : current;
+          
+          d3.select('circle')
+            .transition()
+              .duration(300)
+              .attr('r', 12)
+              .attr('fill', '#006bb6')
+            .transition()
+              .duration(300)
+              .attr('r', 5)
+              .attr('fill', 'red');
 
-      function dynamicText() {
-        const x0 = xScale.invert(d3.mouse(this)[0]),
-          i = bisectDate(data, x0, 1),
-          d0 = data[i - 1],
-          d1 = data[i] || 0,
-          d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-
-        updateDate(d.date);
-
-        d3.select('circle')
-          .transition()
-            .duration(300)
-            .attr('r', 12)
-            .attr('fill', '#006bb6')
-          .transition()
-            .duration(300)
-            .attr('r', 5)
-            .attr('fill', 'red')
+          updateDate(mouseMapping.date);
       }
 
-      svg.append("rect")
-        .attr("fill", "none")
-        .attr('pointer-events', 'all')
-        .attr("width", width)
-        .attr("height", height)
-        .on("mouseover", () => focus.style('display', null))
-        .on("mouseout", () => focus.style('display', 'none'))
-        .on("mousemove", mousemove)
-        .on('click', dynamicText)
+      this._createOverlayInteraction(canvas, overlay, mouseInteraction, clickInteraction);
 
-      const prevLine = d3.select('#trendLine').select('path').attr('d');
+      const initialLine = d3.select('#trendLine').select('path').attr('d');
+      this.setState({ prevData: data, prevLine: initialLine });
 
-      this.setState({ prevData: data, prevLine: prevLine });
-
-      return svg.node();
-
+      return canvas.node();
     }
 
-    let dataChanged = JSON.stringify(this.state.data) !== JSON.stringify(this.state.prevData);
+    let dataChanged = JSON.stringify(data) !== JSON.stringify(prevData);
 
     if (dataChanged) {
-      const { prevLine } = this.state;
-
       d3.select('#trendLine')
         .append('path')
         .datum(data)
-        .attr('id', 'newLine')
+        .attr('id', 'updatedLine')
         .attr('fill', 'none')
         .attr('stroke', '#006bb6')
         .attr('stroke-width', 5)
         .attr('d', line)
         .style('display', 'none')
 
-      const newLine = d3
-        .select('#trendLine')
-        .select('#newLine')
+      const updatedLine = d3.select('#trendLine').select('#updatedLine')
         .attr('d');
 
       d3.select('#trendLine').select('path')
@@ -165,22 +185,20 @@ class TrendOverTime extends Component {
         .duration(1000)
         .attrTween('d', () => {
           var previous = prevLine;
-          var current = newLine;
+          var current = updatedLine;
           return interpolatePath(previous, current);
         });
 
-      d3.select('#newLine').remove();
+      d3.select('#updatedLine').remove();
 
-      this.setState({ prevData: data, prevLine: newLine });
-
+      this.setState({ prevData: data, prevLine: updatedLine });
     }
 
   }
 
   render() {
     return (
-      <svg id="lineChart" width={width} height={height} ref={node => (this.node = node)}>
-      </svg>
+      <svg id="lineChart" width={width} height={height} ref={node => (this.node = node)} />
     );
   }
 }
