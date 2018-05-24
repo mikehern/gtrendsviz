@@ -5,6 +5,7 @@
   "main": "src/server/server.js",
   "dependencies": {
     "d3": "^5.4.0",
+    "d3-interpolate-path": "^2.0.1",
     "express": "^4.16.3",
     "google-trends-api": "^4.6.1",
     "react": "^16.3.2",

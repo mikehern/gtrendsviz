@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
+import { interpolatePath } from 'd3-interpolate-path';
 
 const width = 800;
 const height = 300;
@@ -11,6 +12,7 @@ class TrendOverTime extends Component {
     this.state = {
       data: '',
       prevData: '',
+      prevLine: '',
     }
     this._updateLineChart = this._updateLineChart.bind(this);
   }
@@ -72,7 +74,7 @@ class TrendOverTime extends Component {
           .ease(d3.easeBounce)
           .attr('stroke-width', 5);
 
-      const focus = g.append('g')
+      const focus = g.append('g').attr('id', 'trendOverlay')
         .attr('stroke-width', 1)
         .style('display', 'none')
 
@@ -130,7 +132,9 @@ class TrendOverTime extends Component {
         .on("mousemove", mousemove)
         .on('click', dynamicText)
 
-      this.setState({ prevData: data });
+      const prevLine = d3.select('#trendLine').select('path').attr('d');
+
+      this.setState({ prevData: data, prevLine: prevLine });
 
       return svg.node();
 
@@ -139,19 +143,36 @@ class TrendOverTime extends Component {
     let dataChanged = JSON.stringify(this.state.data) !== JSON.stringify(this.state.prevData);
 
     if (dataChanged) {
-      const data = this.state.data
-      d3.select('#trendLine').select('path')
-        .datum(data)
-          .attr('fill', 'none')
-          .attr('stroke', '#006bb6')
-          .attr('stroke-width', 0)
-          .attr('d', line)
-        .transition()
-          .duration(2600)
-          .ease(d3.easeBounce)
-          .attr('stroke-width', 5);
+      const { prevLine } = this.state;
 
-      this.setState({ prevData: data });
+      d3.select('#trendLine')
+        .append('path')
+        .datum(data)
+        .attr('id', 'newLine')
+        .attr('fill', 'none')
+        .attr('stroke', '#006bb6')
+        .attr('stroke-width', 5)
+        .attr('d', line)
+        .style('display', 'none')
+
+      const newLine = d3
+        .select('#trendLine')
+        .select('#newLine')
+        .attr('d');
+
+      d3.select('#trendLine').select('path')
+        .transition()
+        .duration(1000)
+        .attrTween('d', () => {
+          var previous = prevLine;
+          var current = newLine;
+          return interpolatePath(previous, current);
+        });
+
+      d3.select('#newLine').remove();
+
+      this.setState({ prevData: data, prevLine: newLine });
+
     }
 
   }
