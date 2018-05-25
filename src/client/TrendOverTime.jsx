@@ -83,6 +83,7 @@ class TrendOverTime extends Component {
   _createOverlayInteraction(canvas, overlay, mouseInteraction, clickInteraction) {
     const invisibleWindow = canvas
       .append('rect')
+      .attr('id', 'focus')
       .attr("fill", "none")
       .attr('pointer-events', 'all')
       .attr("width", width)
@@ -134,9 +135,10 @@ class TrendOverTime extends Component {
           .text(() => mouseMapping.date.toDateString().slice(0, -4))
           .style('fill', 'red')
       };
-
+      
+      const updateDate = this.props.searchDate;
+      
       function clickInteraction() {
-        const updateDate = this.props.searchDate;
         const xPosition = xScale.invert(d3.mouse(this)[0]),
           date = bisectDate(data, xPosition, 1),
           current = data[date - 1],
@@ -190,6 +192,49 @@ class TrendOverTime extends Component {
         });
 
       d3.select('#updatedLine').remove();
+      d3.select('#trendOverlay').remove();
+      d3.select('#focus').remove();
+
+      const chart = d3.select('#trendLine');
+      const overlay = this._createTrendOverlay(chart);
+      const bisectDate = d3.bisector(d => d.date).left;
+
+      function mouseInteraction() {
+        const xPosition = xScale.invert(d3.mouse(this)[0]),
+          date = bisectDate(data, xPosition, 1),
+          current = data[date - 1],
+          next = data[date] || 0,
+          mouseMapping = xPosition - current.date > next.date - xPosition ? next : current;
+
+        overlay.attr("transform", `translate(${xScale(mouseMapping.date)},${yScale(mouseMapping.value)})`);
+        overlay.select("text")
+          .text(() => mouseMapping.date.toDateString().slice(0, -4))
+          .style('fill', 'red')
+      };
+
+      const updateDate = this.props.searchDate;
+
+      function clickInteraction() {
+        const xPosition = xScale.invert(d3.mouse(this)[0]),
+          date = bisectDate(data, xPosition, 1),
+          current = data[date - 1],
+          next = data[date] || 0,
+          mouseMapping = xPosition - current.date > next.date - xPosition ? next : current;
+
+        d3.select('circle')
+          .transition()
+          .duration(300)
+          .attr('r', 12)
+          .attr('fill', '#006bb6')
+          .transition()
+          .duration(300)
+          .attr('r', 5)
+          .attr('fill', 'red');
+
+        updateDate(mouseMapping.date);
+      }
+
+      this._createOverlayInteraction(canvas, overlay, mouseInteraction, clickInteraction);
 
       this.setState({ prevData: data, prevLine: updatedLine });
     }
