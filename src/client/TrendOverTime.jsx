@@ -184,7 +184,7 @@ class TrendOverTime extends Component {
 
       d3.select('#trendLine').select('path')
         .transition()
-        .duration(1000)
+        .duration(1800)
         .attrTween('d', () => {
           var previous = prevLine;
           var current = updatedLine;
