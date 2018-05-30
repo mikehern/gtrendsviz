@@ -13,9 +13,9 @@ app.get('/api/search/', async (req, res) => {
 });
 
 app.get('/api/news/', async (req, res) => {
-  const tempKeyword = 'Tesla production';
-  const tempDate = new Date().toISOString();
-  const result = await search.newsByDate(tempKeyword, tempDate);
+  const keyword = req.query.keyword;
+  const date = req.query.date;
+  const result = await search.newsByDate(keyword, date);
   res.send({ news: result });
 });
 

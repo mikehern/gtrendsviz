@@ -40,7 +40,7 @@ const newsByDate = async (keyword, date) => {
     q: `"${keyword}"`,
     language: 'en',
     sortBy: 'popularity',
-    pageSize: 5,
+    pageSize: 16,
   };
 
   try {

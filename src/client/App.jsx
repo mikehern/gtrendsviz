@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './styles.css';
 import TrendOverTime from './TrendOverTime';
 import tempData from './tempData';
+import RelatedNews from './RelatedNews';
 
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
       searchDate: '',
       searchInput: '',
       searchResults: '',
+      searchQuery: '',
     };
 
     this._handleInputChange = this._handleInputChange.bind(this);
@@ -32,17 +34,22 @@ class App extends Component {
   _sendQuery() {
     fetch(`/api/search?q=${this.state.searchInput}`)
       .then(res => res.json())
-      .then(data => this.setState({ searchResults: data.results }));
-
-    // this.setState({ searchResults: tempData });
+      .then(data => this.setState({
+        searchResults: data.results,
+        searchQuery: this.state.searchInput,
+      }));
   }
 
   _dateHandler(date) {
-    this.setState({ searchDate: date });
+    const thisYear = new Date().getFullYear()
+    const selectedDate = new Date(date).setFullYear(thisYear);
+    const currentDate = new Date(selectedDate);
+
+    this.setState({ searchDate: currentDate });
   }
 
   render() {
-    const { searchInput, searchResults } = this.state;
+    const { searchInput, searchResults, searchDate, searchQuery } = this.state;
     return (
       <div className="container">
         <div className="header">
@@ -57,6 +64,7 @@ class App extends Component {
         </div>
         <div className="content">
           <TrendOverTime data={searchResults} searchDate={this._dateHandler} />
+          {!!searchDate && <RelatedNews keyword={searchQuery} date={searchDate} />}
         </div>
         <div className="footer">
           ✌🏼 mikehern
