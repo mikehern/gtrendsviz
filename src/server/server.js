@@ -13,8 +13,7 @@ app.get('/api/search/', async (req, res) => {
 });
 
 app.get('/api/news/', async (req, res) => {
-  const keyword = req.query.keyword;
-  const date = req.query.date;
+  const { keyword, date } = req.query;
   const result = await search.newsByDate(keyword, date);
   res.send({ news: result });
 });

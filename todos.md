@@ -3,8 +3,8 @@
 - [x] Set max news range to last 30 days
 - [x] Connect to newsapi.org - note 30 day rolling limit
 - [x] Display date in chart during hover
-- [ ] Include section for related queries
-- [IP] When exploring the line chart, display news based on clicked datum
+- [ ] Include section for related queries - use GSAP
+- [IP] When exploring the line chart, display news based on clicked datum - use ReactTransitionGroup
 - [ ] Create date helper to narrow news query to peak dates
 - [ ] Include attributions
 - [ ] Style and animate

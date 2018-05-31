@@ -18,7 +18,7 @@ class RelatedNews extends Component {
   }
 
   render() {
-    return(<span></span>);
+    return(<span>{JSON.stringify(this.state.data)}</span>);
   }
 }
 

@@ -1,4 +1,5 @@
 const config = require('../../config');
+const moment = require('moment');
 
 const googleTrends = require('google-trends-api');
 const NewsAPI = require('newsapi');
@@ -36,11 +37,35 @@ const byTime = async (payload) => {
 }
 
 const newsByDate = async (keyword, date) => {
+  const start = moment(date).set('hour', 0).set('minute', 0).format();
+  const end = moment(date).set('hour', 23).set('minute', 59).format();
+
+  const sources = [
+    'associated-press',
+    'bbc-news',
+    'cnn',
+    'the-washington-post',
+    'the-wall-street-journal',
+    'the-new-york-times',
+    'the-hill',
+    'the-economist',
+    'reddit-r-all',
+    'axios',
+    'espn',
+    'hacker-news',
+    'bloomberg',
+    'buzzfeed'
+  ];
+
   const payload = {
-    q: `"${keyword}"`,
+    q: `${keyword}`,
+    sources: sources.join(),
+    from: start,
+    to: end,
     language: 'en',
     sortBy: 'popularity',
     pageSize: 16,
+
   };
 
   try {
