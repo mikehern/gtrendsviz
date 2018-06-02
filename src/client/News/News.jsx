@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import './news.css';
+import NewsHeadline from './NewsHeadline';
 
 class News extends Component {
   constructor(props) {
@@ -46,9 +49,17 @@ class News extends Component {
   }
 
   render() {
+    const articles = (this.state.data.news !== undefined) ? this.state.data.news.articles : [];
+    const headlines = articles.map(({ title, url }) => (
+      <NewsHeadline headline={title} key={url} />
+    )).slice(0, 4);
     return(
       <div className="newsWrapper">
-        
+        <CSSTransition in={(headlines.length > 0)} timeout={2500} classNames="initHeadline">
+          <div>
+            {headlines}
+          </div>
+        </CSSTransition>
       </div>
     );
   }

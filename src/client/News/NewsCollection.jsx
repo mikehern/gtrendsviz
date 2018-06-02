@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
+import NewsHeadline from './NewsHeadline';
 
 class NewsCollection extends Component {
-  constructor(props) {
-    super(props);
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.headlines !== prevState.headlines) {
+      return { headlines: nextProps.headlines };
+    }
+  }
 
-    this.state = {};
+  constructor() {
+    super();
+    this.state = { 
+      headlines: []
+    };
   }
 
   render() {
+    console.log('newscollection state: ', this.state);
+    const headlines = this.state
     return(
-      <div className="newsCollectionWrapper" ></div>
+      <div className="newsCollectionWrapper" >
+        {this.state.headlines}
+      </div>
     )
   }
 }

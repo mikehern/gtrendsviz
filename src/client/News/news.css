@@ -1,0 +1,46 @@
+.newsWrapper {
+  height: 550px;
+  width: 800px;
+  perspective: 1000px;
+}
+
+.newsCollectionWrapper {
+  background-color: gainsboro;
+  width: 350px;
+  height: 550px;
+}
+
+.headline {
+  height: 100px;
+  background-color: #DDE8FF;
+  border-radius: 10px;
+  color: #006bb6;
+  margin: 10px;
+  padding: 10px;
+}
+
+.initHeadline-enter {
+  opacity: 0.01;
+  width: 10px;
+  transform: rotateY(90deg);
+}
+.initHeadline-enter-active {
+  opacity: 1;
+  transform: rotateY(0deg);
+  width: 300px;
+  transition-delay: 300ms;
+  transition: width 500ms, transform 1000ms cubic-bezier(0.42, 0.0, 0.58, 1.0), opacity 1000ms ease-in;
+}
+
+.initHeadline-enter-done {
+  width: 300px;
+  perspective: none;
+}
+
+.initHeadline-exit {
+  opacity: 1;
+}
+.initHeadline-exit-active {
+  opacity: 0.01;
+  transition: opacity 500ms ease-in;
+}
