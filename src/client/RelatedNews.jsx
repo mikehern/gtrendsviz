@@ -9,12 +9,40 @@ class RelatedNews extends Component {
       data: [],
     }
   }
-
+  
   componentDidMount() {
     const { keyword, date } = this.state;
+    this._fetchNewsForDate(keyword, date);
+  }
+
+  _fetchNewsForDate(keyword, date) {
     fetch(`/api/news?keyword=${keyword}&date=${date}`)
       .then(res => res.json())
-      .then(data => this.setState({ data: data }));
+      .then(data => {
+        this.setState({ data: data, keyword: keyword });
+      });
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.data.length === 0) {
+      return true;
+    }
+
+    if (nextProps.date !== nextState.date) {
+      return true;
+    }
+
+    if (nextProps.keyword !== nextState.keyword) {
+      return true;
+    }
+    
+    return false;
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.date !== prevProps.date) {
+      this._fetchNewsForDate(this.props.keyword, this.props.date);
+    }
   }
 
   render() {
