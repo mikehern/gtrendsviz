@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 
-import './styles.css';
-import TrendOverTime from './TrendOverTime';
-import tempData from './tempData';
-import RelatedNews from './RelatedNews';
+import '../styles.css';
+import TrendOverTime from '../TrendOverTime/TrendOverTime';
+import News from '../News/News';
 
 
 class App extends Component {
@@ -64,7 +63,7 @@ class App extends Component {
         </div>
         <div className="content">
           <TrendOverTime data={searchResults} searchDate={this._dateHandler} />
-          {!!searchDate && <RelatedNews keyword={searchQuery} date={searchDate} />}
+          {!!searchDate && <News keyword={searchQuery} date={searchDate} />}
         </div>
         <div className="footer">
           ✌🏼 mikehern

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class RelatedNews extends Component {
+class News extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,8 +46,12 @@ class RelatedNews extends Component {
   }
 
   render() {
-    return(<span>{JSON.stringify(this.state.data)}</span>);
+    return(
+      <div className="newsWrapper">
+        
+      </div>
+    );
   }
 }
 
-export default RelatedNews;
+export default News;

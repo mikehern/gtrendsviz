@@ -134,7 +134,7 @@ class TrendOverTime extends Component {
         overlay.select("text")
           .text(() => mouseMapping.date.toDateString().slice(0, -4))
           .style('fill', 'red')
-      };
+      }
       
       const updateDate = this.props.searchDate;
       
@@ -210,7 +210,7 @@ class TrendOverTime extends Component {
         overlay.select("text")
           .text(() => mouseMapping.date.toDateString().slice(0, -4))
           .style('fill', 'red')
-      };
+      }
 
       const updateDate = this.props.searchDate;
 
