@@ -7,7 +7,7 @@
 - [IP] When exploring the line chart, display news based on clicked datum - use ReactTransitionGroup
 - [ ] Create date helper to narrow news query to peak dates
 - [ ] Include attributions
-- [ ] Style and animate
+- [ ] Style and animate [Create exit anim for headlines]
 - [ ] Use typography as an expressive dimension
 - [ ] Use font-size as an expressive dimension
 

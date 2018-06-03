@@ -50,19 +50,23 @@ class News extends Component {
 
   render() {
     const articles = this.state.data.news !== undefined ? this.state.data.news.articles : [];
-    const headlines = articles
-      .map(({ title, url }) => <NewsHeadline headline={title} key={url} />)
-      .slice(0, 4);
 
     return(
-      <div className="newsWrapper">
-        <CSSTransition in={(headlines.length > 0)} timeout={2500} classNames="initHeadline">
-          <div>
-            {headlines}
-          </div>
-        </CSSTransition>
-      </div>
-    );
+      <TransitionGroup className="newsWrapper">
+        {articles
+          .map(({ title, url }) => (
+            <CSSTransition
+              in={(articles.length > 0)}
+              key={url}
+              timeout={1000}
+              exit={false}
+              classNames="hvr-back-pulse">
+              <NewsHeadline headline={title} />
+            </CSSTransition>))
+          .slice(0, 4)
+        }
+      </TransitionGroup>
+    )
   }
 }
 

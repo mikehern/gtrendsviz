@@ -3,9 +3,7 @@ import './news.css';
 
 const NewsHeadline = ({headline}) => {
   return(
-    <div className="headline">
-      {headline}sup
-    </div>
+    <div className="headline" >{headline}</div>
   );
 }
 
