@@ -10,7 +10,11 @@ class News extends Component {
       keyword: null,
       date: null,
       data: [],
+      selectedArticle: '',
+      displayArticleDetail: false,
     }
+
+    this._selectHeadlineHandler = this._selectHeadlineHandler.bind(this);
   }
   
   componentDidMount() {
@@ -39,6 +43,10 @@ class News extends Component {
       return true;
     }
 
+    if (this.props.selectedArticle !== this.state.selectedArticle) {
+      return true;
+    }
+
     return false;
   }
 
@@ -48,25 +56,35 @@ class News extends Component {
     }
   }
 
-  render() {
-    const articles = this.state.data.news !== undefined ? this.state.data.news.articles : [];
+  _selectHeadlineHandler(headline) {
+    this.setState({ selectedArticle: headline });
+  }
 
-    return(
-      <TransitionGroup className="newsWrapper">
-        {articles
-          .map(({ title, url }) => (
-            <CSSTransition
-              in={(articles.length > 0)}
-              key={url}
-              timeout={1000}
-              exit={false}
-              classNames="hvr-back-pulse">
-              <NewsHeadline headline={title} />
-            </CSSTransition>))
-          .slice(0, 4)
-        }
-      </TransitionGroup>
-    )
+  render() {
+    const { data } = this.state;
+    const articles = data.news !== undefined ? data.news.articles : [];
+
+    return (
+      <div>
+        <TransitionGroup className="newsWrapper">
+          {articles
+            .map(({ title, url }) => (
+              <CSSTransition
+                in={articles.length > 0}
+                key={url}
+                timeout={1000}
+                exit={false}
+                classNames="hvr-back-pulse"
+                mountOnEnter={true}
+              >
+                <NewsHeadline headline={title} selectedArticle={this._selectHeadlineHandler}/>
+              </CSSTransition>
+            ))
+            .slice(0, 4)
+          }
+        </TransitionGroup>
+      </div>
+    );
   }
 }
 
