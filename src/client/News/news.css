@@ -48,13 +48,17 @@
 }
 
 .news-preview--padding {
-  margin: 20px;
+  margin: 40px 20px;
   line-height: 24px;
 }
 
-.bottom {
-  height: 300px;
-  background-color: lightsalmon;
+.news-image--wrapper {
+  width: 100%;
+  border-radius: 18px;
+  height: 210px;
+  margin-top: 40px;
+  object-fit: cover;
+  box-shadow: 0 -8px 60px 2px rgb(175, 175, 175);
 }
 
 /* Back Pulse */

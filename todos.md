@@ -5,6 +5,7 @@
 - [x] Display date in chart during hover
 - [ ] Include section for related queries - use GSAP and blur to clear current text upon selection
 - [IP] When exploring the line chart, display news based on clicked datum - use ReactTransitionGroup
+- [ ] Conditionally animate news image only after fetch is complete
 - [ ] Create date helper to narrow news query to peak dates
 - [ ] Include attributions
 - [ ] Style and animate [Create exit anim for headlines]

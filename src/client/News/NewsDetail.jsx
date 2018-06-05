@@ -1,5 +1,6 @@
 import React from 'react';
 import NewsDetailPreview from './NewsDetailPreview';
+import NewsDetailImage from './NewsDetailImage';
 
 const NewsDetail = (props) => {
   const article = props.article[0];
@@ -8,7 +9,7 @@ const NewsDetail = (props) => {
     <div className="news-detail--wrapper">
       <div className="top">top</div>
       <NewsDetailPreview content={article.description} />
-      <div className="bottom">bottom</div>
+      <NewsDetailImage image={article.urlToImage} />
     </div>
   )
 }
