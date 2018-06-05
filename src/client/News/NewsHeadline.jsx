@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './news.css';
 
+//TODO: try refactoring as a functional stateless component
+
 class NewsHeadline extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +24,7 @@ class NewsHeadline extends Component {
         className="headline"
         onClick={this._selectionHandler}
         onMouseEnter={this._selectionHandler}
-        onMouseLeave={this._deselectionHandler}
+        // onMouseLeave={this._deselectionHandler}
       >
         {this.props.headline}
       </div>

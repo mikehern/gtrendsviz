@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { CSSTransition, TransitionGroup, Transition } from 'react-transition-group';
 import './news.css';
 import NewsHeadline from './NewsHeadline';
+import NewsDetail from './NewsDetail';
 
 class News extends Component {
   constructor(props) {
@@ -57,16 +58,19 @@ class News extends Component {
   }
 
   _selectHeadlineHandler(headline) {
-    this.setState({ selectedArticle: headline });
+    const { data } = this.state;
+    const articles = data.news !== undefined ? data.news.articles : [];
+    const article = articles.filter(article => (article.title === headline));
+
+    this.setState({ selectedArticle: article });
   }
 
   render() {
-    const { data } = this.state;
+    const { data, selectedArticle } = this.state;
     const articles = data.news !== undefined ? data.news.articles : [];
 
-    return (
-      <div>
-        <TransitionGroup className="newsWrapper">
+    return <div className="newsWrapper">
+        <TransitionGroup className="newsCollectionWrapper">
           {articles
             .map(({ title, url }) => (
               <CSSTransition
@@ -75,16 +79,22 @@ class News extends Component {
                 timeout={1000}
                 exit={false}
                 classNames="hvr-back-pulse"
-                mountOnEnter={true}
               >
-                <NewsHeadline headline={title} selectedArticle={this._selectHeadlineHandler}/>
+                <NewsHeadline
+                  headline={title}
+                  selectedArticle={this._selectHeadlineHandler}
+                />
               </CSSTransition>
             ))
-            .slice(0, 4)
-          }
+            .slice(0, 4)}
         </TransitionGroup>
-      </div>
-    );
+        {/* <Transition timeout={{enter: 1400, exit: 400}}>
+          {(state) => (
+
+          )}
+        </Transition> */}
+        {selectedArticle.length > 0 && <NewsDetail article={selectedArticle} />}
+      </div>;
   }
 }
 

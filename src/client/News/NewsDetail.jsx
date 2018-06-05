@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
+import NewsDetailPreview from './NewsDetailPreview';
 
-class NewsDetail extends Component {
-  constructor(props) {
-    super(props)
+const NewsDetail = (props) => {
+  const article = props.article[0];
 
-    this.state ={};
-  }
-
-  render() {
-    return(
-      <div className="newsDetailWrapper" ></div>
-    )
-  }
+  return(
+    <div className="news-detail--wrapper">
+      <div className="top">top</div>
+      <NewsDetailPreview content={article.description} />
+      <div className="bottom">bottom</div>
+    </div>
+  )
 }
+
+export default NewsDetail;
