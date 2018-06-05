@@ -1,35 +1,25 @@
 import React, { Component } from 'react';
 import './news.css';
 
-//TODO: try refactoring as a functional stateless component
-
-class NewsHeadline extends Component {
-  constructor(props) {
-    super(props);
-    this._selectionHandler = this._selectionHandler.bind(this);
-    this._deselectionHandler = this._deselectionHandler.bind(this);
+const NewsHeadline = (props) => {
+  const _selectionHandler = () => {
+    props.selectedArticle(props.headline);
   }
 
-  _selectionHandler() {
-    this.props.selectedArticle(this.props.headline);
+  const _deselectionHandler = () => {
+    props.selectedArticle('');
   }
-
-  _deselectionHandler() {
-    this.props.selectedArticle('');
-  }
-
-  render() {
-    return(
-      <div
-        className="headline"
-        onClick={this._selectionHandler}
-        onMouseEnter={this._selectionHandler}
-        // onMouseLeave={this._deselectionHandler}
-      >
-        {this.props.headline}
-      </div>
-    )
-  }
+  
+  return (
+    <div
+      className="headline"
+      onClick={_selectionHandler}
+      onMouseEnter={_selectionHandler}
+      onMouseLeave={_deselectionHandler}
+    >
+      {props.headline}
+    </div>
+  )
 }
 
 
