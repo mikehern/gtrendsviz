@@ -44,7 +44,7 @@
 }
 
 .news-preview--padding {
-  margin: 40px 20px;
+  margin: 30px 20px;
   line-height: 24px;
 }
 
@@ -57,12 +57,6 @@
   box-shadow: 0 -8px 60px 2px rgb(175, 175, 175);
 }
 
-.news-meta--wrapper {
-  width: 100%;
-  margin-bottom: 40px;
-  font-size: 20px;
-  text-shadow: 2px 14px 8px #d0d0d0;
-}
 
 /* Back Pulse */
 @-webkit-keyframes hvr-back-pulse {

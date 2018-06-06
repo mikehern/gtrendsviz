@@ -4,24 +4,43 @@ import './news.css';
 import NewsHeadline from './NewsHeadline';
 import NewsDetail from './NewsDetail';
 import NewsDetailPreview from './NewsDetailPreview';
+import moment from 'moment';
 
-const initialStyle = {
+const initPreviewStyle = {
   boxShadow: `0 0 0 0px rgb(232, 232, 232)`,
   transition: `box-shadow 1000ms cubic-bezier(0.390, 0.575, 0.565, 1.000), color 1400ms`,
   width: `100%`,
   display: `flex`,
   borderRadius: `18px`,
   flexDirection: `column`,
-  justifyContent: `center`,
   alignItems: `center`,
   color: `white`,
-  height: `200px`,
-  position: `relative`,
-  transform: `translate(0, 100px)`
+  transform: `translate(0, -280px)`
 };
 
-const transitionStyles = {
-  entered: { boxShadow: `0 2px 60px 5px #CEDEFF`, color: `#006bb6` }
+const previewTransitions = {
+  entered: {
+    boxShadow: `0 2px 60px 5px #CEDEFF`,
+    color: `#006bb6`
+  }
+};
+
+const initMetaStyle = {
+  opacity: `0`,
+  textShadow: `0px 0px 1px #F2F2F2`,
+  transform: `translate(0, 200px)`,
+  transition: `opacity 800ms cubic-bezier(0.755, 0.050, 0.855, 0.060), transform 600ms`,
+  width: `100%`,
+  fontSize: `20px`,
+  marginBottom: `200px`
+};
+
+const metaTransitions = {
+  entered: {
+    opacity: 1,
+    textShadow: `2px 14px 8px #d0d0d0`,
+    transform: `translate(0, 0)`
+  }
 };
 
 class News extends Component {
@@ -88,6 +107,9 @@ class News extends Component {
   render() {
     const { data, selectedArticle } = this.state;
     const articles = data.news !== undefined ? data.news.articles : [];
+    const article = selectedArticle[0];
+
+    const displayTime = (date) => moment(date).format('h:mm A');
 
     return <div className="newsWrapper">
         <TransitionGroup className="newsCollectionWrapper">
@@ -108,13 +130,23 @@ class News extends Component {
             ))
             .slice(0, 4)}
         </TransitionGroup>
-        <Transition in={selectedArticle.length > 0} timeout={{enter: 250, exit: 400}}>
+        <Transition
+          in={Boolean(article)}
+          timeout={{enter: 250}}
+        >
           {(state) => (
-            selectedArticle.length > 0 ?
-              <div style={{...initialStyle, ...transitionStyles[state]}}>
-                <NewsDetailPreview content={selectedArticle[0].description}/>
+            article ?
+              <div className="news-detail--wrapper">
+                <div style={{...initMetaStyle, ...metaTransitions[state]}}>
+                  {article.source.name}
+                  <br />
+                  {displayTime(article.publishedAt)}
+                </div>
+                <div style={{...initPreviewStyle, ...previewTransitions[state]}}>
+                  <NewsDetailPreview content={article.description}/>
+                </div>
               </div>
-              : null
+            : null
           )}
         </Transition>
       </div>;
