@@ -3,6 +3,26 @@ import { CSSTransition, TransitionGroup, Transition } from 'react-transition-gro
 import './news.css';
 import NewsHeadline from './NewsHeadline';
 import NewsDetail from './NewsDetail';
+import NewsDetailPreview from './NewsDetailPreview';
+
+const initialStyle = {
+  boxShadow: `0 0 0 0px rgb(232, 232, 232)`,
+  transition: `box-shadow 1000ms cubic-bezier(0.390, 0.575, 0.565, 1.000), color 1400ms`,
+  width: `100%`,
+  display: `flex`,
+  borderRadius: `18px`,
+  flexDirection: `column`,
+  justifyContent: `center`,
+  alignItems: `center`,
+  color: `white`,
+  height: `200px`,
+  position: `relative`,
+  transform: `translate(0, 100px)`
+};
+
+const transitionStyles = {
+  entered: { boxShadow: `0 2px 60px 5px #CEDEFF`, color: `#006bb6` }
+};
 
 class News extends Component {
   constructor(props) {
@@ -88,12 +108,15 @@ class News extends Component {
             ))
             .slice(0, 4)}
         </TransitionGroup>
-        {/* <Transition timeout={{enter: 1400, exit: 400}}>
+        <Transition in={selectedArticle.length > 0} timeout={{enter: 250, exit: 400}}>
           {(state) => (
-
+            selectedArticle.length > 0 ?
+              <div style={{...initialStyle, ...transitionStyles[state]}}>
+                <NewsDetailPreview content={selectedArticle[0].description}/>
+              </div>
+              : null
           )}
-        </Transition> */}
-        {selectedArticle.length > 0 && <NewsDetail article={selectedArticle} />}
+        </Transition>
       </div>;
   }
 }
