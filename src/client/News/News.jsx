@@ -1,47 +1,17 @@
 import React, { Component } from 'react';
 import { CSSTransition, TransitionGroup, Transition } from 'react-transition-group';
+import moment from 'moment';
 import './news.css';
 import NewsHeadline from './NewsHeadline';
-import NewsDetail from './NewsDetail';
-import NewsDetailPreview from './NewsDetailPreview';
-import moment from 'moment';
+import {
+  initPreviewStyle,
+  previewTransitions,
+  initMetaStyle,
+  metaTransitions,
+  initImgStyle,
+  imgTransitions
+} from './transitions';
 
-const initPreviewStyle = {
-  boxShadow: `0 0 0 0px rgb(232, 232, 232)`,
-  transition: `box-shadow 1000ms cubic-bezier(0.390, 0.575, 0.565, 1.000), color 1400ms`,
-  width: `100%`,
-  display: `flex`,
-  borderRadius: `18px`,
-  flexDirection: `column`,
-  alignItems: `center`,
-  color: `white`,
-  transform: `translate(0, -280px)`
-};
-
-const previewTransitions = {
-  entered: {
-    boxShadow: `0 2px 60px 5px #CEDEFF`,
-    color: `#006bb6`
-  }
-};
-
-const initMetaStyle = {
-  opacity: `0`,
-  textShadow: `0px 0px 1px #F2F2F2`,
-  transform: `translate(0, 200px)`,
-  transition: `opacity 800ms cubic-bezier(0.755, 0.050, 0.855, 0.060), transform 600ms`,
-  width: `100%`,
-  fontSize: `20px`,
-  marginBottom: `200px`
-};
-
-const metaTransitions = {
-  entered: {
-    opacity: 1,
-    textShadow: `2px 14px 8px #d0d0d0`,
-    transform: `translate(0, 0)`
-  }
-};
 
 class News extends Component {
   constructor(props) {
@@ -143,8 +113,12 @@ class News extends Component {
                   {displayTime(article.publishedAt)}
                 </div>
                 <div style={{...initPreviewStyle, ...previewTransitions[state]}}>
-                  <NewsDetailPreview content={article.description}/>
+                  <div className="news-preview--padding">{article.description}</div>
                 </div>
+                <img
+                  style={{...initImgStyle, ...imgTransitions[state]}}
+                  src={article.urlToImage}>
+                </img>
               </div>
             : null
           )}
