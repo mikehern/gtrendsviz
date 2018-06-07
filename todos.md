@@ -4,8 +4,7 @@
 - [x] Connect to newsapi.org - note 30 day rolling limit
 - [x] Display date in chart during hover
 - [ ] Include section for related queries - use GSAP and blur to clear current text upon selection
-- [IP] When exploring the line chart, display news based on clicked datum - use ReactTransitionGroup
-- [ ] Conditionally animate news image only after fetch is complete
+- [x] When exploring the line chart, display news based on clicked datum - use ReactTransitionGroup
 - [ ] Create date helper to narrow news query to peak dates
 - [ ] Include attributions
 - [ ] Style and animate [Create exit anim for headlines]
@@ -17,3 +16,4 @@
 - [ ] Express internet connectedness by country using internetworldstats data
 - [ ] Allow configurable queries
 - [ ] Display recent searches?
+- [ ] Conditionally animate news image only after fetch is complete
