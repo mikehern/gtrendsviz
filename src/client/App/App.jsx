@@ -13,6 +13,7 @@ class App extends Component {
       searchInput: '',
       searchResults: '',
       searchQuery: '',
+      relatedResults: ''
     };
 
     this._handleInputChange = this._handleInputChange.bind(this);
@@ -37,6 +38,10 @@ class App extends Component {
         searchResults: data.results,
         searchQuery: this.state.searchInput,
       }));
+
+    fetch(`/api/relatedSearch?q=${this.state.searchInput}`)
+      .then(res => res.json())
+      .then(data => this.setState({ relatedResults : data.results }));
   }
 
   _dateHandler(date) {

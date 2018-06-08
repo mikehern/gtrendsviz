@@ -16,15 +16,15 @@ const trendSinceJan2004 = (trendData) => {
   return valuesOnly;
 }
 
-const byTime = async (payload) => {
-  const startDate = () => {
-    let date = new Date();
-    let month = date.getMonth();
-    date.setMonth(month - 1);
-    return date;
-  }
+const get30DaysAgo = () => {
+  let date = new Date();
+  let month = date.getMonth();
+  date.setMonth(month - 1);
+  return date;
+}
 
-  payload.startTime = startDate();
+const byTime = async (payload) => {
+  payload.startTime = get30DaysAgo();
   //Although API defaults endTime to today, results aren't always available
   //running through today.
 
@@ -76,4 +76,16 @@ const newsByDate = async (keyword, date) => {
   }
 }
 
-module.exports = { byTime, newsByDate };
+const relatedQueries = async (payload) => {
+  payload.startTime = get30DaysAgo();
+  payload.geo = 'US';
+
+  try {
+    const result = await googleTrends.relatedQueries(payload);
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+module.exports = { byTime, newsByDate, relatedQueries };
