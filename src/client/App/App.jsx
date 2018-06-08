@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import '../styles.css';
 import TrendOverTime from '../TrendOverTime/TrendOverTime';
 import News from '../News/News';
+import RelatedSearch from '../RelatedSearch/RelatedSearch';
 
 
 class App extends Component {
@@ -53,7 +54,7 @@ class App extends Component {
   }
 
   render() {
-    const { searchInput, searchResults, searchDate, searchQuery } = this.state;
+    const { searchInput, searchResults, searchDate, searchQuery, relatedResults } = this.state;
     return (
       <div className="container">
         <div className="header">
@@ -65,6 +66,7 @@ class App extends Component {
             value={searchInput}
             onChange={this._handleInputChange} />
           <button id="send" onClick={this._sendQuery}>Search</button>
+          {!!relatedResults && <RelatedSearch data={relatedResults} />}
         </div>
         <div className="content">
           <TrendOverTime data={searchResults} searchDate={this._dateHandler} />
