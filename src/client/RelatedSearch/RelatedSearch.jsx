@@ -47,10 +47,40 @@ class RelatedSearch extends Component {
       .attr('height', height + margin.top + margin.bottom)
       .attr('transform', `translate(${margin.left}, ${margin.top})`)
       .append('g')
+      .attr('class', 'bodyWrapper');
+
+    canvas.append('defs');
+
+    const defs = d3.select('defs');
+      
+    defs
+      .append('linearGradient')
+        .attr('id', 'linear')
+        .attr('x1', '0%')
+        .attr('y1', '0%')
+        .attr('x2', '100%')
+        .attr('y2', '0%')
+
+    const gradient = d3.select('linearGradient');
+
+    gradient.append('stop')
+        .attr('offset', '0%')
+        .attr('stop-color', '#006bb6');
+
+    gradient.append('stop')
+        .attr('offset', '100%')
+        .attr('stop-color', '#2BABE0');
+
+    defs.append('clipPath')
+      .attr('id', 'clip')
+      .append('rect')
+        .attr('x', '-100')
+        .attr('width', '490')
+        .attr('height', '460');
 
     const xScale = d3.scaleLinear()
       .domain([0, 100])
-      .range([0, width]);
+      .range([(width / 2), width]);
 
     const yScale = d3.scaleBand()
       .domain(data.map(d => d.query))
@@ -59,7 +89,7 @@ class RelatedSearch extends Component {
 
     const bars = canvas.selectAll('.bar')
       .data(data)
-      .enter()
+      .enter();
 
     bars.append('rect')
       .attr('class', 'bar')
@@ -67,7 +97,8 @@ class RelatedSearch extends Component {
       .attr('width', d => xScale(d.value))
       .attr('y', d => yScale(d.query))
       .attr('height', () => yScale.bandwidth())
-      .attr('fill', '#006bb6');
+      .attr('fill', `url(#linear)`)
+      .attr('ry', 10);
 
   }
 
@@ -76,7 +107,7 @@ class RelatedSearch extends Component {
     return(
       <React.Fragment>
         {/* <div>{JSON.stringify(data)}</div> */}
-        <svg id="barChart" width="100%" height="600px" ref={node => (this.node = node)} />
+        <svg id="topWrapper" width="100%" height="2200px" ref={node => (this.node = node)} />
       </React.Fragment>
     )
   }
