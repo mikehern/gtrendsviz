@@ -83,9 +83,8 @@ const relatedQueries = async (payload) => {
   try {
     const result = await googleTrends.relatedQueries(payload);
     const valuesOnly = JSON.parse(result).default.rankedList[0].rankedKeyword
-      .map(el => ({ query: el.query, value: el.value }))
-      .slice(0, 10);
-      
+      .map(el => ({ query: el.query, value: el.value }));
+
     return valuesOnly;
   } catch (err) {
     console.error(err);
