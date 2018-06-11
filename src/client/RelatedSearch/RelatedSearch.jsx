@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
+import './relatedsearch.css';
 
-const bodyMargin = { top: 10, right: 20, bottom: 20, left: 50 };
+const bodyMargin = { top: 10, right: 20, bottom: 20, left: 5 };
 const miniMargin = { top: 10, right: 10, bottom: 20, left: 10 };
 
 class RelatedSearch extends Component {
@@ -62,7 +63,7 @@ class RelatedSearch extends Component {
     const brushGroup = svg
       .append('g')
         .attr('class', 'brushGroup')
-        .attr('transform', `translate(${bounds.width - miniMargin.right}, ${miniMargin.top})`);
+        .attr('transform', `translate(${bodyMargin.left + bodyWidth + bodyMargin.right + miniMargin.left}, ${miniMargin.top})`);
 
     bodyChart.append('defs');
     const defs = d3.select('defs');
@@ -116,6 +117,17 @@ class RelatedSearch extends Component {
       .rangeRound([miniHeight, 0])
       .padding(0.1);
 
+    const bodyXAxis = d3.axisBottom().scale(bodyXScale)
+      .ticks(3)
+      .tickSize(0);
+    
+    d3.select('.bodyWrapper')
+      .append('g')
+        .attr('class', 'x axis')
+        .attr('transform', `translate(${0}, ${bodyHeight + 6})`);
+
+    d3.select('.bodyWrapper').select('.x.axis').call(bodyXAxis);
+
     //Handoff render and transition to D3
     const bars = bodyChart.selectAll('.bar')
       .data(data);
@@ -159,6 +171,14 @@ class RelatedSearch extends Component {
     miniBars.exit()
       .remove();
 
+    //Y axis called after bars render in order to overlay chart
+    const bodyYAxis = d3.axisRight().scale(bodyYScale);
+    bodyChart
+      .append('g')
+      .attr('class', 'y axis')
+      .attr('transform', `translate(0, 0)`);
+
+    d3.select('.bodyChart').select('.y.axis').call(bodyYAxis);
   }
 
   render() {

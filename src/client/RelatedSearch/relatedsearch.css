@@ -1,0 +1,12 @@
+.domain {
+  display: none;
+}
+
+.axis line {
+  display: none;
+}
+
+.y text {
+  fill: white;
+  font-size: 14px;
+}
