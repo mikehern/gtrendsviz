@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 
-const margin = { top: 20, right: 30, bottom: 30, left: 50 };
+const bodyMargin = { top: 10, right: 20, bottom: 20, left: 50 };
+const miniMargin = { top: 10, right: 10, bottom: 20, left: 10 };
 
 class RelatedSearch extends Component {
   constructor(props) {
@@ -36,21 +37,34 @@ class RelatedSearch extends Component {
   }
 
   _createBarChart() {
-    const node = d3.select(this.node);
-    const bounds = node.node().getBoundingClientRect();
-    const width = bounds.width - margin.left - margin.right;
-    const height = bounds.height - margin.top - margin.bottom;
+    const svg = d3.select(this.node);
+    const bounds = svg.node().getBoundingClientRect();
+    const bodyWidth = (bounds.width * 0.8) - bodyMargin.left - bodyMargin.right;
+    const miniWidth = (bounds.width * 0.2) - miniMargin.left - miniMargin.right;
+    const bodyHeight = bounds.height - bodyMargin.top - bodyMargin.bottom;
+    const miniHeight = bounds.height - miniMargin.top - miniMargin.bottom;
     const data = this.state.tempData.sort((a, b) => d3.ascending(a.value, b.value));
 
-    const canvas = node
-      .attr('width', width + margin.left + margin.right)
-      .attr('height', height + margin.top + margin.bottom)
-      .attr('transform', `translate(${margin.left}, ${margin.top})`)
+    const bodyChart = svg
       .append('g')
-      .attr('class', 'bodyWrapper');
+        .attr('class', 'bodyWrapper')
+        .attr('transform', `translate(${bodyMargin.left}, ${bodyMargin.top})`)   
+      .append('g')
+        .attr('class', 'bodyChart')
+        .attr('clip-path', `url(#clip)`)
+        .style('clip-path', `url(#clip)`);
 
-    canvas.append('defs');
+    const miniChart = svg
+      .append('g')
+        .attr('class', 'miniChart')
+        .attr('transform', `translate(${bodyMargin.left + bodyWidth + bodyMargin.right + miniMargin.left}, ${miniMargin.top})`);
 
+    const brushGroup = svg
+      .append('g')
+        .attr('class', 'brushGroup')
+        .attr('transform', `translate(${bounds.width - miniMargin.right}, ${miniMargin.top})`);
+
+    bodyChart.append('defs');
     const defs = d3.select('defs');
       
     defs
@@ -63,42 +77,87 @@ class RelatedSearch extends Component {
 
     const gradient = d3.select('linearGradient');
 
-    gradient.append('stop')
+    gradient
+      .append('stop')
         .attr('offset', '0%')
         .attr('stop-color', '#006bb6');
 
-    gradient.append('stop')
+    gradient
+      .append('stop')
         .attr('offset', '100%')
         .attr('stop-color', '#2BABE0');
 
     defs.append('clipPath')
       .attr('id', 'clip')
       .append('rect')
-        .attr('x', '-100')
-        .attr('width', '490')
-        .attr('height', '460');
+        .attr('x', -bodyMargin.left)
+        .attr('width', bodyWidth + bodyMargin.left)
+        .attr('height', bodyHeight);
 
-    const xScale = d3.scaleLinear()
+    const bodyYZoom = d3.scaleLinear()
+      .domain([0, bodyHeight])
+      .range([0, bodyHeight]);
+
+    const bodyXScale = d3.scaleLinear()
       .domain([0, 100])
-      .range([(width / 2), width]);
+      .range([(bodyWidth / 2), bodyWidth]);
 
-    const yScale = d3.scaleBand()
+    const bodyYScale = d3.scaleBand()
       .domain(data.map(d => d.query))
-      .rangeRound([height, 0])
+      .rangeRound([bodyHeight, 0])
       .padding(0.1);
 
-    const bars = canvas.selectAll('.bar')
-      .data(data)
-      .enter();
+    const miniXScale = d3.scaleLinear()
+      .domain([0, 100])
+      .range([0, miniWidth]);
 
-    bars.append('rect')
-      .attr('class', 'bar')
+    const miniYScale = d3.scaleBand()
+      .domain(data.map(d => d.query))
+      .rangeRound([miniHeight, 0])
+      .padding(0.1);
+
+    //Handoff render and transition to D3
+    const bars = bodyChart.selectAll('.bar')
+      .data(data);
+
+    bars
       .attr('x', 0)
-      .attr('width', d => xScale(d.value))
-      .attr('y', d => yScale(d.query))
-      .attr('height', () => yScale.bandwidth())
+      .attr('y', d => bodyYScale(d.query))
+      .attr('width', d => bodyXScale(d.value))
+      .attr('height', () => bodyYScale.bandwidth());
+
+    bars.enter().append('rect')
+      .attr('class', 'bar')
       .attr('fill', `url(#linear)`)
-      .attr('ry', 10);
+      .attr('x', 0)
+      .attr('y', d => bodyYScale(d.query))
+      .attr('ry', 10)
+      .attr('width', d => bodyXScale(d.value))
+      .attr('height', () => bodyYScale.bandwidth());
+
+    bars.exit()
+      .remove();
+
+    const miniBars = miniChart.selectAll('.bar')
+      .data(data);
+
+    miniBars
+      .attr('x', 0)
+      .attr('y', d => miniYScale(d.query))
+      .attr('width', d => miniXScale(d.value))
+      .attr('height', () => miniYScale.bandwidth());
+
+    miniBars.enter().append('rect')
+      .attr('class', 'bar')
+      .attr('fill', '#D2D2D2')
+      .attr('x', 0)
+      .attr('y', d => miniYScale(d.query))
+      .attr('ry', 4)
+      .attr('width', d => miniXScale(d.value))
+      .attr('height', () => miniYScale.bandwidth())
+
+    miniBars.exit()
+      .remove();
 
   }
 
@@ -107,7 +166,7 @@ class RelatedSearch extends Component {
     return(
       <React.Fragment>
         {/* <div>{JSON.stringify(data)}</div> */}
-        <svg id="topWrapper" width="100%" height="2200px" ref={node => (this.node = node)} />
+        <svg id="svgWrapper" width="100%" height="500px" ref={node => (this.node = node)} />
       </React.Fragment>
     )
   }
