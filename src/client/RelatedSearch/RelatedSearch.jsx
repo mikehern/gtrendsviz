@@ -84,6 +84,13 @@ class RelatedSearch extends Component {
         .attr('offset', '100%')
         .attr('stop-color', '#60D1FF');
 
+      svg
+        .append('filter')
+          .attr('id', 'blur')
+        .append('feGaussianBlur')
+          .attr('in', 'SourceGraphic')
+          .attr('stdDeviation', '5');
+
       d3.select('#svgWrapper')
         .append('g')
         .attr('class', 'y axis')
@@ -119,7 +126,7 @@ class RelatedSearch extends Component {
 
     bars
       .transition()
-      .duration(1000)
+        .duration(1000)
         .ease(d3.easeBackInOut)
         .attr('x', 0)
         .attr('y', d => yScale(d.query))
@@ -128,7 +135,17 @@ class RelatedSearch extends Component {
 
     d3.select('#svgWrapper').select('.y.axis')
       .transition()
-      .duration(1000)
+        .duration(150)
+        .ease(d3.easeBackIn)
+        .attr('filter', null)
+      .transition()
+        .duration(600)
+        .ease(d3.easeBackInOut)
+        .attr('filter', 'url(#blur)')
+      .transition()
+        .duration(400)
+        .ease(d3.easeBackOut)
+        .attr('filter', null)
       .call(yAxis);
 
     d3.selectAll('.bar')
