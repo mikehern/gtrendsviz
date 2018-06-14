@@ -8,8 +8,7 @@ class RelatedSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
-      tempData: [{ "query": "react native", "value": 100 }, { "query": "nike react", "value": 64 }, { "query": "what is react", "value": 53 }, { "query": "epic react", "value": 45 }, { "query": "react js", "value": 42 }, { "query": "nike epic react", "value": 39 }, { "query": "react redux", "value": 30 }, { "query": "react router", "value": 23 }, { "query": "nike react flyknit", "value": 19 }, { "query": "epic react flyknit", "value": 19 }, { "query": "react form", "value": 18 }, { "query": "nike epic react flyknit", "value": 16 }, { "query": "create react app", "value": 15 }, { "query": "angular", "value": 14 }, { "query": "react bootstrap", "value": 13 }, { "query": "react tutorial", "value": 13 }, { "query": "react native app", "value": 11 }, { "query": "react navigation", "value": 11 }, { "query": "react table", "value": 9 }, { "query": "react setstate", "value": 9 }, { "query": "react lifecycle", "value": 9 }, { "query": "react map", "value": 8 }, { "query": "nike odyssey react", "value": 7 }, { "query": "kids react", "value": 7 }, { "query": "go react", "value": 7 }]
+      data: []
     };
   }
 
@@ -53,7 +52,6 @@ class RelatedSearch extends Component {
       .padding(0.02);
 
     const yAxis = d3.axisRight().scale(yScale);
-
 
     const canvasExists = !d3.select('.canvas').empty();
 
@@ -116,7 +114,6 @@ class RelatedSearch extends Component {
         .attr('width', d => xScale(d.value))
         .attr('fill', `url(#linear)`);
 
-
     bars.exit()
       .remove();
 
@@ -135,14 +132,12 @@ class RelatedSearch extends Component {
       .call(yAxis);
 
     d3.selectAll('.bar')
-      .on('click', d => console.log('clicked on ', d));
+      .on('click', d => this.props.searchTerm(d.query));
   }
 
   render() {
-    const { data } = this.state;
     return(
       <React.Fragment>
-        {/* <div>{JSON.stringify(data)}</div> */}
         <svg id="svgWrapper" width="100%" height="600px" ref={node => (this.node = node)} />
       </React.Fragment>
     )

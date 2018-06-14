@@ -20,6 +20,7 @@ class App extends Component {
     this._handleInputChange = this._handleInputChange.bind(this);
     this._sendQuery = this._sendQuery.bind(this);
     this._dateHandler = this._dateHandler.bind(this);
+    this._clickedRelatedSearch = this._clickedRelatedSearch.bind(this);
   }
 
   componentDidMount() {
@@ -30,6 +31,11 @@ class App extends Component {
 
   _handleInputChange(e) {
     this.setState({ searchInput: e.target.value });
+  }
+
+  _clickedRelatedSearch(keyword) {
+    this.setState({ searchInput: keyword });
+    this._sendQuery();
   }
 
   _sendQuery() {
@@ -66,7 +72,7 @@ class App extends Component {
             value={searchInput}
             onChange={this._handleInputChange} />
           <button id="send" onClick={this._sendQuery}>Search</button>
-          {!!relatedResults && <RelatedSearch data={relatedResults} />}
+          {!!relatedResults && <RelatedSearch data={relatedResults} searchTerm={this._clickedRelatedSearch}/>}
         </div>
         <div className="content">
           <TrendOverTime data={searchResults} searchDate={this._dateHandler} />
