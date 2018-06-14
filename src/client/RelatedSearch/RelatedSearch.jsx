@@ -43,34 +43,6 @@ class RelatedSearch extends Component {
     const chartHeight = bounds.height - bodyMargin.top - bodyMargin.bottom;
     const data = this.state.data.sort((a, b) => d3.ascending(a.value, b.value)).slice(-10);
 
-    const canvas = svg
-      .append('g')
-        .attr('class', 'canvas')
-        .attr('transform', `translate(${bodyMargin.left}, ${bodyMargin.top})`);
-        
-    canvas.append('defs');
-    const defs = d3.select('defs');
-      
-    defs
-      .append('linearGradient')
-        .attr('id', 'linear')
-        .attr('x1', '0%')
-        .attr('y1', '0%')
-        .attr('x2', '100%')
-        .attr('y2', '0%')
-
-    const gradient = d3.select('linearGradient');
-
-    gradient
-      .append('stop')
-        .attr('offset', '0%')
-        .attr('stop-color', '#006bb6');
-
-    gradient
-      .append('stop')
-        .attr('offset', '100%')
-        .attr('stop-color', '#60D1FF');
-
     const xScale = d3.scaleLinear()
       .domain([0, 100])
       .range([(chartWidth / 2), chartWidth]);
@@ -80,15 +52,57 @@ class RelatedSearch extends Component {
       .rangeRound([chartHeight, 0])
       .padding(0.05);
 
-    //Handoff render and transition to D3
-    const bars = canvas.selectAll('.bar')
-      .data(data);
+    const yAxis = d3.axisRight().scale(yScale);
 
-    bars
-      .attr('x', 0)
-      .attr('y', d => yScale(d.query))
-      .attr('width', d => xScale(d.value))
-      .attr('height', () => yScale.bandwidth());
+
+    const canvasExists = !d3.select('.canvas').empty();
+
+    if (canvasExists === false) {
+      const canvas = svg
+        .append('g')
+        .attr('class', 'canvas')
+        .attr('transform', `translate(${bodyMargin.left}, ${bodyMargin.top})`);
+
+      canvas.append('defs');
+      const defs = d3.select('defs');
+
+      defs
+        .append('linearGradient')
+        .attr('id', 'linear')
+        .attr('x1', '0%')
+        .attr('y1', '0%')
+        .attr('x2', '100%')
+        .attr('y2', '0%')
+
+      const gradient = d3.select('linearGradient');
+
+      gradient
+        .append('stop')
+        .attr('offset', '0%')
+        .attr('stop-color', '#006bb6');
+
+      gradient
+        .append('stop')
+        .attr('offset', '100%')
+        .attr('stop-color', '#60D1FF');
+
+      d3.select('#svgWrapper')
+        .append('g')
+        .attr('class', 'y axis')
+        .attr('transform', `translate(6, 0)`);
+
+      d3.select('#svgWrapper').select('.y.axis').call(yAxis);
+
+      d3.select('.canvas').selectAll('.bar')
+        .data(data)
+        .attr('x', 0)
+        .attr('y', d => yScale(d.query))
+        .attr('width', d => xScale(d.value))
+        .attr('height', () => yScale.bandwidth());
+    }
+
+    const bars = d3.select('.canvas').selectAll('.bar')
+      .data(data);
 
     bars.enter().append('rect')
       .attr('class', 'bar')
@@ -106,14 +120,21 @@ class RelatedSearch extends Component {
     bars.exit()
       .remove();
 
-    //Y axis called after bars render in order to overlay chart
-    const yAxis = d3.axisRight().scale(yScale);
-    canvas
-      .append('g')
-      .attr('class', 'y axis')
-      .attr('transform', `translate(0, -9)`);
+    bars
+      .transition()
+      .duration(1000)
+        .ease(d3.easeBackInOut)
+        .attr('x', 0)
+        .attr('y', d => yScale(d.query))
+        .attr('width', d => xScale(d.value))
+        .attr('height', () => yScale.bandwidth());
 
-    d3.select('.canvas').select('.y.axis').call(yAxis);
+    d3.select('#svgWrapper').select('.y.axis').call(yAxis);
+
+
+
+
+
   }
 
   render() {
