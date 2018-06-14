@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as d3 from 'd3';
 import './relatedsearch.css';
 
-const bodyMargin = { top: 10, right: 20, bottom: 20, left: 5 };
+const bodyMargin = { top: 10, right: 20, bottom: 20, left: 10 };
 
 class RelatedSearch extends Component {
   constructor(props) {
@@ -50,7 +50,7 @@ class RelatedSearch extends Component {
     const yScale = d3.scaleBand()
       .domain(data.map(d => d.query))
       .rangeRound([chartHeight, 0])
-      .padding(0.05);
+      .padding(0.02);
 
     const yAxis = d3.axisRight().scale(yScale);
 
@@ -89,7 +89,7 @@ class RelatedSearch extends Component {
       d3.select('#svgWrapper')
         .append('g')
         .attr('class', 'y axis')
-        .attr('transform', `translate(6, 0)`);
+        .attr('transform', `translate(10, 0)`);
 
       d3.select('#svgWrapper').select('.y.axis').call(yAxis);
 
@@ -129,12 +129,13 @@ class RelatedSearch extends Component {
         .attr('width', d => xScale(d.value))
         .attr('height', () => yScale.bandwidth());
 
-    d3.select('#svgWrapper').select('.y.axis').call(yAxis);
+    d3.select('#svgWrapper').select('.y.axis')
+      .transition()
+      .duration(1000)
+      .call(yAxis);
 
-
-
-
-
+    d3.selectAll('.bar')
+      .on('click', d => console.log('clicked on ', d));
   }
 
   render() {

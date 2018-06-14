@@ -9,4 +9,71 @@
 .y text {
   fill: white;
   font-size: 16px;
+  cursor: pointer;
+}
+
+@-webkit-keyframes bar {
+  0% {
+    -webkit-transform: translateX(-8px);
+    transform: translateX(-8px);
+  }
+  50% {
+    -webkit-transform: translateX(-4px);
+    transform: translateX(-4px);
+  }
+  100% {
+    -webkit-transform: translateX(-8px);
+    transform: translateX(-8px);
+  }
+}
+@keyframes bar {
+  0% {
+    -webkit-transform: translateX(-8px);
+    transform: translateX(-8px);
+  }
+  50% {
+    -webkit-transform: translateX(-4px);
+    transform: translateX(-4px);
+  }
+  100% {
+    -webkit-transform: translateX(-8px);
+    transform: translateX(-8px);
+  }
+}
+@-webkit-keyframes bar-float {
+  100% {
+    -webkit-transform: translateX(-8px);
+    transform: translateX(-8px);
+  }
+}
+@keyframes bar-float {
+  100% {
+    -webkit-transform: translateX(-8px);
+    transform: translateX(-8px);
+  }
+}
+.bar {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+.bar:hover, .bar:focus, .bar:active {
+  cursor: pointer;
+  -webkit-animation-name: bar-float, bar;
+  animation-name: bar-float, bar;
+  -webkit-animation-duration: .3s, 1.5s;
+  animation-duration: .3s, 1.5s;
+  -webkit-animation-delay: 0s, .3s;
+  animation-delay: 0s, .3s;
+  -webkit-animation-timing-function: ease-out, ease-in-out;
+  animation-timing-function: ease-out, ease-in-out;
+  -webkit-animation-iteration-count: 1, infinite;
+  animation-iteration-count: 1, infinite;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-direction: normal, alternate;
+  animation-direction: normal, alternate;
+  opacity: 0.8;
 }
