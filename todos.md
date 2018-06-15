@@ -10,7 +10,7 @@
 - [ ] Style and animate [Create exit anim for headlines]
 - [ ] Use typography as an expressive dimension
 - [ ] Use font-size as an expressive dimension
-- [ ] Create top level starting page
+- [IP] Create top level starting page
 
 # Nice to have
 - [ ] Allow customizable query search based on location. Experiment w/ ipstack API for default.
