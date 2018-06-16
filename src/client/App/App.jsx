@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Typed from 'react-typed';
 import './landingpage.css';
 
 class App extends Component {
@@ -15,14 +16,24 @@ class App extends Component {
           </header>
           <section>
             <div>
-              Other folks from <span>the United States</span> are searching for
+              Other folks from <span>around the United States</span> are searching for
             </div>
           </section>
           <main>
-            <input id="landing-searchbox--display" type="search" />
+            <Typed
+              strings={[
+                '2pac',
+                'nba trade',
+                'who is robert mueller']}
+              typeSpeed={40}
+              backSpeed={100}
+              attr="placeholder"
+              loop >
+              <input type="search" id="landing-searchbox--display" />
+            </Typed>
             <span>
-            <button id="landing-searchbutton--display">View popularity</button>
-            <button id="landing-searchbutton--display">Choose for me</button>
+              <button id="landing-searchbutton--display">View popularity</button>
+              <button id="landing-searchbutton--display">Choose for me</button>
             </span>
           </main>
           <footer>©2018 ✌🏽</footer>
