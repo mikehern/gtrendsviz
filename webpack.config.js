@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 const outputDirectory = '/dist';
 
@@ -21,6 +22,11 @@ module.exports = {
       {
         test: /\.css?/,
         use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.(png|jpg)$/,
+        include: path.join(__dirname, './src/client/assets'),
+        loader: 'file-loader'
       }
     ]
   },

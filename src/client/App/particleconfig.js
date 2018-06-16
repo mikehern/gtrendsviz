@@ -1,22 +1,10 @@
-// const config = {
-//   particles: {
-//     line_linked: {
-//       shadow: {
-//         enable: true,
-//         color: "#3CA9D1",
-//         blur: 5
-//       }
-//     }
-//   }
-// }
-
 const config = {
   particles: {
     number: {
-      value: 54,
+      value: 10,
       density: {
         enable: true,
-        value_area: 1341.5509907748635
+        value_area: 100
       }
     },
     color: {
@@ -32,41 +20,41 @@ const config = {
         nb_sides: 5
       },
       image: {
-        src: 'img/github.svg',
+        src: '',
         width: 100,
         height: 100
       }
     },
     opacity: {
-      value: 0.7696377892154509,
+      value: .9,
       random: true,
       anim: {
         enable: true,
-        speed: 1.6241544246026902,
-        opacity_min: 0,
+        speed: 1.6,
+        opacity_min: 0.2,
         sync: false
       }
     },
     size: {
-      value: 6,
+      value: 2,
       random: true,
       anim: {
         enable: false,
-        speed: 4,
+        speed: .35,
         size_min: 1.4,
         sync: false
       }
     },
     line_linked: {
       enable: false,
-      distance: 150,
+      distance: 300,
       color: '#ffffff',
       opacity: 0.4,
       width: 1
     },
     move: {
       enable: true,
-      speed: 1,
+      speed: .4,
       direction: 'none',
       random: true,
       straight: false,
@@ -90,7 +78,7 @@ const config = {
         enable: true,
         mode: 'repulse'
       },
-      resize: true
+      resize: false
     },
     modes: {
       grab: {
