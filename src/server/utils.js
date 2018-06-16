@@ -1,9 +1,11 @@
 const config = require('../../config');
 const moment = require('moment');
+const Parser = require('rss-parser');
 
 const googleTrends = require('google-trends-api');
 const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI(config.NEWSKEY);
+const parser = new Parser();
 
 const trendSinceJan2004 = (trendData) => {
   const parsed = JSON.parse(trendData);
@@ -91,4 +93,12 @@ const relatedQueries = async (payload) => {
   }
 }
 
-module.exports = { byTime, newsByDate, relatedQueries };
+const recentTrends = async () => {
+  const url = 'https://trends.google.com/trends/hottrends/atom/feed?pn=p1';
+  const feed = await parser.parseURL(url);
+  const titlesOnly = feed.items.map(el => el.title);
+
+  return titlesOnly;
+}
+
+module.exports = { byTime, newsByDate, relatedQueries, recentTrends };

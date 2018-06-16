@@ -28,6 +28,11 @@ app.get('/api/getUserName', (req, res) => {
   res.send({ username: os.userInfo().username });
 });
 
+app.get('/api/getRecentTrends/', async (req, res) => {
+  const result = await search.recentTrends();
+  res.send(result);
+});
+
 
 const PORT = 8080;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

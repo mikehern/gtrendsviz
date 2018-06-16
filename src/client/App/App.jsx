@@ -5,7 +5,13 @@ import './landingpage.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { recentTrends: [] };
+  }
+
+  componentDidMount() {
+    fetch('/api/getRecentTrends')
+      .then(res => res.json())
+      .then(trendingQueries => this.setState({ recentTrends: trendingQueries }));
   }
 
   render () {
@@ -16,15 +22,12 @@ class App extends Component {
           </header>
           <section>
             <div>
-              Other folks from <span>around the United States</span> are searching for
+              Other folks from <span>around the world</span> are searching for
             </div>
           </section>
           <main>
             <Typed
-              strings={[
-                '2pac',
-                'nba trade',
-                'who is robert mueller']}
+              strings={this.state.recentTrends}
               typeSpeed={40}
               backSpeed={100}
               attr="placeholder"
