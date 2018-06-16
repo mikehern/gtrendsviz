@@ -130,3 +130,25 @@ footer {
     color: #7f7f7f; }
   #landing-searchbox--display::-ms-input-placeholder {
     color: #7f7f7f; }
+
+.landing-searchbutton--group {
+  margin-top: 2em; }
+
+.landing-searchbutton--display {
+  height: 2.5em;
+  font-size: 1em;
+  margin: 0 2em;
+  padding: 0 2em;
+  border-radius: .3em;
+  font-family: "Karla", sans-serif;
+  font-weight: 600;
+  color: #006bb6;
+  background-color: #FF9E00;
+  border: 0;
+  -webkit-box-shadow: 0 2px 41px 0 #999999;
+  box-shadow: 0 2px 41px 0 #999999; }
+  .landing-searchbutton--display:hover {
+    background-color: #FFF971;
+    color: #4f4f4f; }
+  .landing-searchbutton--display:focus {
+    outline: 0; }

@@ -31,9 +31,9 @@ class App extends Component {
               loop >
               <input type="search" id="landing-searchbox--display" />
             </Typed>
-            <span>
-              <button id="landing-searchbutton--display">View popularity</button>
-              <button id="landing-searchbutton--display">Choose for me</button>
+            <span className="landing-searchbutton--group">
+              <button className="landing-searchbutton--display">View popularity</button>
+              <button className="landing-searchbutton--display">Choose for me</button>
             </span>
           </main>
           <footer>©2018 ✌🏽</footer>
