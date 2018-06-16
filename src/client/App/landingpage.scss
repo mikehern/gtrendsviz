@@ -134,12 +134,12 @@ footer {
   font-family: $primary-font;
   font-weight: 600;
   color: $blue;
-  background-color: $orange;
+  background-color: $yellow;
   border: 0;
   box-shadow: 0 2px 41px 0 #999999;
 
   &:hover {
-    background-color: $yellow;
+    background-color: $orange;
     color: #4f4f4f;
   }
   &:focus {
