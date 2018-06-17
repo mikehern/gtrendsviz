@@ -127,7 +127,8 @@ footer {
   padding: .5em;
   width: 20em;
   -webkit-appearance: none;
-  opacity: .7;
+  opacity: .85;
+  font-family: $primary-medium;
 
   &:focus {
     border-color: $orange;
@@ -136,16 +137,16 @@ footer {
   }
 
   &::placeholder {
-    color:#7f7f7f;
+    color:#b3b3b3;
     opacity: 1; /* Firefox */
   }
 
   &:-ms-input-placeholder {
-    color: #7f7f7f;
+    color: #b3b3b3;
   }
 
   &::-ms-input-placeholder {
-    color: #7f7f7f;
+    color: #b3b3b3;
   }
 }
 

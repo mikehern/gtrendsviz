@@ -123,32 +123,33 @@ footer {
   padding: .5em;
   width: 20em;
   -webkit-appearance: none;
-  opacity: .7; }
+  opacity: .85;
+  font-family: "Galano Medium", sans-serif; }
   #landing-searchbox--display:focus {
     border-color: #FF9E00;
     -webkit-box-shadow: 0 0 20px 2px #FFF971;
     box-shadow: 0 0 20px 2px #FFF971;
     outline: 0; }
   #landing-searchbox--display::-webkit-input-placeholder {
-    color: #7f7f7f;
+    color: #b3b3b3;
     opacity: 1;
     /* Firefox */ }
   #landing-searchbox--display:-ms-input-placeholder {
-    color: #7f7f7f;
+    color: #b3b3b3;
     opacity: 1;
     /* Firefox */ }
   #landing-searchbox--display::-ms-input-placeholder {
-    color: #7f7f7f;
+    color: #b3b3b3;
     opacity: 1;
     /* Firefox */ }
   #landing-searchbox--display::placeholder {
-    color: #7f7f7f;
+    color: #b3b3b3;
     opacity: 1;
     /* Firefox */ }
   #landing-searchbox--display:-ms-input-placeholder {
-    color: #7f7f7f; }
+    color: #b3b3b3; }
   #landing-searchbox--display::-ms-input-placeholder {
-    color: #7f7f7f; }
+    color: #b3b3b3; }
 
 .landing-searchbutton--group {
   margin-top: 2em; }

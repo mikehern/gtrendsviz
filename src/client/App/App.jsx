@@ -5,16 +5,29 @@ import './landingpage.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { recentTrends: [] };
+    this.state = {
+      recentTrends: [],
+      searchInput: '',
+    };
+
+    this._searchInputHandler = this._searchInputHandler.bind(this);
   }
 
   componentDidMount() {
     fetch('/api/getRecentTrends')
       .then(res => res.json())
-      .then(trendingQueries => this.setState({ recentTrends: trendingQueries }));
+      .then(trendingQueries => this.setState({
+         recentTrends: trendingQueries 
+      }));
+  }
+
+  _searchInputHandler(e) {
+    console.log('searchInput: ', e.target.value);
+    this.setState({ searchInput: e.target.value });
   }
 
   render () {
+    const { recentTrends, searchInput } = this.state;
     return <div>
         <div className="landing-wrapper">
           <header>
@@ -27,12 +40,16 @@ class App extends Component {
           </section>
           <main>
             <Typed
-              strings={this.state.recentTrends}
+              strings={recentTrends}
               typeSpeed={40}
               backSpeed={100}
               attr="placeholder"
               loop >
-              <input type="search" id="landing-searchbox--display" />
+              <input
+                type="search"
+                id="landing-searchbox--display"
+                value={searchInput}
+                onChange={this._searchInputHandler}  />
             </Typed>
             <span className="landing-searchbutton--group">
               <button className="landing-searchbutton--display">View popularity</button>
