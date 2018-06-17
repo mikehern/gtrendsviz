@@ -27,7 +27,17 @@ module.exports = {
         test: /\.(png|jpg)$/,
         include: path.join(__dirname, './src/client/assets'),
         loader: 'file-loader'
-      }
+      },
+      {
+        test: /\.(ttf|eot|woff|woff2|otf)$/,
+        use: {
+          loader: "file-loader",
+          options: {
+            name: "fonts/[name].[ext]",
+            outputPath: "fonts/"
+          },
+        },
+      },
     ]
   },
   devServer: {

@@ -1,8 +1,37 @@
+@font-face {
+  font-family: 'Galano Classic';
+  src: url('../assets/Galano\ Classic.otf');
+}
+
+@font-face {
+  font-family: 'Galano Medium';
+  src: url('../assets/Galano\ Classic\ Medium.otf');
+}
+
+@font-face {
+  font-family: 'Galano Bold';
+  src: url('../assets/Galano\ Classic\ Bold.otf');
+}
+
+@font-face {
+  font-family: 'Galano Heavy';
+  src: url('../assets/Galano\ Classic\ Heavy.otf');
+}
+
+@font-face {
+  font-family: 'Galano Italic';
+  src: url('../assets/Galano\ Classic\ Italic.otf');
+}
+
 html {font-size: 1em;}
 
 $orange: #FF9E00;
 $yellow: #FFF971;
-$primary-font:'Karla', sans-serif;
+$primary-font:'Galano Classic', sans-serif;
+$primary-medium:'Galano Medium', sans-serif;
+$primary-bold:'Galano Bold', sans-serif;
+$primary-heavy:'Galano Heavy', sans-serif;
+$primary-italic:'Galano Italic', sans-serif;
 $blue: #006bb6;
 
 body {
@@ -73,7 +102,6 @@ section {
   flex-direction: column;
   align-items: center;
   font-family: $primary-font;
-  letter-spacing: -.03em;
   text-shadow: 0 0 6px #535353;
 }
 
@@ -126,7 +154,7 @@ footer {
 }
 
 .landing-searchbutton--display {
-  height: 2.5em;
+  height: 2.75em;
   font-size: 1em;
   margin: 0 2em;
   padding: 0 2em;

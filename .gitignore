@@ -8,3 +8,4 @@ settings.json
 .babelrc
 .eslintrc.json
 prepros-6.config
+.DS_Store
