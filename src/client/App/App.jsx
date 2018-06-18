@@ -11,6 +11,7 @@ class App extends Component {
     };
 
     this._searchInputHandler = this._searchInputHandler.bind(this);
+    this._chooseForMeClicked = this._chooseForMeClicked.bind(this);
   }
 
   componentDidMount() {
@@ -22,8 +23,28 @@ class App extends Component {
   }
 
   _searchInputHandler(e) {
-    console.log('searchInput: ', e.target.value);
     this.setState({ searchInput: e.target.value });
+  }
+
+  _chooseForMeClicked() {
+    const { recentTrends } = this.state;
+    const defaultRandom = [
+      'royal wedding',
+      'Golden State Warriors',
+      'Robert Mueller',
+      'World Cup',
+      'summer vacation ideas'
+    ];
+    const isRecentsLoaded = Boolean(recentTrends.length >= 1);
+
+    const randomSelect = (collection) => Math.floor(Math.random() * collection.length - 1);
+
+    if (isRecentsLoaded) {
+      this.setState({ searchInput: recentTrends[randomSelect(recentTrends)] })
+    } else {
+      this.setState({ searchInput: defaultRandom[randomSelect(defaultRandom)] });
+    }
+
   }
 
   render () {
@@ -53,7 +74,10 @@ class App extends Component {
             </Typed>
             <span className="landing-searchbutton--group">
               <button className="landing-searchbutton--display">View popularity</button>
-              <button className="landing-searchbutton--display">Choose for me</button>
+              <button
+                className="landing-randombutton--display"
+                onClick={this._chooseForMeClicked}
+              >Choose for me</button>
             </span>
           </main>
           <footer>©2018 ✌🏽</footer>

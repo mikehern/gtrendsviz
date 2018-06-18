@@ -26,7 +26,7 @@
 html {font-size: 1em;}
 
 $orange: #FF9E00;
-$yellow: #FFF971;
+$yellow: #fff971;
 $primary-font:'Galano Classic', sans-serif;
 $primary-medium:'Galano Medium', sans-serif;
 $primary-bold:'Galano Bold', sans-serif;
@@ -174,4 +174,9 @@ footer {
   &:focus {
     outline: 0;
   }
+}
+
+.landing-randombutton--display {
+  @extend .landing-searchbutton--display;
+  background-color: rgb(255, 251, 178);
 }
