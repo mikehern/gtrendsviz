@@ -6,7 +6,7 @@ import News from '../News/News';
 import RelatedSearch from '../RelatedSearch/RelatedSearch';
 
 
-class App extends Component {
+class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +14,8 @@ class App extends Component {
       searchInput: '',
       searchResults: '',
       searchQuery: '',
-      relatedResults: ''
+      relatedResults: '',
+      landingSearchSubmitted: false
     };
 
     this._handleInputChange = this._handleInputChange.bind(this);
@@ -25,10 +26,11 @@ class App extends Component {
 
   componentDidMount() {
     document.body.classList.add('dashboard-body--display');
-    
-    fetch('/api/getusername')
-      .then(res => res.json())
-      .then(user => this.setState({ username: user.username }));
+
+    this.setState({
+      searchInput: this.props.landingSearch,
+      landingSearchSubmitted: true
+    });
   }
 
   _handleInputChange(e) {
@@ -61,6 +63,13 @@ class App extends Component {
     this.setState({ searchDate: currentDate });
   }
 
+  componentDidUpdate() {
+    if (this.props.landingSearch && this.state.landingSearchSubmitted) {
+      this._sendQuery();
+      this.setState({ landingSearchSubmitted: false });
+    }
+  }
+
   render() {
     const { searchInput, searchResults, searchDate, searchQuery, relatedResults } = this.state;
     return (
@@ -88,4 +97,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Dashboard;

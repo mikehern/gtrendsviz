@@ -28,27 +28,21 @@ class LandingPage extends Component {
   }
 
   _chooseForMeClicked() {
-    const { recentTrends } = this.state;
     const defaultTrends = [
       'royal wedding',
       'Golden State Warriors',
-      'Robert Mueller',
       'World Cup',
-      'summer vacation ideas'
+      'summer vacation ideas',
+      '10 day forecast',
+      'Mexico',
+      'Robert Mueller',
     ];
-    const isRecentsLoaded = Boolean(recentTrends.length >= 1);
-
     const randomSelect = (collection) => Math.floor(Math.random() * collection.length - 1);
 
-    if (isRecentsLoaded) {
-      this.setState({ searchInput: recentTrends[randomSelect(recentTrends)] })
-    } else {
-      this.setState({ searchInput: defaultTrends[randomSelect(defaultTrends)] });
-    }
+    this.setState({ searchInput: defaultTrends[randomSelect(defaultTrends)] });
   }
 
   _viewPopularityClicked() {
-    console.log('view popularity clicked with: ', this.state.searchInput);
     if (this.state.searchInput.length !== 0) {
       this.props.landingSearchTerm(this.state.searchInput);
     }

@@ -35,14 +35,19 @@ class App extends Component {
   }
 
   render() {
-    const {landingLoadFinished, landingSearchSubmitted } = this.state;
+    const {landingLoadFinished, landingSearchSubmitted, landingSearchTerm } = this.state;
     const tempImage = "https://images.pexels.com/photos/660548/bormio-river-pebbles-italy-660548.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1142&w=1920";
 
     return (
       <React.Fragment>
-        {landingLoadFinished || <img src={tempImage} style={{ display: 'none' }} onLoad={this._imageLoadComplete} />}
-        {landingLoadFinished && !landingSearchSubmitted && <LandingPage landingSearchTerm={(term) => this._setSearch(term)} />}
-        {landingSearchSubmitted && <Dashboard />}
+        {landingLoadFinished ||
+          <img
+            src={tempImage}
+            style={{ display: 'none' }}
+            onLoad={this._imageLoadComplete} />}
+        {landingLoadFinished && !landingSearchSubmitted &&
+          <LandingPage landingSearchTerm={(term) => this._setSearch(term)} />}
+        {landingSearchSubmitted && <Dashboard landingSearch={landingSearchTerm}/>}
       </React.Fragment>
     );
   }
