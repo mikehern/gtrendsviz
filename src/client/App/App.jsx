@@ -1,88 +1,47 @@
 import React, { Component } from 'react';
-import Typed from 'react-typed';
-import './landingpage.css';
+import LandingPage from '../LandingPage/LandingPage';
+
+import './app.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      recentTrends: [],
-      searchInput: '',
+      landingLoadFinished: false,
+      landingSearchSubmitted: false,
+      landingSearchTerm: '',
     };
 
-    this._searchInputHandler = this._searchInputHandler.bind(this);
-    this._chooseForMeClicked = this._chooseForMeClicked.bind(this);
+    this._imageLoadComplete = this._imageLoadComplete.bind(this);
+    this._setSearch = this._setSearch.bind(this);
   }
 
   componentDidMount() {
-    fetch('/api/getRecentTrends')
-      .then(res => res.json())
-      .then(trendingQueries => this.setState({
-         recentTrends: trendingQueries 
-      }));
+    console.log('state: ', this.state.landingLoadFinished);
   }
 
-  _searchInputHandler(e) {
-    this.setState({ searchInput: e.target.value });
+  _imageLoadComplete() {
+    console.log('noww the image loaded.');
+    this.setState({ landingLoadFinished : true });
   }
 
-  _chooseForMeClicked() {
-    const { recentTrends } = this.state;
-    const defaultRandom = [
-      'royal wedding',
-      'Golden State Warriors',
-      'Robert Mueller',
-      'World Cup',
-      'summer vacation ideas'
-    ];
-    const isRecentsLoaded = Boolean(recentTrends.length >= 1);
-
-    const randomSelect = (collection) => Math.floor(Math.random() * collection.length - 1);
-
-    if (isRecentsLoaded) {
-      this.setState({ searchInput: recentTrends[randomSelect(recentTrends)] })
-    } else {
-      this.setState({ searchInput: defaultRandom[randomSelect(defaultRandom)] });
-    }
-
+  _setSearch(term) {
+    console.log('term is: ', term);
+    this.setState({
+      landingSearchTerm: term,
+      landingSearchSubmitted: true,
+    });
   }
 
-  render () {
-    const { recentTrends, searchInput } = this.state;
-    return <div>
-        <div className="landing-wrapper">
-          <header>
-            What are people <br /> <span id="searching">searching </span> for?
-          </header>
-          <section>
-            <div>
-              Other folks from <span>around the world</span> are searching for
-            </div>
-          </section>
-          <main>
-            <Typed
-              strings={recentTrends}
-              typeSpeed={40}
-              backSpeed={100}
-              attr="placeholder"
-              loop >
-              <input
-                type="search"
-                id="landing-searchbox--display"
-                value={searchInput}
-                onChange={this._searchInputHandler}  />
-            </Typed>
-            <span className="landing-searchbutton--group">
-              <button className="landing-searchbutton--display">View popularity</button>
-              <button
-                className="landing-randombutton--display"
-                onClick={this._chooseForMeClicked}
-              >Choose for me</button>
-            </span>
-          </main>
-          <footer>©2018 ✌🏽</footer>
-        </div>
-      </div>;
+  render() {
+    const tempImage = "https://images.pexels.com/photos/660548/bormio-river-pebbles-italy-660548.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1142&w=1920";
+
+    return (
+      <React.Fragment>
+        {this.state.landingLoadFinished || <img src={tempImage} style={{ display: 'none' }} onLoad={this._imageLoadComplete} />}
+        {this.state.landingLoadFinished && <LandingPage landingSearchTerm={(term) => this._setSearch(term)} />}
+      </React.Fragment>
+    );
   }
 }
 
