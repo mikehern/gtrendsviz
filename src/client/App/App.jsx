@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LandingPage from '../LandingPage/LandingPage';
+import Dashboard from '../Dashboard/Dashboard';
 
 import './app.css';
 
@@ -34,12 +35,14 @@ class App extends Component {
   }
 
   render() {
+    const {landingLoadFinished, landingSearchSubmitted } = this.state;
     const tempImage = "https://images.pexels.com/photos/660548/bormio-river-pebbles-italy-660548.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1142&w=1920";
 
     return (
       <React.Fragment>
-        {this.state.landingLoadFinished || <img src={tempImage} style={{ display: 'none' }} onLoad={this._imageLoadComplete} />}
-        {this.state.landingLoadFinished && <LandingPage landingSearchTerm={(term) => this._setSearch(term)} />}
+        {landingLoadFinished || <img src={tempImage} style={{ display: 'none' }} onLoad={this._imageLoadComplete} />}
+        {landingLoadFinished && !landingSearchSubmitted && <LandingPage landingSearchTerm={(term) => this._setSearch(term)} />}
+        {landingSearchSubmitted && <Dashboard />}
       </React.Fragment>
     );
   }

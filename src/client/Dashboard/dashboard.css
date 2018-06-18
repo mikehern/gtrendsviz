@@ -4,6 +4,10 @@ body {
   font-family: sans-serif;
 }
 
+.dashboard-body--display {
+  background: white;
+}
+
 h5 {
   color: rgb(186, 186, 186);
 }

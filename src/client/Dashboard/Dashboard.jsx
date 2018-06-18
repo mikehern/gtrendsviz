@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import '../styles.css';
+import './dashboard.css';
 import TrendOverTime from '../TrendOverTime/TrendOverTime';
 import News from '../News/News';
 import RelatedSearch from '../RelatedSearch/RelatedSearch';
@@ -24,6 +24,8 @@ class App extends Component {
   }
 
   componentDidMount() {
+    document.body.classList.add('dashboard-body--display');
+    
     fetch('/api/getusername')
       .then(res => res.json())
       .then(user => this.setState({ username: user.username }));
