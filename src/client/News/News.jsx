@@ -75,55 +75,63 @@ class News extends Component {
   }
 
   render() {
-    const { data, selectedArticle } = this.state;
+    const { data, selectedArticle, date } = this.state;
     const articles = data.news !== undefined ? data.news.articles : [];
     const article = selectedArticle[0];
+    const labelDate = (date !== null) ? date.toString().split(' ').slice(1, 3).join(' ') : '';
 
     const displayTime = (date) => moment(date).format('h:mm A');
 
-    return <div className="newsWrapper">
-        <TransitionGroup className="newsCollectionWrapper">
-          {articles
-            .map(({ title, url }) => (
-              <CSSTransition
-                in={articles.length > 0}
-                key={url}
-                timeout={1000}
-                exit={false}
-                classNames="hvr-back-pulse"
-              >
-                <NewsHeadline
-                  headline={title}
-                  selectedArticle={this._selectHeadlineHandler}
-                />
-              </CSSTransition>
-            ))
-            .slice(0, 4)}
-        </TransitionGroup>
-        <Transition
-          in={Boolean(article)}
-          timeout={{enter: 250}}
-        >
-          {(state) => (
-            article ?
-              <div className="news-detail--wrapper">
-                <div style={{...initMetaStyle, ...metaTransitions[state]}}>
-                  {article.source.name}
-                  <br />
-                  {displayTime(article.publishedAt)}
+    return (
+      <React.Fragment>
+        <div className="component-label--display">
+          News headlines from <span className="component-dynamiclabel--display">{labelDate}</span>
+        </div>
+        <div className="newsWrapper">
+          <TransitionGroup className="newsCollectionWrapper">
+            {articles
+              .map(({ title, url }) => (
+                <CSSTransition
+                  in={articles.length > 0}
+                  key={url}
+                  timeout={1000}
+                  exit={false}
+                  classNames="hvr-back-pulse"
+                >
+                  <NewsHeadline
+                    headline={title}
+                    selectedArticle={this._selectHeadlineHandler}
+                  />
+                </CSSTransition>
+              ))
+              .slice(0, 4)}
+          </TransitionGroup>
+          <Transition
+            in={Boolean(article)}
+            timeout={{enter: 250}}
+          >
+            {(state) => (
+              article ?
+                <div className="news-detail--wrapper">
+                  <div style={{...initMetaStyle, ...metaTransitions[state]}}>
+                    {article.source.name}
+                    <br />
+                    {displayTime(article.publishedAt)}
+                  </div>
+                  <div style={{...initPreviewStyle, ...previewTransitions[state]}}>
+                    <div className="news-preview--padding">{article.description}</div>
+                  </div>
+                  <img
+                    style={{...initImgStyle, ...imgTransitions[state]}}
+                    src={article.urlToImage}>
+                  </img>
                 </div>
-                <div style={{...initPreviewStyle, ...previewTransitions[state]}}>
-                  <div className="news-preview--padding">{article.description}</div>
-                </div>
-                <img
-                  style={{...initImgStyle, ...imgTransitions[state]}}
-                  src={article.urlToImage}>
-                </img>
-              </div>
-            : null
-          )}
-        </Transition>
-      </div>;
+              : null
+            )}
+          </Transition>
+        </div>
+      </React.Fragment>
+    );
   }
 }
 

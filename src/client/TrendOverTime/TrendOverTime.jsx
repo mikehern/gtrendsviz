@@ -259,7 +259,7 @@ class TrendOverTime extends Component {
       <div>
         <div className="component-label--display">
           Relative popularity between <span className="component-dynamiclabel--display">{firstDate}</span> and <span className="component-dynamiclabel--display">{lastDate}</span> 
-          </div>
+        </div>
         <svg id="lineChart" width={width} height={height} ref={node => (this.node = node)} />
       </div>
     );
