@@ -3,6 +3,9 @@ import LandingPage from '../LandingPage/LandingPage';
 import Dashboard from '../Dashboard/Dashboard';
 import { Transition } from 'react-transition-group';
 
+import './app.css';
+import loader from '../assets/loader.svg';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -16,12 +19,7 @@ class App extends Component {
     this._setSearch = this._setSearch.bind(this);
   }
 
-  componentDidMount() {
-    console.log('state: ', this.state.landingLoadFinished);
-  }
-
   _imageLoadComplete() {
-    console.log('noww the image loaded.');
     this.setState({ landingLoadFinished : true });
   }
 
@@ -38,7 +36,7 @@ class App extends Component {
     const transitionStyles = {
       entering: {
         opacity: 0,
-        transition: `opacity 2000ms cubic-bezier(0.215, 0.610, 0.355, 1.000)`
+        transition: `opacity 2200ms cubic-bezier(0.215, 0.610, 0.355, 1.000)`
       },
       entered: { display: 'none' },
     }
@@ -46,18 +44,23 @@ class App extends Component {
     return (
       <React.Fragment>
         {landingLoadFinished ||
-          <img
-            src={tempImage}
-            style={{ display: 'none' }}
-            onLoad={this._imageLoadComplete} />}
-          <Transition in={(landingLoadFinished && landingSearchSubmitted)} timeout={5000}>
+          <div className="landing-placeholder--display">
+            <img src={loader} />
+            <img
+              src={tempImage}
+              style={{ display: 'none' }}
+              onLoad={this._imageLoadComplete} />
+          </div>}
+        {landingLoadFinished &&
+          <Transition in={(landingLoadFinished && landingSearchSubmitted)} timeout={3000}>
             {(state) => (
               <div style={transitionStyles[state]}>
                 <LandingPage landingSearchTerm={(term) => this._setSearch(term)} />
               </div>
             )}
-          </Transition>
-        {landingSearchSubmitted && <Dashboard landingSearch={landingSearchTerm}/>}
+          </Transition>}
+        {landingSearchSubmitted &&
+          <Dashboard landingSearch={landingSearchTerm}/>}
       </React.Fragment>
     );
   }
