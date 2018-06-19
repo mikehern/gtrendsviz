@@ -62,12 +62,15 @@ h1, h2, h3, h4 {
   font-family: $primary-heavy;
   color: $black;
   display: flex;
+  align-content: center;
+  justify-content: center;
   flex-direction: column;
   margin-top: 2em;
 }
 
 .relatedsearch-keyword--display{
-  color: $blue;
+  align-self: center;
+  color: $orange;
 }
 
 .domain {
