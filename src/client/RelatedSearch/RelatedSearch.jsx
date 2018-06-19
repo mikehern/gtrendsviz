@@ -154,8 +154,8 @@ class RelatedSearch extends Component {
 
   render() {
     return <React.Fragment>
-        <div className="relatedsearch-label--display">
-          Frequent searches related to <span className="relatedsearch-keyword--display">{this.props.label}</span> </div>
+        <div className="component-label--display">
+          Frequent searches related to<br/> <span className="component-dynamiclabel--display">{this.props.label}</span> </div>
         <svg id="svgWrapper" width="100%" height="600px" ref={node => (this.node = node)} />
       </React.Fragment>;
   }

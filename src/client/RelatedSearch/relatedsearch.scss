@@ -57,18 +57,14 @@ h1, h2, h3, h4 {
 
 @mixin smalltext {font-size: 0.667em;}
 
-.relatedsearch-label--display{
+.component-label--display{
   @include h4;
   font-family: $primary-heavy;
   color: $black;
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  flex-direction: column;
   margin-top: 2em;
 }
 
-.relatedsearch-keyword--display{
+.component-dynamiclabel--display{
   align-self: center;
   color: $orange;
 }

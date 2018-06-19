@@ -52,7 +52,7 @@ class App extends Component {
               onLoad={this._imageLoadComplete} />
           </div>}
         {landingLoadFinished &&
-          <Transition in={(landingLoadFinished && landingSearchSubmitted)} timeout={3000}>
+          <Transition in={(landingLoadFinished && landingSearchSubmitted)} timeout={1000}>
             {(state) => (
               <div style={transitionStyles[state]}>
                 <LandingPage landingSearchTerm={(term) => this._setSearch(term)} />

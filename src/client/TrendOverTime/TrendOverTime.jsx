@@ -242,8 +242,26 @@ class TrendOverTime extends Component {
   }
 
   render() {
+    const firstDate = (this.state.data[0] !== undefined) ?
+      this.state.data[0].date
+        .toString()
+        .split(' ')
+        .slice(1, 3)
+        .join(' ') : '';
+    const lastDate = this.state.data[this.state.data.length - 1] !== undefined ?
+      this.state.data[this.state.data.length - 1].date
+        .toString()
+        .split(' ')
+        .slice(1, 3)
+        .join(' ') : '';
+
     return (
-      <svg id="lineChart" width={width} height={height} ref={node => (this.node = node)} />
+      <div>
+        <div className="component-label--display">
+          Relative popularity between <span className="component-dynamiclabel--display">{firstDate}</span> and <span className="component-dynamiclabel--display">{lastDate}</span> 
+          </div>
+        <svg id="lineChart" width={width} height={height} ref={node => (this.node = node)} />
+      </div>
     );
   }
 }

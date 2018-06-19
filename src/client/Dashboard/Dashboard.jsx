@@ -89,9 +89,6 @@ class Dashboard extends Component {
           <TrendOverTime data={searchResults} searchDate={this._dateHandler} />
           {!!searchDate && <News keyword={searchQuery} date={searchDate} />}
         </div>
-        <div className="footer">
-          ✌🏼 mikehern
-        </div>
       </div>
     );
   }
