@@ -1,0 +1,4 @@
+.trend-wrapper--display {
+  -webkit-transform: translateY(-2em);
+  -ms-transform: translateY(-2em);
+  transform: translateY(-2em); }

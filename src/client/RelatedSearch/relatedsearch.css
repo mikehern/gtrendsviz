@@ -33,7 +33,7 @@ h1, h2, h3, h4 {
   font-size: 1.5em;
   font-family: "Galano Heavy", sans-serif;
   color: #454545;
-  margin-top: 2em; }
+  margin-bottom: 1em; }
 
 .component-dynamiclabel--display {
   -ms-flex-item-align: center;

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import * as d3 from 'd3';
 import { interpolatePath } from 'd3-interpolate-path';
 
+import './trendovertime.css';
+
 const width = 800;
 const height = 300;
 const margin = { top: 20, right: 30, bottom: 30, left: 50 };
@@ -256,7 +258,7 @@ class TrendOverTime extends Component {
         .join(' ') : '';
 
     return (
-      <div>
+      <div className="trend-wrapper--display">
         <div className="component-label--display">
           Relative popularity between <span className="component-dynamiclabel--display">{firstDate}</span> and <span className="component-dynamiclabel--display">{lastDate}</span> 
         </div>

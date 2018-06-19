@@ -61,7 +61,7 @@ h1, h2, h3, h4 {
   @include h4;
   font-family: $primary-heavy;
   color: $black;
-  margin-top: 2em;
+  margin-bottom: 1em;
 }
 
 .component-dynamiclabel--display{
