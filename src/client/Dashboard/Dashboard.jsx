@@ -83,7 +83,7 @@ class Dashboard extends Component {
             value={searchInput}
             onChange={this._handleInputChange} />
           <button id="send" onClick={this._sendQuery}>Search</button>
-          {!!relatedResults && <RelatedSearch data={relatedResults} searchTerm={this._clickedRelatedSearch}/>}
+          {!!relatedResults && <RelatedSearch data={relatedResults} searchTerm={this._clickedRelatedSearch} label={searchQuery}/>}
         </div>
         <div className="content">
           <TrendOverTime data={searchResults} searchDate={this._dateHandler} />

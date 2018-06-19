@@ -1,102 +1,137 @@
 @font-face {
   font-family: 'Galano Classic';
-  src: url("../assets/Galano Classic.otf"); }
+  src: url('../assets/Galano\ Classic.otf');
+}
 
 @font-face {
   font-family: 'Galano Medium';
-  src: url("../assets/Galano Classic Medium.otf"); }
+  src: url('../assets/Galano\ Classic\ Medium.otf');
+}
 
 @font-face {
   font-family: 'Galano Bold';
-  src: url("../assets/Galano Classic Bold.otf"); }
+  src: url('../assets/Galano\ Classic\ Bold.otf');
+}
 
 @font-face {
   font-family: 'Galano Heavy';
-  src: url("../assets/Galano Classic Heavy.otf"); }
+  src: url('../assets/Galano\ Classic\ Heavy.otf');
+}
 
 @font-face {
   font-family: 'Galano Italic';
-  src: url("../assets/Galano Classic Italic.otf"); }
+  src: url('../assets/Galano\ Classic\ Italic.otf');
+}
 
-html {
-  font-size: 1em; }
+html {font-size: 1em;}
 
-p {
-  margin-bottom: 1.3em; }
+$orange: #FF9E00;
+$yellow: #fff971;
+$primary-font:'Galano Classic', sans-serif;
+$primary-medium:'Galano Medium', sans-serif;
+$primary-bold:'Galano Bold', sans-serif;
+$primary-heavy:'Galano Heavy', sans-serif;
+$primary-italic:'Galano Italic', sans-serif;
+$blue: #006bb6;
+$black: #454545;
+
+p {margin-bottom: 1.3em;}
 
 h1, h2, h3, h4 {
   margin: 1.414em 0 0.5em;
   font-weight: inherit;
-  line-height: 1.2; }
+  line-height: 1.2;
+}
 
-.relatedsearch-label--display {
-  font-size: 1.5em;
-  font-family: "Galano Heavy", sans-serif;
-  color: #454545;
-  display: -webkit-box;
-  display: -ms-flexbox;
+@mixin h1 {
+  margin-top: 0;
+  font-size: 5.063em;
+  font-weight: 600;
+}
+
+@mixin h2 {font-size: 3.375em;}
+
+@mixin h3 {font-size: 2.25em;}
+
+@mixin h4 {font-size: 1.5em;}
+
+@mixin smalltext {font-size: 0.667em;}
+
+.relatedsearch-label--display{
+  @include h4;
+  font-family: $primary-heavy;
+  color: $black;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
-  margin-top: 2em; }
+  margin-top: 2em;
+}
 
-.relatedsearch-keyword--display {
-  color: #006bb6; }
+.relatedsearch-keyword--display{
+  color: $blue;
+}
 
 .domain {
-  display: none; }
+  display: none;
+}
 
 .axis line {
-  display: none; }
+  display: none;
+}
 
 .y text {
-  font-family: "Galano Classic", sans-serif;
+  font-family: $primary-font;
   fill: white;
   font-size: 16px;
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 @-webkit-keyframes bar {
   0% {
     -webkit-transform: translateX(-8px);
-    transform: translateX(-8px); }
+    transform: translateX(-8px);
+  }
   50% {
     -webkit-transform: translateX(-4px);
-    transform: translateX(-4px); }
+    transform: translateX(-4px);
+  }
   100% {
     -webkit-transform: translateX(-8px);
-    transform: translateX(-8px); } }
-
+    transform: translateX(-8px);
+  }
+}
 @keyframes bar {
   0% {
     -webkit-transform: translateX(-8px);
-    transform: translateX(-8px); }
+    transform: translateX(-8px);
+  }
   50% {
     -webkit-transform: translateX(-4px);
-    transform: translateX(-4px); }
+    transform: translateX(-4px);
+  }
   100% {
     -webkit-transform: translateX(-8px);
-    transform: translateX(-8px); } }
-
+    transform: translateX(-8px);
+  }
+}
 @-webkit-keyframes bar-float {
   100% {
     -webkit-transform: translateX(-8px);
-    transform: translateX(-8px); } }
-
+    transform: translateX(-8px);
+  }
+}
 @keyframes bar-float {
   100% {
     -webkit-transform: translateX(-8px);
-    transform: translateX(-8px); } }
-
+    transform: translateX(-8px);
+  }
+}
 .bar {
   display: inline-block;
   vertical-align: middle;
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
-  -webkit-box-shadow: 0 0 1px transparent;
-  box-shadow: 0 0 1px transparent; }
-
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
 .bar:hover, .bar:focus, .bar:active {
   cursor: pointer;
   -webkit-animation-name: bar-float, bar;
@@ -113,4 +148,5 @@ h1, h2, h3, h4 {
   animation-fill-mode: forwards;
   -webkit-animation-direction: normal, alternate;
   animation-direction: normal, alternate;
-  opacity: 0.8; }
+  opacity: 0.8;
+}

@@ -5,14 +5,15 @@
 - [x] Display date in chart during hover
 - [x] Include section for related queries - use GSAP and blur to clear current text upon selection
 - [x] When exploring the line chart, display news based on clicked datum - use ReactTransitionGroup
-- [ ] Create date helper to narrow news query to peak dates
+- [IP] Add dynamic labels and handle UI empty states
 - [ ] Include attributions
 - [ ] Style and animate [Create exit anim for headlines]
 - [ ] Use typography as an expressive dimension
 - [ ] Use font-size as an expressive dimension
-- [IP] Create top level starting page
+- [x] Create top level starting page
 
 # Nice to have
+- [ ] Create date helper to narrow news query to peak dates
 - [ ] Allow customizable query search based on location. Experiment w/ ipstack API for default.
 - [ ] Use a rotating ortographic projection to highlight geo
 - [ ] Express internet connectedness by country using internetworldstats data
