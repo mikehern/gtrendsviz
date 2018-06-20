@@ -149,3 +149,13 @@ h1, h2, h3, h4 {
   animation-direction: normal, alternate;
   opacity: 0.8;
 }
+
+.relatedsearch-empty--display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #b2b2b2;
+  font-family: $primary-medium;
+  text-align: center;
+  padding: 3em;
+}

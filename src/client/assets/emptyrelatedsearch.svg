@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120px" height="111px" viewBox="0 0 120 111" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 3</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-3">
+            <circle id="Oval-Copy" fill="#FFFDE1" cx="53.2173913" cy="12.5217391" r="12.5217391"></circle>
+            <circle id="Oval-Copy-2" fill="#FFFEE5" cx="104.869565" cy="61.0434783" r="15.1304348"></circle>
+            <circle id="Oval-Copy-3" fill="#FFF9D5" cx="15.1304348" cy="95.4782609" r="15.1304348"></circle>
+            <circle id="Oval-Copy-4" fill="#FFF9D5" cx="99.1304348" cy="80.3478261" r="9.39130435"></circle>
+            <circle id="Oval-Copy-5" fill="#FFF7C9" cx="22.9565217" cy="29.2173913" r="16.6956522"></circle>
+            <g id="Group-2" transform="translate(37.565217, 35.478261)">
+                <circle id="Oval" fill="#FFFCA4" cx="21.9130435" cy="21.9130435" r="21.9130435"></circle>
+                <g id="Group" transform="translate(11.180124, 12.663354)" fill="#CFDEFF">
+                    <ellipse id="Oval-2" cx="3.57763975" cy="4.930721" rx="3.57763975" ry="4.01337838"></ellipse>
+                    <ellipse id="Oval-2-Copy" cx="18.3354037" cy="4.930721" rx="3.57763975" ry="4.01337838"></ellipse>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

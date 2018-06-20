@@ -109,3 +109,19 @@ h1, h2, h3, h4 {
   -webkit-animation-direction: normal, alternate;
   animation-direction: normal, alternate;
   opacity: 0.8; }
+
+.relatedsearch-empty--display {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #b2b2b2;
+  font-family: "Galano Medium", sans-serif;
+  text-align: center;
+  padding: 3em; }
