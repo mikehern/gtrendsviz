@@ -168,15 +168,17 @@ class RelatedSearch extends Component {
 
     return (
       <React.Fragment>
-        <Transition in={this.state.data.length > 0} timeout={400}>
-          {state => <div style={transitionStyles[state]}>
+        {(this.state.data.length > 0) &&
+          <Transition in={this.state.data.length > 0} timeout={400}>
+            {state => <div style={transitionStyles[state]}>
               <div className="component-label--display">
                 Frequent searches related to<br /> <span className="component-dynamiclabel--display">
                   {this.props.label}
                 </span>{' '}
               </div>
             </div>}
-        </Transition>
+          </Transition>
+        }
         {(this.state.data.length === 0) && <EmptySearchResults />}
         <svg id="svgWrapper" width="100%" height="600px" ref={node => (this.node = node)} />
       </React.Fragment>

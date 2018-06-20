@@ -78,7 +78,7 @@ class Dashboard extends Component {
       entering: { opacity: 0 },
       entered: {
         opacity: 1,
-        transition: `opacity 1800ms cubic-bezier(0.215, 0.610, 0.355, 1.000)`
+        transition: `opacity 1400ms cubic-bezier(0.215, 0.610, 0.355, 1.000)`
       },
       exited: { opacity: 0 }
     };
@@ -100,7 +100,7 @@ class Dashboard extends Component {
           {!!searchDate ?
             <News keyword={searchQuery} date={searchDate} />
             : 
-            <Transition in={(searchResults.length > 0)} timeout={2200}>
+            <Transition in={(searchResults.length > 0)} timeout={1400}>
               {(state) => (
                 <div style={transitionStyles[state]}>
                   <InitialSuggestion />
