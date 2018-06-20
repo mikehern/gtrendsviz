@@ -4,6 +4,8 @@ import './dashboard.css';
 import TrendOverTime from '../TrendOverTime/TrendOverTime';
 import News from '../News/News';
 import RelatedSearch from '../RelatedSearch/RelatedSearch';
+import InitialSuggestion from './InitialSuggestion';
+import { Transition } from 'react-transition-group';
 
 
 class Dashboard extends Component {
@@ -72,6 +74,14 @@ class Dashboard extends Component {
 
   render() {
     const { searchInput, searchResults, searchDate, searchQuery, relatedResults } = this.state;
+    const transitionStyles = {
+      entering: { opacity: 0 },
+      entered: {
+        opacity: 1,
+        transition: `opacity 1800ms cubic-bezier(0.215, 0.610, 0.355, 1.000)`
+      },
+      exited: { opacity: 0 }
+    };
     return (
       <div className="container">
         <div className="header">
@@ -87,7 +97,16 @@ class Dashboard extends Component {
         </div>
         <div className="content">
           <TrendOverTime data={searchResults} searchDate={this._dateHandler} />
-          {!!searchDate && <News keyword={searchQuery} date={searchDate} />}
+          {!!searchDate ?
+            <News keyword={searchQuery} date={searchDate} />
+            : 
+            <Transition in={(searchResults.length > 0)} timeout={2200}>
+              {(state) => (
+                <div style={transitionStyles[state]}>
+                  <InitialSuggestion />
+                </div>
+              )}
+            </Transition>}
         </div>
       </div>
     );
