@@ -3,6 +3,8 @@ import { CSSTransition, TransitionGroup, Transition } from 'react-transition-gro
 import moment from 'moment';
 import './news.css';
 import NewsHeadline from './NewsHeadline';
+import EmptyNewsResults from './EmptyNewsResults';
+
 import {
   initPreviewStyle,
   previewTransitions,
@@ -79,21 +81,26 @@ class News extends Component {
     const { data, selectedArticle, date } = this.state;
     const articles = data.news !== undefined ? data.news.articles : [];
     const article = selectedArticle[0];
+    //TODO: refactor using totalResults property from state, checking for 0
     const labelDate = (date !== null) ? date.toString().split(' ').slice(1, 3).join(' ') : '';
 
     const displayTime = (date) => moment(date).format('h:mm A');
 
-    return (
-      <React.Fragment>
-        <Transition in={articles.length > 0} timeout={300}>
-          {(state) => (
-            <div style={labelTransitions[state]}>
-              <div className="component-label--display">
-                News headlines from <span className="component-dynamiclabel--display">{labelDate}</span>
+    return <React.Fragment>
+        {(articles.length > 0) &&
+          <Transition in={articles.length > 0} timeout={10}>
+            {state => (
+              <div style={labelTransitions[state]}>
+                <div className="component-label--display">
+                  News headlines from <span className="component-dynamiclabel--display">
+                    {labelDate}
+                  </span>
+                </div>
               </div>
-            </div>
-          )}
-        </Transition>
+            )}
+          </Transition>
+        }
+        {((articles.length === 0) && (this.state.data.length !== 0)) && <EmptyNewsResults />}
         <div className="newsWrapper">
           <TransitionGroup className="newsCollectionWrapper">
             {articles
@@ -113,32 +120,25 @@ class News extends Component {
               ))
               .slice(0, 4)}
           </TransitionGroup>
-          <Transition
-            in={Boolean(article)}
-            timeout={{enter: 250}}
-          >
-            {(state) => (
+          <Transition in={Boolean(article)} timeout={{ enter: 250 }}>
+            {state => (
               article ?
-                <div className="news-detail--wrapper">
-                  <div style={{...initMetaStyle, ...metaTransitions[state]}}>
-                    {article.source.name}
-                    <br />
-                    {displayTime(article.publishedAt)}
-                  </div>
-                  <div style={{...initPreviewStyle, ...previewTransitions[state]}}>
-                    <div className="news-preview--padding">{article.description}</div>
-                  </div>
-                  <img
-                    style={{...initImgStyle, ...imgTransitions[state]}}
-                    src={article.urlToImage}>
-                  </img>
+              <div className="news-detail--wrapper">
+                <div style={{ ...initMetaStyle, ...metaTransitions[state] }}>
+                  {article.source.name}
+                  <br />
+                  {displayTime(article.publishedAt)}
                 </div>
-              : null
-            )}
+                <div style={{ ...initPreviewStyle, ...previewTransitions[state] }}>
+                  <div className="news-preview--padding">
+                    {article.description}
+                  </div>
+                </div>
+                <img style={{ ...initImgStyle, ...imgTransitions[state] }} src={article.urlToImage} />
+              </div> : null)}
           </Transition>
         </div>
-      </React.Fragment>
-    );
+      </React.Fragment>;
   }
 }
 
