@@ -9,7 +9,8 @@ import {
   initMetaStyle,
   metaTransitions,
   initImgStyle,
-  imgTransitions
+  imgTransitions,
+  labelTransitions,
 } from './transitions';
 
 
@@ -84,9 +85,15 @@ class News extends Component {
 
     return (
       <React.Fragment>
-        <div className="component-label--display">
-          News headlines from <span className="component-dynamiclabel--display">{labelDate}</span>
-        </div>
+        <Transition in={articles.length > 0} timeout={300}>
+          {(state) => (
+            <div style={labelTransitions[state]}>
+              <div className="component-label--display">
+                News headlines from <span className="component-dynamiclabel--display">{labelDate}</span>
+              </div>
+            </div>
+          )}
+        </Transition>
         <div className="newsWrapper">
           <TransitionGroup className="newsCollectionWrapper">
             {articles

@@ -57,11 +57,22 @@ const imgTransitions = {
   }
 };
 
+const labelTransitions = {
+  entering: { transform: `translateY(-4em)`, opacity: 0 },
+  entered: {
+    opacity: 1,
+    transform: `translateY(.5em)`,
+    transition: `transform 600ms, opacity 1800ms cubic-bezier(0.215, 0.610, 0.355, 1.000)`
+  },
+  exited: { opacity: 0 }
+};
+
 module.exports = {
   initPreviewStyle,
   previewTransitions,
   initMetaStyle,
   metaTransitions,
   initImgStyle,
-  imgTransitions
+  imgTransitions,
+  labelTransitions
 }

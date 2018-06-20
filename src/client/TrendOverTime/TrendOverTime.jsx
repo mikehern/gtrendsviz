@@ -262,9 +262,11 @@ class TrendOverTime extends Component {
       entering: { opacity: 0 },
       entered: {
         opacity: 1,
-        transition: `opacity 1800ms cubic-bezier(0.215, 0.610, 0.355, 1.000)`
+        transform: `translateY(1em)`,
+        transition: `transform 600ms, opacity 1800ms cubic-bezier(0.215, 0.610, 0.355, 1.000)`
       },
-      exited: { opacity: 0 } };
+      exited: { transform: `translateY(-1em)`, opacity: 0 }
+    };
 
     return (
       <div className="trend-wrapper--display">

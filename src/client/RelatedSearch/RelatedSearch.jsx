@@ -158,10 +158,11 @@ class RelatedSearch extends Component {
       entering: { opacity: 0 },
       entered: {
         opacity: 1,
-        transition: `opacity 1600ms cubic-bezier(0.215, 0.610, 0.355, 1.000)`,
+        transform: `translateX(1.5em)`,
+        transition: `transform 600ms, opacity 1600ms cubic-bezier(0.215, 0.610, 0.355, 1.000)`,
         transitionDelay: '850ms'
       },
-      exited: { opacity: 0 }
+      exited: { transform: `translateX(-1.5em)`, opacity: 0 }
     };
 
     return (
