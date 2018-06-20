@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import { interpolatePath } from 'd3-interpolate-path';
+import { Transition } from 'react-transition-group';
 
 import './trendovertime.css';
 
@@ -257,11 +258,25 @@ class TrendOverTime extends Component {
         .slice(1, 3)
         .join(' ') : '';
 
+    const transitionStyles = {
+      entering: { opacity: 0 },
+      entered: {
+        opacity: 1,
+        transition: `opacity 1800ms cubic-bezier(0.215, 0.610, 0.355, 1.000)`
+      },
+      exited: { opacity: 0 } };
+
     return (
       <div className="trend-wrapper--display">
-        <div className="component-label--display">
-          Relative popularity between <span className="component-dynamiclabel--display">{firstDate}</span> and <span className="component-dynamiclabel--display">{lastDate}</span> 
-        </div>
+        <Transition in={this.state.data[0] !== undefined} timeout={1000} >
+          {(state) => (
+            <div style={transitionStyles[state]}>
+              <div className="component-label--display">
+                Relative popularity between <span className="component-dynamiclabel--display">{firstDate}</span> and <span className="component-dynamiclabel--display">{lastDate}</span> 
+              </div>
+            </div>
+          )}
+        </Transition>
         <svg id="lineChart" width={width} height={height} ref={node => (this.node = node)} />
       </div>
     );

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
+import { Transition } from 'react-transition-group';
 import './relatedsearch.css';
 
 const bodyMargin = { top: 10, right: 20, bottom: 20, left: 10 };
@@ -153,11 +154,29 @@ class RelatedSearch extends Component {
   }
 
   render() {
-    return <React.Fragment>
-        <div className="component-label--display">
-          Frequent searches related to<br/> <span className="component-dynamiclabel--display">{this.props.label}</span> </div>
+    const transitionStyles = {
+      entering: { opacity: 0 },
+      entered: {
+        opacity: 1,
+        transition: `opacity 1600ms cubic-bezier(0.215, 0.610, 0.355, 1.000)`,
+        transitionDelay: '850ms'
+      },
+      exited: { opacity: 0 }
+    };
+
+    return (
+      <React.Fragment>
+        <Transition in={this.state.data.length > 0} timeout={400}>
+          {(state) => (
+            <div style={transitionStyles[state]}>
+              <div className="component-label--display">
+                Frequent searches related to<br/> <span className="component-dynamiclabel--display">{this.props.label}</span> </div>
+            </div>
+          )}
+        </Transition>
         <svg id="svgWrapper" width="100%" height="600px" ref={node => (this.node = node)} />
-      </React.Fragment>;
+      </React.Fragment>
+    );
   }
 }
 

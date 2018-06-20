@@ -36,7 +36,7 @@ class App extends Component {
     const transitionStyles = {
       entering: {
         opacity: 0,
-        transition: `opacity 2200ms cubic-bezier(0.215, 0.610, 0.355, 1.000)`
+        transition: `opacity 1400ms cubic-bezier(0.215, 0.610, 0.355, 1.000)`
       },
       entered: { display: 'none' },
     }
@@ -52,7 +52,7 @@ class App extends Component {
               onLoad={this._imageLoadComplete} />
           </div>}
         {landingLoadFinished &&
-          <Transition in={(landingLoadFinished && landingSearchSubmitted)} timeout={1000}>
+          <Transition in={(landingLoadFinished && landingSearchSubmitted)} timeout={1800}>
             {(state) => (
               <div style={transitionStyles[state]}>
                 <LandingPage landingSearchTerm={(term) => this._setSearch(term)} />
