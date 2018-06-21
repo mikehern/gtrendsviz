@@ -90,6 +90,7 @@ class TrendOverTime extends Component {
       .attr('id', 'focus')
       .attr("fill", "none")
       .attr('pointer-events', 'all')
+      .style('cursor', 'pointer')
       .attr("width", width)
       .attr("height", height);
 

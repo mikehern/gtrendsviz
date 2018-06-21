@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './news.css';
 
 const NewsHeadline = (props) => {

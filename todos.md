@@ -7,7 +7,7 @@
 - [x] When exploring the line chart, display news based on clicked datum - use ReactTransitionGroup
 - [x] Add dynamic labels and handle UI empty states
 - [ ] Include attributions
-- [IP] Style and animate [search box, responsive layout]
+- [IP] Style and animate [responsive layout]
 - [x] Create top level starting page
 - [ ] Add CTAs for each news article [back of news image + 180y transform]
 
@@ -22,7 +22,7 @@
 
 # Known issues/debt
 - [ ] Adjust trending line margins and tooltip layout
-- [ ] Add cursor pointer to [trending line chart, news headline]
+- [x] Add cursor pointer to [trending line chart, news headline]
 - [ ] Refactor News component so article count value in state is used instead of checking length
 - [ ] Remove entrance animation for news label
 - [ ] Change related search placeholder to grayscale
