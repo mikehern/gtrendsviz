@@ -52,7 +52,7 @@ class TrendOverTime extends Component {
       .append('path')
       .datum(data)
         .attr('fill', 'none')
-        .attr('stroke', '#006bb6')
+        .attr('stroke', 'url(#lineLinear)')
         .attr('stroke-width', 0)
         .attr('d', lineData)
       .transition()
@@ -72,12 +72,13 @@ class TrendOverTime extends Component {
 
     overlay
       .append('circle')
-      .attr('r', 5)
-      .attr('fill', 'red');
+      .attr('r', 7)
+      .attr('stroke', '#454545')
+      .attr('fill', 'white');
 
     overlay
       .append('text')
-      .attr('x', 15)
+      .attr('x', 16)
       .attr('dy', '.31em');
 
     return overlay;
@@ -134,9 +135,10 @@ class TrendOverTime extends Component {
           mouseMapping = xPosition - current.date > next.date - xPosition ? next : current;
 
         overlay.attr("transform", `translate(${xScale(mouseMapping.date)},${yScale(mouseMapping.value)})`);
-        overlay.select("text")
+        overlay
+          .select('text')
           .text(() => mouseMapping.date.toDateString().slice(0, -4))
-          .style('fill', 'red')
+          .style('fill', '#454545');
       }
       
       const updateDate = this.props.searchDate;
@@ -151,12 +153,14 @@ class TrendOverTime extends Component {
           d3.select('circle')
             .transition()
               .duration(300)
-              .attr('r', 12)
-              .attr('fill', '#006bb6')
+              .attr('r', 16)
+              .attr('stroke', 'none')
+              .attr('fill', '#FF9E00')
             .transition()
               .duration(300)
-              .attr('r', 5)
-              .attr('fill', 'red');
+              .attr('r', 7)
+              .attr('stroke', '#454545')
+              .attr('fill', 'white');
 
           updateDate(mouseMapping.date);
       }
@@ -210,9 +214,10 @@ class TrendOverTime extends Component {
           mouseMapping = xPosition - current.date > next.date - xPosition ? next : current;
 
         overlay.attr("transform", `translate(${xScale(mouseMapping.date)},${yScale(mouseMapping.value)})`);
-        overlay.select("text")
+        overlay
+          .select('text')
           .text(() => mouseMapping.date.toDateString().slice(0, -4))
-          .style('fill', 'red')
+          .style('fill', '#FF9E00');
       }
 
       const updateDate = this.props.searchDate;
@@ -226,13 +231,15 @@ class TrendOverTime extends Component {
 
         d3.select('circle')
           .transition()
-          .duration(300)
-          .attr('r', 12)
-          .attr('fill', '#006bb6')
+            .duration(300)
+            .attr('r', 16)
+            .attr('stroke', 'none')
+            .attr('fill', '#FF9E00')
           .transition()
-          .duration(300)
-          .attr('r', 5)
-          .attr('fill', 'red');
+            .duration(300)
+            .attr('r', 7)
+            .attr('stroke', 'none')
+            .attr('fill', '#FF9E00');
 
         updateDate(mouseMapping.date);
       }
@@ -279,7 +286,14 @@ class TrendOverTime extends Component {
             </div>
           )}
         </Transition>
-        <svg id="lineChart" width={width} height={height} ref={node => (this.node = node)} />
+        <svg id="lineChart" width={width} height={height} ref={node => (this.node = node)} >
+          <defs>
+            <linearGradient id="lineLinear" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="red"></stop>
+              <stop offset="100%" stopColor="blue"></stop>
+            </linearGradient>
+          </defs>
+        </svg>
       </div>
     );
   }
