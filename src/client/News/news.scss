@@ -32,6 +32,7 @@ $primary-medium:'Galano Medium', sans-serif;
 $primary-bold:'Galano Bold', sans-serif;
 $primary-heavy:'Galano Heavy', sans-serif;
 $primary-italic:'Galano Italic', sans-serif;
+$secondary-font:'Nunito', sans-serif;
 $blue: #006bb6;
 $black: #454545;
 
@@ -64,6 +65,7 @@ h1, h2, h3, h4 {
   color: #006bb6;
   margin: 10px;
   padding: 10px;
+  font-family: $primary-bold;
 }
 
 .news-detail--wrapper {
@@ -74,11 +76,15 @@ h1, h2, h3, h4 {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  font-family: $primary-medium;
+  color: #454545;
 }
 
-.news-preview--padding {
+.news-description--display{
+  font-family: $secondary-font;
   margin: 30px 20px;
   line-height: 24px;
+  color: #454545;
 }
 
 /* Back Pulse */

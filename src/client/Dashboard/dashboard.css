@@ -105,7 +105,7 @@ h5 {
 
 .dashboard-suggestion--display {
   font-family: "Galano Bold", sans-serif;
-  font-size: 1.2em;
+  font-size: 1em;
   color: #989898;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -124,5 +124,5 @@ h5 {
   text-align: center; }
 
 .dashboard-description--display {
-  font-family: "Galano Classic", sans-serif;
+  font-family: "Nunito", sans-serif;
   width: 32em; }

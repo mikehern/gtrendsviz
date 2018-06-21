@@ -130,7 +130,7 @@ class News extends Component {
                   {displayTime(article.publishedAt)}
                 </div>
                 <div style={{ ...initPreviewStyle, ...previewTransitions[state] }}>
-                  <div className="news-preview--padding">
+                  <div className="news-description--display">
                     {article.description}
                   </div>
                 </div>

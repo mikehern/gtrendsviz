@@ -48,7 +48,8 @@ h1, h2, h3, h4 {
   border-radius: 10px;
   color: #006bb6;
   margin: 10px;
-  padding: 10px; }
+  padding: 10px;
+  font-family: "Galano Bold", sans-serif; }
 
 .news-detail--wrapper {
   width: 400px;
@@ -66,11 +67,15 @@ h1, h2, h3, h4 {
   align-items: center;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
-  justify-content: space-between; }
+  justify-content: space-between;
+  font-family: "Galano Medium", sans-serif;
+  color: #454545; }
 
-.news-preview--padding {
+.news-description--display {
+  font-family: "Nunito", sans-serif;
   margin: 30px 20px;
-  line-height: 24px; }
+  line-height: 24px;
+  color: #454545; }
 
 /* Back Pulse */
 @-webkit-keyframes hvr-back-pulse {

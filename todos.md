@@ -7,7 +7,7 @@
 - [x] When exploring the line chart, display news based on clicked datum - use ReactTransitionGroup
 - [x] Add dynamic labels and handle UI empty states
 - [ ] Include attributions
-- [IP] Style and animate [fonts, trending line color, search box, responsive layout]
+- [IP] Style and animate [trending line color, search box, responsive layout]
 - [x] Create top level starting page
 - [ ] Add CTAs for each news article [back of news image + 180y transform]
 

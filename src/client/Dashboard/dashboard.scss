@@ -32,6 +32,7 @@ $primary-medium:'Galano Medium', sans-serif;
 $primary-bold:'Galano Bold', sans-serif;
 $primary-heavy:'Galano Heavy', sans-serif;
 $primary-italic:'Galano Italic', sans-serif;
+$secondary-font:'Nunito', sans-serif;
 $blue: #006bb6;
 
 p {
@@ -132,7 +133,7 @@ h5 {
 
 .dashboard-suggestion--display {
   font-family: $primary-bold;
-  font-size: 1.2em;
+  font-size: 1em;
   color: #989898;
   display:flex;
   flex-direction: column;
@@ -143,6 +144,6 @@ h5 {
 }
 
 .dashboard-description--display {
-  font-family: $primary-font;
+  font-family: $secondary-font;
   width: 32em;
 }
