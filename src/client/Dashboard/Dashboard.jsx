@@ -92,8 +92,6 @@ class Dashboard extends Component {
     };
     return (
       <div className="container">
-        <div className="header">
-        </div>
         <div className="sidebar">
           <input
             id="search"

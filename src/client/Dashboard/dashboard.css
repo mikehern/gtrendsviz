@@ -125,7 +125,7 @@ h5 {
   -ms-flex-align: center;
   align-items: center;
   padding: 3em;
-  text-align: center; }
+  text-align: left; }
 
 .dashboard-description--display {
   font-family: "Nunito", sans-serif;

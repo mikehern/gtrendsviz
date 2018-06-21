@@ -8,7 +8,7 @@ const InitialSuggestion = () => {
       <br/>
       <div className="dashboard-description--display">
         <p>You're looking at relative popularity. So a datapoint twice as high as another was twice as popular, for the last 30 days. Actual volumes for the number of queries are not available.
-          <br/><br />Interesting headlines usually occur on peak days. <br/>See if you can spot any patterns!
+          <br/><br />Interesting headlines usually occur on peak days. See if you can spot any patterns!
         </p>
       </div>
     </div>

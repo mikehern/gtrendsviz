@@ -154,7 +154,6 @@ class TrendOverTime extends Component {
             .transition()
               .duration(300)
               .attr('r', 16)
-              .attr('stroke', 'none')
               .attr('fill', '#FF9E00')
             .transition()
               .duration(300)
