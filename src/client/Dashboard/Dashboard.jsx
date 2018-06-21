@@ -25,6 +25,7 @@ class Dashboard extends Component {
     this._sendQuery = this._sendQuery.bind(this);
     this._dateHandler = this._dateHandler.bind(this);
     this._clickedRelatedSearch = this._clickedRelatedSearch.bind(this);
+    this._enterKeyHandler = this._enterKeyHandler.bind(this);
   }
 
   componentDidMount() {
@@ -66,6 +67,12 @@ class Dashboard extends Component {
     this.setState({ searchDate: currentDate });
   }
 
+  _enterKeyHandler(event) {
+    if (event.key === 'Enter') {
+      this._sendQuery();
+    }
+  }
+
   componentDidUpdate() {
     if (this.props.landingSearch && this.state.landingSearchSubmitted) {
       this._sendQuery();
@@ -90,8 +97,10 @@ class Dashboard extends Component {
         <div className="sidebar">
           <input
             id="search"
-            type="text"
+            type="search"
+            autoComplete="off"
             value={searchInput}
+            onKeyPress={this._enterKeyHandler}
             onChange={this._handleInputChange} />
           <button id="send" onClick={this._sendQuery}>
             <img src={search} className="search-button--size"/>

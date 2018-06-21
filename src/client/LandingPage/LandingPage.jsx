@@ -13,6 +13,7 @@ class LandingPage extends Component {
     this._searchInputHandler = this._searchInputHandler.bind(this);
     this._chooseForMeClicked = this._chooseForMeClicked.bind(this);
     this._viewPopularityClicked = this._viewPopularityClicked.bind(this);
+    this._enterKeyHandler = this._enterKeyHandler.bind(this);
   }
 
   componentDidMount() {
@@ -48,6 +49,12 @@ class LandingPage extends Component {
     }
   }
 
+  _enterKeyHandler(event) {
+    if (event.key === 'Enter') {
+      this._viewPopularityClicked();
+    }
+  }
+
   render () {
     const { recentTrends, searchInput } = this.state;
     return (
@@ -72,6 +79,8 @@ class LandingPage extends Component {
                 type="search"
                 id="landing-searchbox--display"
                 value={searchInput}
+                autoComplete="off"
+                onKeyPress={this._enterKeyHandler}
                 onChange={this._searchInputHandler}  />
             </Typed>
             <span className="landing-searchbutton--group">
