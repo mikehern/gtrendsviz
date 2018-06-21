@@ -4,6 +4,7 @@ import './dashboard.css';
 import TrendOverTime from '../TrendOverTime/TrendOverTime';
 import News from '../News/News';
 import RelatedSearch from '../RelatedSearch/RelatedSearch';
+import search from '../assets/search.svg'
 import InitialSuggestion from './InitialSuggestion';
 import { Transition } from 'react-transition-group';
 
@@ -92,7 +93,9 @@ class Dashboard extends Component {
             type="text"
             value={searchInput}
             onChange={this._handleInputChange} />
-          <button id="send" onClick={this._sendQuery}>Search</button>
+          <button id="send" onClick={this._sendQuery}>
+            <img src={search} className="search-button--size"/>
+          </button>
           {!!relatedResults && <RelatedSearch data={relatedResults} searchTerm={this._clickedRelatedSearch} label={searchQuery}/>}
         </div>
         <div className="content">
