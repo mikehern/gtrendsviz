@@ -5,18 +5,25 @@
 - [x] Display date in chart during hover
 - [x] Include section for related queries - use GSAP and blur to clear current text upon selection
 - [x] When exploring the line chart, display news based on clicked datum - use ReactTransitionGroup
-- [IP] Add dynamic labels and handle UI empty states
+- [x] Add dynamic labels and handle UI empty states
 - [ ] Include attributions
-- [ ] Style and animate [Create exit anim for headlines]
-- [ ] Use typography as an expressive dimension
-- [ ] Use font-size as an expressive dimension
+- [IP] Style and animate [fonts, trending line color, search box, responsive layout]
 - [x] Create top level starting page
+- [ ] Add CTAs for each news article [back of news image + 180y transform]
 
 # Nice to have
 - [ ] Create date helper to narrow news query to peak dates
 - [ ] Allow customizable query search based on location. Experiment w/ ipstack API for default.
 - [ ] Use a rotating ortographic projection to highlight geo
-- [ ] Express internet connectedness by country using internetworldstats data
 - [ ] Allow configurable queries
 - [ ] Display recent searches?
 - [ ] Conditionally animate news image only after fetch is complete
+- [ ] Create exit animations
+
+# Known issues/debt
+- [ ] Adjust trending line margins and tooltip layout
+- [ ] Add cursor pointer to [trending line chart, news headline]
+- [ ] Refactor News component so article count value in state is used instead of checking length
+- [ ] Remove entrance animation for news label
+- [ ] Change related search placeholder to grayscale
+- [ ] Create backing svg rect for search placeholder text to wrap into
