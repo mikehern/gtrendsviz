@@ -24,6 +24,7 @@
 - [ ] Adjust trending line margins and tooltip layout
 - [x] Add cursor pointer to [trending line chart, news headline]
 - [ ] Refactor News component so article count value in state is used instead of checking length
+- [ ] Factor out search
 - [ ] Remove entrance animation for news label
 - [ ] Change related search placeholder to grayscale
 - [ ] Create backing svg rect for search placeholder text to wrap into

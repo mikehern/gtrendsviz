@@ -93,16 +93,18 @@ class Dashboard extends Component {
     return (
       <div className="container">
         <div className="sidebar">
-          <input
-            id="search"
-            type="search"
-            autoComplete="off"
-            value={searchInput}
-            onKeyPress={this._enterKeyHandler}
-            onChange={this._handleInputChange} />
-          <button id="send" onClick={this._sendQuery}>
-            <img src={search} className="search-button--size"/>
-          </button>
+          <div className="search">
+            <input
+              className="search-input"
+              type="search"
+              autoComplete="off"
+              value={searchInput}
+              onKeyPress={this._enterKeyHandler}
+              onChange={this._handleInputChange} />
+            <button className="search-send-btn" onClick={this._sendQuery}>
+              <img src={search} className="search-send-icon--size"/>
+            </button>
+          </div>
           {!!relatedResults && <RelatedSearch data={relatedResults} searchTerm={this._clickedRelatedSearch} label={searchQuery}/>}
         </div>
         <div className="content">

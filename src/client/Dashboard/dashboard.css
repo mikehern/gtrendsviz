@@ -75,37 +75,45 @@ h5 {
   -ms-flex-pack: center;
   justify-content: center; }
 
-#search {
-  height: 1.5em;
-  width: 12em;
-  font-size: 1.5em;
+.search {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 3rem;
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly; }
+
+.search-input {
+  height: 2rem;
+  font-size: 1.5rem;
   border: none;
   background-color: #e9e9e9;
   border-radius: 2em;
   padding: .4em;
   font-family: "Nunito", sans-serif; }
+  .search-input:focus {
+    outline: none; }
 
-#search:focus {
-  outline: none; }
-
-#send {
-  height: 3.2em;
-  width: 3.2em;
+.search-send-btn {
+  height: 2rem;
+  width: 2rem;
   background-color: white;
   color: white;
-  font-size: 2vh;
-  border-radius: 3em;
-  margin: 1rem;
+  border-radius: 2rem;
   border: none;
   background-color: #DDE8FF;
   opacity: .85;
   cursor: pointer; }
-  #send:hover {
+  .search-send-btn:hover {
     opacity: 1;
     -webkit-box-shadow: 0 2px 6px 1px #d6d6d6;
     box-shadow: 0 2px 6px 1px #d6d6d6; }
-  #send:focus {
+  .search-send-btn:focus {
     outline: 0; }
+
+.search-send-icon--size {
+  height: 1.5em; }
 
 .dashboard-suggestion--display {
   font-family: "Galano Bold", sans-serif;
@@ -130,7 +138,3 @@ h5 {
 .dashboard-description--display {
   font-family: "Nunito", sans-serif;
   width: 32em; }
-
-.search-button--size {
-  height: 26px;
-  width: 26px; }
