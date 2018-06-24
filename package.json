@@ -8,11 +8,13 @@
     "d3-interpolate-path": "^2.0.1",
     "express": "^4.16.3",
     "google-trends-api": "^4.6.2",
+    "node-sass": "^4.9.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-transition-group": "^2.3.1",
     "react-typed": "^1.0.8",
-    "rss-parser": "^3.1.4"
+    "rss-parser": "^3.1.4",
+    "sass-loader": "^7.0.3"
   },
   "devDependencies": {
     "babel": "^6.23.0",

@@ -1,3 +1,38 @@
+@font-face {
+  font-family: 'Galano Classic';
+  src: url("../assets/Galano Classic.otf"); }
+
+@font-face {
+  font-family: 'Galano Medium';
+  src: url("../assets/Galano Classic Medium.otf"); }
+
+@font-face {
+  font-family: 'Galano Bold';
+  src: url("../assets/Galano Classic Bold.otf"); }
+
+@font-face {
+  font-family: 'Galano Heavy';
+  src: url("../assets/Galano Classic Heavy.otf"); }
+
+@font-face {
+  font-family: 'Galano Italic';
+  src: url("../assets/Galano Classic Italic.otf"); }
+
+html {
+  font-size: 1em; }
+
+body {
+  margin: 0;
+  padding: 0; }
+
+p {
+  margin-bottom: 1.3em; }
+
+h1, h2, h3, h4 {
+  margin: 1.414em 0 0.5em;
+  font-weight: inherit;
+  line-height: 1.2; }
+
 .landing-placeholder--display {
   height: 100vh;
   width: 100vw;

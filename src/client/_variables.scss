@@ -1,0 +1,24 @@
+$primary-font:'Galano Classic', sans-serif;
+$primary-medium:'Galano Medium', sans-serif;
+$primary-bold:'Galano Bold', sans-serif;
+$primary-heavy:'Galano Heavy', sans-serif;
+$primary-italic:'Galano Italic', sans-serif;
+$blue: #006bb6;
+$orange: #FF9E00;
+$yellow: #fff971;
+$black: #454545;
+$gray: #757575;
+
+@mixin h1 {
+  margin-top: 0;
+  font-size: 5.063em;
+  font-weight: 600;
+}
+
+@mixin h2 {font-size: 3.375em;}
+
+@mixin h3 {font-size: 2.25em;}
+
+@mixin h4 {font-size: 1.5em;}
+
+@mixin smalltext {font-size: 0.667em;}

@@ -9,3 +9,6 @@ settings.json
 .eslintrc.json
 prepros-6.config
 .DS_Store
+.sasslintrc
+yarn-error.log
+yarn.lock

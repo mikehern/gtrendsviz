@@ -1,38 +1,4 @@
-@font-face {
-  font-family: 'Galano Classic';
-  src: url('../assets/Galano\ Classic.otf');
-}
-
-@font-face {
-  font-family: 'Galano Medium';
-  src: url('../assets/Galano\ Classic\ Medium.otf');
-}
-
-@font-face {
-  font-family: 'Galano Bold';
-  src: url('../assets/Galano\ Classic\ Bold.otf');
-}
-
-@font-face {
-  font-family: 'Galano Heavy';
-  src: url('../assets/Galano\ Classic\ Heavy.otf');
-}
-
-@font-face {
-  font-family: 'Galano Italic';
-  src: url('../assets/Galano\ Classic\ Italic.otf');
-}
-
-html {font-size: 1em;}
-
-$orange: #FF9E00;
-$yellow: #fff971;
-$primary-font:'Galano Classic', sans-serif;
-$primary-medium:'Galano Medium', sans-serif;
-$primary-bold:'Galano Bold', sans-serif;
-$primary-heavy:'Galano Heavy', sans-serif;
-$primary-italic:'Galano Italic', sans-serif;
-$blue: #006bb6;
+@import '../_variables.scss';
 
 body {
   font-weight: 400;
@@ -45,39 +11,6 @@ body {
 
 }
 
-p {margin-bottom: 1.3em;}
-
-h1, h2, h3, h4 {
-  margin: 1.414em 0 0.5em;
-  font-weight: inherit;
-  line-height: 1.2;
-}
-
-@mixin h1 {
-  margin-top: 0;
-  font-size: 5.063em;
-  font-weight: 600;
-}
-
-@mixin h2 {font-size: 3.375em;}
-
-@mixin h3 {font-size: 2.25em;}
-
-@mixin h4 {font-size: 1.5em;}
-
-@mixin smalltext {font-size: 0.667em;}
-
-.landing-wrapper {
-  width: 100%;
-  height: 96%;
-  color: white;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-}
-
 header {
   @include h1;
   margin-top: 10vh;
@@ -85,15 +18,6 @@ header {
   line-height: 1.15;
   font-family: 'Crimson Text', serif;
   opacity: .94;
-}
-
-#searching {
-  background: -webkit-linear-gradient(left, $orange , $yellow);
-  background: -o-linear-gradient(right, $orange, $yellow);
-  background: -moz-linear-gradient(right, $orange, $yellow);
-  background: linear-gradient(to right, $orange , $yellow); 
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 section {
@@ -119,7 +43,27 @@ footer {
   align-items: center;
 }
 
-#landing-searchbox--display {
+.landing-wrapper {
+  width: 100%;
+  height: 96%;
+  color: white;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+#landing-searching--gradient {
+  background: -webkit-linear-gradient(left, $orange , $yellow);
+  background: -o-linear-gradient(right, $orange, $yellow);
+  background: -moz-linear-gradient(right, $orange, $yellow);
+  background: linear-gradient(to right, $orange , $yellow); 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#landing-searchbox {
   @include h3;
   border-color: white;
   border: none;
@@ -150,11 +94,11 @@ footer {
   }
 }
 
-.landing-searchbutton--group {
+.landing-btn--group {
   margin-top: 2em;
 }
 
-.landing-searchbutton--display {
+.landing-popular-btn {
   height: 2.75em;
   font-size: 1em;
   margin: 0 2em;
@@ -176,7 +120,7 @@ footer {
   }
 }
 
-.landing-randombutton--display {
-  @extend .landing-searchbutton--display;
+.landing-random-btn {
+  @extend .landing-popular-btn;
   background-color: rgb(255, 251, 178);
 }

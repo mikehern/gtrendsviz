@@ -57,11 +57,12 @@ class LandingPage extends Component {
 
   render () {
     const { recentTrends, searchInput } = this.state;
-    return (
-      <div>
+    return <div>
         <div className="landing-wrapper">
           <header>
-            What are people <br /> <span id="searching">searching </span> for?
+            What are people <br /> <span id="landing-searching--gradient">
+              searching{' '}
+            </span> for?
           </header>
           <section>
             <div>
@@ -69,34 +70,21 @@ class LandingPage extends Component {
             </div>
           </section>
           <main>
-            <Typed
-              strings={recentTrends}
-              typeSpeed={40}
-              backSpeed={100}
-              attr="placeholder"
-              loop >
-              <input
-                type="search"
-                id="landing-searchbox--display"
-                value={searchInput}
-                autoComplete="off"
-                onKeyPress={this._enterKeyHandler}
-                onChange={this._searchInputHandler}  />
+            <Typed strings={recentTrends} typeSpeed={40} backSpeed={100} attr="placeholder" loop>
+              <input type="search" id="landing-searchbox" value={searchInput} autoComplete="off" onKeyPress={this._enterKeyHandler} onChange={this._searchInputHandler} />
             </Typed>
-            <span className="landing-searchbutton--group">
-              <button className="landing-searchbutton--display" onClick={this._viewPopularityClicked}>
+            <span className="landing-btn--group">
+              <button className="landing-popular-btn" onClick={this._viewPopularityClicked}>
                 View popularity
               </button>
-              <button
-                className="landing-randombutton--display"
-                onClick={this._chooseForMeClicked}
-              >Choose for me</button>
+              <button className="landing-random-btn" onClick={this._chooseForMeClicked}>
+                Choose for me
+              </button>
             </span>
           </main>
           <footer>©2018 ✌🏽</footer>
         </div>
-      </div>
-    );
+      </div>;
   }
 }
 
