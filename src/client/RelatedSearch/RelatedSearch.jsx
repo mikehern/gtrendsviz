@@ -167,7 +167,7 @@ class RelatedSearch extends Component {
     };
 
     return (
-      <React.Fragment>
+      <div className="relatedSearch-wrapper">
         <Transition in={this.state.data.length > 0} timeout={400}>
             {state => <div style={transitionStyles[state]}>
               <div className="component-label--display">
@@ -178,8 +178,8 @@ class RelatedSearch extends Component {
             </div>}
           </Transition>
         {(this.state.data.length === 0) && <EmptySearchResults />}
-        <svg id="svgWrapper" width="100%" height="600px" ref={node => (this.node = node)} />
-      </React.Fragment>
+        <svg id="svgWrapper" ref={node => (this.node = node)} />
+      </div>
     );
   }
 }

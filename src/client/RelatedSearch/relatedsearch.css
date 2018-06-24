@@ -1,44 +1,27 @@
-@font-face {
-  font-family: 'Galano Classic';
-  src: url("../assets/Galano Classic.otf"); }
-
-@font-face {
-  font-family: 'Galano Medium';
-  src: url("../assets/Galano Classic Medium.otf"); }
-
-@font-face {
-  font-family: 'Galano Bold';
-  src: url("../assets/Galano Classic Bold.otf"); }
-
-@font-face {
-  font-family: 'Galano Heavy';
-  src: url("../assets/Galano Classic Heavy.otf"); }
-
-@font-face {
-  font-family: 'Galano Italic';
-  src: url("../assets/Galano Classic Italic.otf"); }
-
-html {
-  font-size: 1em; }
-
-p {
-  margin-bottom: 1.3em; }
-
-h1, h2, h3, h4 {
-  margin: 1.414em 0 0.5em;
-  font-weight: inherit;
-  line-height: 1.2; }
+.relatedSearch-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between; }
 
 .component-label--display {
-  font-size: 1.5em;
+  font-size: 1rem;
   font-family: "Galano Heavy", sans-serif;
   color: #454545;
   margin-bottom: 1em; }
 
 .component-dynamiclabel--display {
-  -ms-flex-item-align: center;
-  align-self: center;
   color: #FF9E00; }
+
+#svgWrapper {
+  width: 100%;
+  height: 70vh; }
 
 .domain {
   display: none; }
@@ -49,7 +32,7 @@ h1, h2, h3, h4 {
 .y text {
   font-family: "Galano Classic", sans-serif;
   fill: white;
-  font-size: 16px;
+  font-size: .75rem;
   cursor: pointer; }
 
 @-webkit-keyframes bar {
@@ -91,24 +74,23 @@ h1, h2, h3, h4 {
   transform: perspective(1px) translateZ(0);
   -webkit-box-shadow: 0 0 1px transparent;
   box-shadow: 0 0 1px transparent; }
-
-.bar:hover, .bar:focus, .bar:active {
-  cursor: pointer;
-  -webkit-animation-name: bar-float, bar;
-  animation-name: bar-float, bar;
-  -webkit-animation-duration: .3s, 1.5s;
-  animation-duration: .3s, 1.5s;
-  -webkit-animation-delay: 0s, .3s;
-  animation-delay: 0s, .3s;
-  -webkit-animation-timing-function: ease-out, ease-in-out;
-  animation-timing-function: ease-out, ease-in-out;
-  -webkit-animation-iteration-count: 1, infinite;
-  animation-iteration-count: 1, infinite;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-  -webkit-animation-direction: normal, alternate;
-  animation-direction: normal, alternate;
-  opacity: 0.8; }
+  .bar:hover, .bar focus, .bar active {
+    cursor: pointer;
+    -webkit-animation-name: bar-float, bar;
+    animation-name: bar-float, bar;
+    -webkit-animation-duration: .3s, 1.5s;
+    animation-duration: .3s, 1.5s;
+    -webkit-animation-delay: 0s, .3s;
+    animation-delay: 0s, .3s;
+    -webkit-animation-timing-function: ease-out, ease-in-out;
+    animation-timing-function: ease-out, ease-in-out;
+    -webkit-animation-iteration-count: 1, infinite;
+    animation-iteration-count: 1, infinite;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-direction: normal, alternate;
+    animation-direction: normal, alternate;
+    opacity: 0.8; }
 
 .relatedsearch-empty--display {
   display: -webkit-box;

@@ -1,72 +1,28 @@
-@font-face {
-  font-family: 'Galano Classic';
-  src: url('../assets/Galano\ Classic.otf');
+@import '../_variables.scss';
+
+.relatedSearch-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-
-@font-face {
-  font-family: 'Galano Medium';
-  src: url('../assets/Galano\ Classic\ Medium.otf');
-}
-
-@font-face {
-  font-family: 'Galano Bold';
-  src: url('../assets/Galano\ Classic\ Bold.otf');
-}
-
-@font-face {
-  font-family: 'Galano Heavy';
-  src: url('../assets/Galano\ Classic\ Heavy.otf');
-}
-
-@font-face {
-  font-family: 'Galano Italic';
-  src: url('../assets/Galano\ Classic\ Italic.otf');
-}
-
-html {font-size: 1em;}
-
-$orange: #FF9E00;
-$yellow: #fff971;
-$primary-font:'Galano Classic', sans-serif;
-$primary-medium:'Galano Medium', sans-serif;
-$primary-bold:'Galano Bold', sans-serif;
-$primary-heavy:'Galano Heavy', sans-serif;
-$primary-italic:'Galano Italic', sans-serif;
-$blue: #006bb6;
-$black: #454545;
-
-p {margin-bottom: 1.3em;}
-
-h1, h2, h3, h4 {
-  margin: 1.414em 0 0.5em;
-  font-weight: inherit;
-  line-height: 1.2;
-}
-
-@mixin h1 {
-  margin-top: 0;
-  font-size: 5.063em;
-  font-weight: 600;
-}
-
-@mixin h2 {font-size: 3.375em;}
-
-@mixin h3 {font-size: 2.25em;}
-
-@mixin h4 {font-size: 1.5em;}
-
-@mixin smalltext {font-size: 0.667em;}
 
 .component-label--display{
-  @include h4;
+  // @include h4;
+  font-size: 1rem;
   font-family: $primary-heavy;
   color: $black;
   margin-bottom: 1em;
 }
 
 .component-dynamiclabel--display{
-  align-self: center;
   color: $orange;
+}
+
+#svgWrapper {
+  width: 100%;
+
+  //TODO: dynamically set based on future grid
+  height: 70vh;
 }
 
 .domain {
@@ -80,7 +36,7 @@ h1, h2, h3, h4 {
 .y text {
   font-family: $primary-font;
   fill: white;
-  font-size: 16px;
+  font-size: .75rem;
   cursor: pointer;
 }
 
@@ -130,24 +86,25 @@ h1, h2, h3, h4 {
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-}
-.bar:hover, .bar:focus, .bar:active {
-  cursor: pointer;
-  -webkit-animation-name: bar-float, bar;
-  animation-name: bar-float, bar;
-  -webkit-animation-duration: .3s, 1.5s;
-  animation-duration: .3s, 1.5s;
-  -webkit-animation-delay: 0s, .3s;
-  animation-delay: 0s, .3s;
-  -webkit-animation-timing-function: ease-out, ease-in-out;
-  animation-timing-function: ease-out, ease-in-out;
-  -webkit-animation-iteration-count: 1, infinite;
-  animation-iteration-count: 1, infinite;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-  -webkit-animation-direction: normal, alternate;
-  animation-direction: normal, alternate;
-  opacity: 0.8;
+
+  &:hover, focus, active {
+    cursor: pointer;
+    -webkit-animation-name: bar-float, bar;
+    animation-name: bar-float, bar;
+    -webkit-animation-duration: .3s, 1.5s;
+    animation-duration: .3s, 1.5s;
+    -webkit-animation-delay: 0s, .3s;
+    animation-delay: 0s, .3s;
+    -webkit-animation-timing-function: ease-out, ease-in-out;
+    animation-timing-function: ease-out, ease-in-out;
+    -webkit-animation-iteration-count: 1, infinite;
+    animation-iteration-count: 1, infinite;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-direction: normal, alternate;
+    animation-direction: normal, alternate;
+    opacity: 0.8;
+  }
 }
 
 .relatedsearch-empty--display {
