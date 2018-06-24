@@ -22,3 +22,15 @@ $gray: #757575;
 @mixin h4 {font-size: 1.5em;}
 
 @mixin smalltext {font-size: 0.667em;}
+
+@mixin phone {
+  @media screen and (max-width: 600px) {
+    @content;
+  }
+}
+
+@mixin largeDesktop {
+  @media screen and (min-width: 1900px) {
+    @content;
+  }
+}
