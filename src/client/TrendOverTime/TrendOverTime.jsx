@@ -110,7 +110,6 @@ class TrendOverTime extends Component {
 
 
     const bounds = canvas.node().getBoundingClientRect();
-    console.log('founds bounds: ', bounds);
     const chartWidth = bounds.width;
     const chartHeight = bounds.height;
 
@@ -285,10 +284,10 @@ class TrendOverTime extends Component {
     };
 
     return (
-      <div className="trend-wrapper--display">
+      <div className="trend-wrapper">
         <Transition in={this.state.data[0] !== undefined} timeout={1000} >
           {(state) => (
-            <div style={transitionStyles[state]}>
+            <div className="trend-label--transition" style={transitionStyles[state]}>
               <div className="component-label--display">
                 Relative popularity between <span className="component-dynamiclabel--display">  {firstDate}</span> and <span className="component-dynamiclabel--display">{lastDate}</span> 
               </div>

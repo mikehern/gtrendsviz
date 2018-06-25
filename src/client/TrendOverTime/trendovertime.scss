@@ -1,4 +1,4 @@
-.trend-wrapper--display {
+.trend-wrapper {
   // transform: translateY(-3em);
   width: 100%;
   display: flex;
@@ -6,7 +6,6 @@
 }
 
 #lineChart {
-
   //TODO: dynamically set based on future grid
   width: 70vw;
   height: 25vh;

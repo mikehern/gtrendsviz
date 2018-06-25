@@ -114,7 +114,7 @@ class Dashboard extends Component {
             : 
             <Transition in={(searchResults.length > 0)} timeout={1400}>
               {(state) => (
-                <div style={transitionStyles[state]}>
+                <div className="dashboard-suggestion--transition" style={transitionStyles[state]}>
                   <InitialSuggestion />
                 </div>
               )}

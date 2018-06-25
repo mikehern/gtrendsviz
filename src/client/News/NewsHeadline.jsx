@@ -12,7 +12,7 @@ const NewsHeadline = (props) => {
   
   return (
     <div
-      className="headline"
+      className="news-headline"
       onClick={_selectionHandler}
       onMouseEnter={_selectionHandler}
       onMouseLeave={_deselectionHandler}

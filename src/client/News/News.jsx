@@ -90,7 +90,7 @@ class News extends Component {
         {(articles.length > 0) &&
           <Transition in={articles.length > 0} timeout={10}>
             {state => (
-              <div style={labelTransitions[state]}>
+              <div className="news-label--transition" style={labelTransitions[state]}>
                 <div className="component-label--display">
                   News headlines from <span className="component-dynamiclabel--display">
                     {labelDate}
@@ -101,8 +101,8 @@ class News extends Component {
           </Transition>
         }
         {((articles.length === 0) && (this.state.data.length !== 0)) && <EmptyNewsResults />}
-        <div className="newsWrapper">
-          <TransitionGroup className="newsCollectionWrapper">
+        <div className="news-wrapper">
+          <TransitionGroup className="news-headlines--group">
             {articles
               .map(({ title, url }) => (
                 <CSSTransition

@@ -12,7 +12,7 @@ const initPreviewStyle = {
 
 const previewTransitions = {
   entered: {
-    boxShadow: `0 2px 60px 5px #CEDEFF`,
+    boxShadow: `0 2px 40px 5px #CEDEFF`,
     color: `#006bb6`
   }
 };
@@ -20,11 +20,10 @@ const previewTransitions = {
 const initMetaStyle = {
   opacity: `0`,
   textShadow: `0px 0px 1px #F2F2F2`,
-  transform: `translate(0, 200px)`,
+  transform: `translate(0, 170px)`,
   transition: `opacity 800ms cubic-bezier(0.755, 0.050, 0.855, 0.060), transform 600ms`,
   width: `100%`,
-  fontSize: `20px`,
-  marginBottom: `200px`
+  marginBottom: `170px`
 };
 
 const metaTransitions = {
@@ -38,7 +37,7 @@ const metaTransitions = {
 const initImgStyle = {
   width: `100%`,
   borderRadius: `18px`,
-  height: `210px`,
+  height: `120px`,
   marginTop: `40px`,
   objectFit: `cover`,
   opacity: 0,
@@ -51,7 +50,7 @@ const initImgStyle = {
 
 const imgTransitions = {
   entered: {
-    transform: `translate(0, -130px)`,
+    transform: `translate(0, -160px)`,
     opacity: 1,
     boxShadow: `0 -8px 60px 2px #9C9C9C`
   }
