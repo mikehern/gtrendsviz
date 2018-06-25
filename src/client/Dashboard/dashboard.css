@@ -47,7 +47,7 @@ h5 {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-auto-rows: minmax(40px, auto);
-  grid-template-areas: "h h h h h h h h h h h h" "s s s c c c c c c c c c" "f f f f f f f f f f f f";
+  grid-template-areas: "s s s c c c c c c c c c" "f f f f f f f f f f f f";
   width: 100vw; }
 
 .header {

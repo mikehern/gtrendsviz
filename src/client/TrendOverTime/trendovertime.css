@@ -1,7 +1,14 @@
 .trend-wrapper--display {
-  -webkit-transform: translateY(-3em);
-  -ms-transform: translateY(-3em);
-  transform: translateY(-3em); }
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column; }
 
 #lineChart {
+  width: 70vw;
+  height: 25vh;
   font-family: 'Nunito', sans-serif; }

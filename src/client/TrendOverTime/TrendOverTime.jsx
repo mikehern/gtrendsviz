@@ -5,9 +5,7 @@ import { Transition } from 'react-transition-group';
 
 import './trendovertime.css';
 
-const width = 800;
-const height = 300;
-const margin = { top: 20, right: 30, bottom: 30, left: 50 };
+const margin = { top: 50, right: 40, bottom: 30, left: 50 };
 
 class TrendOverTime extends Component {
   constructor(props) {
@@ -78,21 +76,22 @@ class TrendOverTime extends Component {
 
     overlay
       .append('text')
-      .attr('x', 16)
+      .attr('y', -25)
+      .attr('x', -35)
       .attr('dy', '.31em');
 
     return overlay;
   }
 
-  _createOverlayInteraction(canvas, overlay, mouseInteraction, clickInteraction) {
+  _createOverlayInteraction(canvas, overlay, mouseInteraction, clickInteraction, bounds) {
     const invisibleWindow = canvas
       .append('rect')
       .attr('id', 'focus')
       .attr("fill", "none")
       .attr('pointer-events', 'all')
       .style('cursor', 'pointer')
-      .attr("width", width)
-      .attr("height", height);
+      .attr("width", bounds.width)
+      .attr("height", bounds.height);
 
     invisibleWindow
       .on("mouseover", () => overlay.style('display', null))
@@ -108,13 +107,23 @@ class TrendOverTime extends Component {
     const node = this.node;
     const canvas = d3.select(node);
 
+
+
+    const bounds = canvas.node().getBoundingClientRect();
+    console.log('founds bounds: ', bounds);
+    const chartWidth = bounds.width;
+    const chartHeight = bounds.height;
+
+
+
+
     const xScale = d3.scaleTime()
       .domain(d3.extent(data, d => d.date))
-      .range([margin.left, width - margin.right]);
+      .range([margin.left, chartWidth - margin.right]);
 
     const yScale = d3.scaleLinear()
       .domain(d3.extent(data, d => d.value))
-      .range([height - margin.bottom, margin.top]);
+      .range([chartHeight - margin.bottom, margin.top]);
 
     const line = d3.line(data)
       .x(d => xScale(d.date))
@@ -165,7 +174,7 @@ class TrendOverTime extends Component {
           updateDate(mouseMapping.date);
       }
 
-      this._createOverlayInteraction(canvas, overlay, mouseInteraction, clickInteraction);
+      this._createOverlayInteraction(canvas, overlay, mouseInteraction, clickInteraction, bounds);
 
       const initialLine = d3.select('#trendLine').select('path').attr('d');
       this.setState({ prevData: data, prevLine: initialLine });
@@ -244,7 +253,7 @@ class TrendOverTime extends Component {
         updateDate(mouseMapping.date);
       }
 
-      this._createOverlayInteraction(canvas, overlay, mouseInteraction, clickInteraction);
+      this._createOverlayInteraction(canvas, overlay, mouseInteraction, clickInteraction, bounds);
 
       this.setState({ prevData: data, prevLine: updatedLine });
     }
@@ -281,12 +290,12 @@ class TrendOverTime extends Component {
           {(state) => (
             <div style={transitionStyles[state]}>
               <div className="component-label--display">
-                Relative popularity between <span className="component-dynamiclabel--display">{firstDate}</span> and <span className="component-dynamiclabel--display">{lastDate}</span> 
+                Relative popularity between <span className="component-dynamiclabel--display">  {firstDate}</span> and <span className="component-dynamiclabel--display">{lastDate}</span> 
               </div>
             </div>
           )}
         </Transition>
-        <svg id="lineChart" width={width} height={height} ref={node => (this.node = node)} >
+        <svg id="lineChart" ref={node => (this.node = node)} >
           <defs>
             <linearGradient id="lineLinear" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="red"></stop>
