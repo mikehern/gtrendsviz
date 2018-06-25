@@ -90,7 +90,7 @@ class News extends Component {
         {(articles.length > 0) &&
           <Transition in={articles.length > 0} timeout={10}>
             {state => (
-              <div className="news-label--transition" style={labelTransitions[state]}>
+              <div className="news-label--transition news-label--wrapper" style={labelTransitions[state]}>
                 <div className="component-label--display">
                   News headlines from <span className="component-dynamiclabel--display">
                     {labelDate}

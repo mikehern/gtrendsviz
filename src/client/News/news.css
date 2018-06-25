@@ -2,8 +2,7 @@
   display: grid;
   grid-template-columns: .75fr 1.25fr; }
 
-.news-headlines-group {
-  background-color: white;
+.news-headlines--group {
   -webkit-perspective: 1000px;
   perspective: 1000px;
   display: -webkit-box;
@@ -13,17 +12,23 @@
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  -ms-flex-line-pack: start;
-  align-content: flex-start; }
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start; }
+  @media screen and (min-width: 1900px) {
+    .news-headlines--group {
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center; } }
 
 .news-headline {
-  height: 4.75em;
+  height: 4em;
   background-color: #ecf2ff;
   border-radius: 10px;
   color: #006bb6;
-  margin: 10px;
+  margin: 5px;
   padding: 10px 15px;
-  font-family: "Galano Bold", sans-serif;
+  font-family: "Galano Medium", sans-serif;
   line-height: 1.6em;
   font-size: .9em;
   cursor: pointer;
@@ -36,10 +41,13 @@
   flex-direction: column;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
-  justify-content: center; }
+  justify-content: center;
+  width: 90%; }
+  @media screen and (min-width: 1900px) {
+    .news-headline {
+      width: 70%; } }
 
 .news-detail--wrapper {
-  background-color: white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -53,12 +61,22 @@
   font-family: "Galano Medium", sans-serif;
   color: #454545;
   padding: 0 4em; }
+  @media screen and (min-width: 1900px) {
+    .news-detail--wrapper {
+      width: 40em; } }
 
 .news-description--display {
   font-family: "Nunito", sans-serif;
-  margin: 30px 20px;
+  margin: 1.3em 1.25em;
   line-height: 24px;
   color: #454545; }
+  @media screen and (min-width: 1900px) {
+    .news-description--display {
+      padding: 1em 2em; } }
+
+@media screen and (min-width: 1900px) {
+  .news-label--wrapper {
+    margin-top: 4em; } }
 
 /* Back Pulse */
 @-webkit-keyframes hvr-back-pulse {
@@ -79,7 +97,7 @@
   opacity: 1;
   -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg);
-  width: 22em;
+  width: 90%;
   -webkit-box-shadow: 0 2px 6px 0px #d6d6d6;
   box-shadow: 0 2px 6px 0px #d6d6d6;
   -webkit-transition: width 700ms, opacity 700ms ease-in, -webkit-transform 700ms cubic-bezier(0.42, 0, 0.58, 1);
@@ -87,9 +105,12 @@
   -o-transition: width 700ms, transform 700ms cubic-bezier(0.42, 0, 0.58, 1), opacity 700ms ease-in;
   transition: width 700ms, transform 700ms cubic-bezier(0.42, 0, 0.58, 1), opacity 700ms ease-in;
   transition: width 700ms, transform 700ms cubic-bezier(0.42, 0, 0.58, 1), opacity 700ms ease-in, -webkit-transform 700ms cubic-bezier(0.42, 0, 0.58, 1); }
+  @media screen and (min-width: 1900px) {
+    .hvr-back-pulse-enter-active {
+      width: 70%; } }
 
 .hvr-back-pulse-enter-done {
-  width: 22em;
+  width: 90%;
   -webkit-box-shadow: 0 2px 6px 0px #d6d6d6;
   box-shadow: 0 2px 6px 0px #d6d6d6;
   overflow: hidden;
@@ -99,6 +120,9 @@
   -webkit-transition-property: color, background-color;
   -o-transition-property: color, background-color;
   transition-property: color, background-color; }
+  @media screen and (min-width: 1900px) {
+    .hvr-back-pulse-enter-done {
+      width: 70%; } }
 
 .hvr-back-pulse-enter-done:hover, .hvr-back-pulse-enter-done:focus, .hvr-back-pulse-enter-done:active {
   -webkit-animation-name: hvr-back-pulse;

@@ -92,6 +92,7 @@ class Dashboard extends Component {
     };
     return (
       <div className="container">
+        <div className="header"></div>
         <div className="sidebar">
           <div className="search">
             <input
@@ -120,6 +121,7 @@ class Dashboard extends Component {
               )}
             </Transition>}
         </div>
+        <div className="footer"></div>
       </div>
     );
   }

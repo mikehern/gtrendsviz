@@ -14,7 +14,11 @@
   font-size: 1rem;
   font-family: "Galano Heavy", sans-serif;
   color: #454545;
-  margin-bottom: 1em; }
+  margin-bottom: 1em;
+  padding-left: 1em; }
+  @media screen and (min-width: 1900px) {
+    .component-label--display {
+      font-size: 1.5em; } }
 
 .component-dynamiclabel--display {
   color: #FF9E00; }

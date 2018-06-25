@@ -12,3 +12,6 @@
   width: 70vw;
   height: 25vh;
   font-family: 'Nunito', sans-serif; }
+  @media screen and (min-width: 1900px) {
+    #lineChart {
+      height: 35vh; } }

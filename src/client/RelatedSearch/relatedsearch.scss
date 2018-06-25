@@ -12,6 +12,11 @@
   font-family: $primary-heavy;
   color: $black;
   margin-bottom: 1em;
+  padding-left: 1em;
+
+  @include largeDesktop {
+    @include h4;
+  }
 }
 
 .component-dynamiclabel--display{
