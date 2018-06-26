@@ -14,8 +14,8 @@
   font-size: 1rem;
   font-family: "Galano Heavy", sans-serif;
   color: #454545;
-  margin-bottom: 1em;
-  padding-left: 1em; }
+  margin-bottom: .35em;
+  padding-left: .5em; }
   @media screen and (min-width: 1900px) {
     .component-label--display {
       font-size: 1.5em; } }
@@ -24,7 +24,7 @@
   color: #FF9E00; }
 
 #svgWrapper {
-  width: 100%;
+  width: 24vw;
   height: 70vh; }
 
 .domain {

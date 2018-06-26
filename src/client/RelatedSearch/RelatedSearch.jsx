@@ -4,7 +4,7 @@ import { Transition } from 'react-transition-group';
 import EmptySearchResults from './EmptySearchResults';
 import './relatedsearch.css';
 
-const bodyMargin = { top: 10, right: 20, bottom: 20, left: 10 };
+const bodyMargin = { top: 10, right: 20, bottom: 20, left: 16 };
 
 class RelatedSearch extends Component {
   constructor(props) {
@@ -96,7 +96,7 @@ class RelatedSearch extends Component {
       d3.select('#svgWrapper')
         .append('g')
         .attr('class', 'y axis')
-        .attr('transform', `translate(10, 0)`);
+        .attr('transform', `translate(20, 0)`);
 
       d3.select('#svgWrapper').select('.y.axis').call(yAxis);
 

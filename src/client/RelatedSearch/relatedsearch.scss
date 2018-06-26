@@ -11,9 +11,8 @@
   font-size: 1rem;
   font-family: $primary-heavy;
   color: $black;
-  margin-bottom: 1em;
-  padding-left: 1em;
-
+  margin-bottom: .35em;
+  padding-left: .5em;
   @include largeDesktop {
     @include h4;
   }
@@ -24,7 +23,7 @@
 }
 
 #svgWrapper {
-  width: 100%;
+  width: 24vw;
 
   //TODO: dynamically set based on future grid
   height: 70vh;

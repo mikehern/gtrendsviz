@@ -37,7 +37,7 @@ const metaTransitions = {
 const initImgStyle = {
   width: `100%`,
   borderRadius: `18px`,
-  height: `120px`,
+  height: `144px`,
   marginTop: `40px`,
   objectFit: `cover`,
   opacity: 0,
