@@ -7,7 +7,6 @@
 }
 
 .component-label--display{
-  // @include h4;
   font-size: 1rem;
   font-family: $primary-heavy;
   color: $black;
@@ -24,8 +23,6 @@
 
 #svgWrapper {
   width: 24vw;
-
-  //TODO: dynamically set based on future grid
   height: 70vh;
 }
 

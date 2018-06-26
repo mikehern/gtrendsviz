@@ -13,7 +13,6 @@
     "h h h h h h h h h h h h"
     "s s s c c c c c c c c c"
     "f f f f f f f f f f f f";
-  // width: 100vw;
   height: 100%;
 }
 
@@ -33,7 +32,6 @@
 
 .content {
   grid-area: c;
-  // background-color: black;
 }
 
 .footer {
@@ -66,13 +64,10 @@
   border-radius: 2em;
   padding: .4em;
   font-family: $secondary-font;
+  width: 19.5vw;
 
   &:focus {
     outline: none;
-  }
-
-  @include largeDesktop {
-    width: 25em;
   }
 }
 

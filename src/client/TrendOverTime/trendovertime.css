@@ -6,11 +6,12 @@
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
-  flex-direction: column; }
+  flex-direction: column;
+  height: 32vh; }
 
 #lineChart {
   width: 70vw;
-  height: 25vh;
+  height: 30vh;
   font-family: 'Nunito', sans-serif; }
   @media screen and (min-width: 1900px) {
     #lineChart {

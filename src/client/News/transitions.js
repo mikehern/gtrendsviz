@@ -1,5 +1,5 @@
 const initPreviewStyle = {
-  boxShadow: `0 0 0 0px rgb(232, 232, 232)`,
+  boxShadow: `0 0 0 0px #FF9E00`,
   transition: `box-shadow 1000ms cubic-bezier(0.390, 0.575, 0.565, 1.000), color 1400ms`,
   borderRadius: `18px`,
   color: `white`,
