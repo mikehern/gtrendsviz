@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="120px" height="111px" viewBox="0 0 120 111" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="136px" height="187px" viewBox="0 0 136 187" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
-    <title>Group 3</title>
+    <title>Group 7</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Group-3">
-            <circle id="Oval-Copy" fill="#FFFDE1" cx="53.2173913" cy="12.5217391" r="12.5217391"></circle>
-            <circle id="Oval-Copy-2" fill="#FFFEE5" cx="104.869565" cy="61.0434783" r="15.1304348"></circle>
-            <circle id="Oval-Copy-3" fill="#FFF9D5" cx="15.1304348" cy="95.4782609" r="15.1304348"></circle>
-            <circle id="Oval-Copy-4" fill="#FFF9D5" cx="99.1304348" cy="80.3478261" r="9.39130435"></circle>
-            <circle id="Oval-Copy-5" fill="#FFF7C9" cx="22.9565217" cy="29.2173913" r="16.6956522"></circle>
-            <g id="Group-2" transform="translate(37.565217, 35.478261)">
-                <circle id="Oval" fill="#FFFCA4" cx="21.9130435" cy="21.9130435" r="21.9130435"></circle>
-                <g id="Group" transform="translate(11.180124, 12.663354)" fill="#CFDEFF">
-                    <ellipse id="Oval-2" cx="3.57763975" cy="4.930721" rx="3.57763975" ry="4.01337838"></ellipse>
-                    <ellipse id="Oval-2-Copy" cx="18.3354037" cy="4.930721" rx="3.57763975" ry="4.01337838"></ellipse>
-                </g>
+        <g id="Group-7">
+            <g id="Group-6-Copy">
+                <path d="M8,0.872122089 L128,13.9539534 C132.418278,14.4356132 136,18.4077975 136,22.8260755 L136,179.826076 C136,184.244354 132.418278,187.435613 128,186.953953 L8,173.872122 C3.581722,173.390462 0,169.418278 0,165 L0,8 C0,3.581722 3.581722,0.390462359 8,0.872122089 Z" id="Rectangle-3-Copy-14" fill="#D8D8D8"></path>
+                <polygon id="Rectangle-3-Copy-15" fill="#A9A9A9" points="17 15.8532594 119 26.9728161 119 57.9728161 17 46.8532594"></polygon>
+                <polygon id="Rectangle-3-Copy-16" fill="#F3F3F3" points="17 65.8532594 119 76.9728161 119 169.972816 17 158.853259"></polygon>
             </g>
+            <circle id="Oval-3" fill="#FFFFFF" cx="55.5" cy="32.5" r="5.5"></circle>
+            <circle id="Oval-3-Copy" fill="#FFFFFF" cx="78.5" cy="35.5" r="5.5"></circle>
         </g>
     </g>
 </svg>

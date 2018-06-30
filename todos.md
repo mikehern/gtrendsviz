@@ -26,7 +26,7 @@
 - [ ] Refactor News component so article count value in state is used instead of checking length
 - [ ] Factor out search
 - [ ] Remove entrance animation for news label
-- [ ] Change related search placeholder to grayscale
+- [x] Change related search placeholder to grayscale
 - [ ] Create backing svg rect for search placeholder text to wrap into
 - [ ] Update dates for moment.js compatibility
 - [ ] Bug: svg does not render in latest version of FF
