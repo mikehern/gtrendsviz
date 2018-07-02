@@ -10,7 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      landingLoadFinished: false,
+      landingLoadFinished: true,
       landingSearchSubmitted: false,
       landingSearchTerm: '',
     };
@@ -32,7 +32,7 @@ class App extends Component {
 
   render() {
     const {landingLoadFinished, landingSearchSubmitted, landingSearchTerm } = this.state;
-    const tempImage = "https://images.pexels.com/photos/660548/bormio-river-pebbles-italy-660548.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1142&w=1920";
+    // const tempImage = "https://images.pexels.com/photos/660548/bormio-river-pebbles-italy-660548.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1142&w=1920";
     const transitionStyles = {
       entering: {
         opacity: 0,
@@ -46,10 +46,10 @@ class App extends Component {
         {landingLoadFinished ||
           <div className="landing-placeholder--display">
             <img src={loader} />
-            <img
+            {/* <img
               src={tempImage}
               style={{ display: 'none' }}
-              onLoad={this._imageLoadComplete} />
+              onLoad={this._imageLoadComplete} /> */}
           </div>}
         {landingLoadFinished &&
           <Transition in={(landingLoadFinished && landingSearchSubmitted)} timeout={1800}>
