@@ -30,13 +30,12 @@ class LandingPage extends Component {
 
   _chooseForMeClicked() {
     const defaultTrends = [
-      'royal wedding',
-      'Golden State Warriors',
+      'supreme court',
+      'Lakers',
       'World Cup',
-      'summer vacation ideas',
-      '10 day forecast',
-      'Mexico',
-      'Robert Mueller',
+      'Mexico election',
+      'Alexandria Ocasio-Cortez',
+      '10 day forecast'
     ];
     const randomSelect = (collection) => Math.floor(Math.random() * collection.length - 1);
 
